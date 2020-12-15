@@ -1,8 +1,19 @@
 import React from 'react'
-import './App.css'
+import styled from 'styled-components'
+import { Header } from './components/Header'
 
-function App() {
-  return <div className="App"></div>
+
+export default function App() {
+  return (
+    <AppGrid>
+      <Header />
+      
+    </AppGrid>
+  )
 }
 
-export default App
+const AppGrid = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 60px auto 48px;
+`
