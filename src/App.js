@@ -5,6 +5,7 @@ import { Header } from './components/Header';
 import AddDeliveryForm from './pages/AddDeliveryForm';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
+import deliveries from './defaultData.json';
 
 export default function App() {
   return (
@@ -14,7 +15,7 @@ export default function App() {
       <main>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home deliveries={deliveries} />
           </Route>
           <Route path="/form">
             <AddDeliveryForm />

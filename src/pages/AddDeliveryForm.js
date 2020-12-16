@@ -5,7 +5,7 @@ export default function AddDeliveryForm() {
   const [newDelivery, setNewDelivery] = useState({
     name: '',
     street: '',
-    city: '',
+
     postal: '',
     dayMeal: '',
     weekMeal: '',
@@ -32,14 +32,8 @@ export default function AddDeliveryForm() {
           onChange={handleChange}
           value={newDelivery.street}
         />
-        <label htmlFor="city">Stadt:</label>
-        <input
-          type="text"
-          name="city"
-          onChange={handleChange}
-          value={newDelivery.city}
-        />
-        <label htmlFor="postal">Postleitzahl:</label>
+
+        <label htmlFor="postal">PLZ, Stadt:</label>
         <input
           type="text"
           name="postal"
@@ -103,7 +97,7 @@ export default function AddDeliveryForm() {
     setNewDelivery({
       name: '',
       street: '',
-      city: '',
+
       postal: '',
       dayMeal: '',
       weekMeal: '',

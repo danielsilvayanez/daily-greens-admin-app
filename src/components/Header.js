@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import logo from "../images/dailyGreensLogo.png";
+import React from 'react';
+import styled from 'styled-components';
+import logo from '../images/dailyGreensLogo.png';
 
 const today = new Date();
 let date =
-  today.getDate() + "." + (today.getMonth() + 1) + "." + today.getFullYear();
+  today.getDate() + '.' + (today.getMonth() + 1) + '.' + today.getFullYear();
 
 export const Header = () => {
   return (
