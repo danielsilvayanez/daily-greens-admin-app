@@ -1,14 +1,25 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from './components/Header';
 import AddDeliveryForm from './pages/AddDeliveryForm';
+import Navigation from './components/Navigation';
+import Home from './pages/Home';
 
 export default function App() {
   return (
     <AppGrid>
       <Header />
+      <Navigation />
       <main>
-        <AddDeliveryForm />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/form">
+            <AddDeliveryForm />
+          </Route>
+        </Switch>
       </main>
     </AppGrid>
   );
@@ -17,5 +28,5 @@ export default function App() {
 const AppGrid = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-rows: 60px auto 48px;
+  grid-template-rows: 60px 48px auto;
 `;
