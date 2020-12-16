@@ -6,6 +6,12 @@ export default function AddDeliveryForm() {
     name: '',
     street: '',
     city: '',
+    postal: '',
+    dayMeal: '',
+    weekMeal: '',
+    item: '',
+    date: '',
+    driver: '',
   });
 
   return (
@@ -63,7 +69,7 @@ export default function AddDeliveryForm() {
         />
         <label htmlFor="date">Lieferdatum:</label>
         <input
-          type="text"
+          type="date"
           name="date"
           onChange={handleChange}
           value={newDelivery.date}
@@ -133,7 +139,7 @@ const Form = styled.form`
     font-size: 1rem;
 
     :focus {
-      outline-color: lime;
+      outline-color: var(--primaryBGBtnGreen);
     }
   }
 `;
