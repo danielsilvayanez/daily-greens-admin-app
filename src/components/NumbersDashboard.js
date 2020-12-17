@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export default function Home({ deliveries }) {
   const reducer = (a, b) => a + b;
@@ -16,11 +17,15 @@ export default function Home({ deliveries }) {
     .reduce(reducer);
 
   return (
-    <section>
+    <NumbersContainer>
       <h1>Übersicht</h1>
       <p>Tagesgericht gesamt: {dayMealDailyTotal}</p>
       <p>Wochengericht gesamt: {weekMealDailyTotal}</p>
       <p>Pfandboxen zurück: {boxDailyTotal}</p>
-    </section>
+    </NumbersContainer>
   );
 }
+
+const NumbersContainer = styled.section`
+  padding: 20px;
+`;
