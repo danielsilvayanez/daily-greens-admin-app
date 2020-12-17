@@ -29,6 +29,7 @@ export default function Driver({ delivery }) {
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   height: ${(props) => props.height || 60}px;
   width: 80%;
   justify-content: space-around;
