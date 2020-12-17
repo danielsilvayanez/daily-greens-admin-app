@@ -5,10 +5,9 @@ export default function AddDeliveryForm() {
   const [newDelivery, setNewDelivery] = useState({
     name: '',
     street: '',
-
     postal: '',
-    dayMeal: '',
-    weekMeal: '',
+    dayMeal: 0,
+    weekMeal: 0,
     item: '',
     date: '',
     driver: '',
@@ -97,10 +96,9 @@ export default function AddDeliveryForm() {
     setNewDelivery({
       name: '',
       street: '',
-
       postal: '',
-      dayMeal: '',
-      weekMeal: '',
+      dayMeal: 0,
+      weekMeal: 0,
       item: '',
       date: '',
       driver: '',
