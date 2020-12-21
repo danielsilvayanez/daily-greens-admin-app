@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
 export default function Driver({ delivery }) {
-  const [details, setDetails] = useState(false);
+  const [details, setDetails] = useState(true);
   useEffect(() => {
     console.log(details);
   }, [details]);
