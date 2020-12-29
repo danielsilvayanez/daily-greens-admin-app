@@ -1,12 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
-import Driver from '../components/Driver';
+import React from "react";
+import styled from "styled-components";
+import Driver from "../components/Driver";
 
-export default function Driverlist({ deliveries }) {
+export default function Driverlist({ deliveries, setDeliveries }) {
   return (
     <List>
-      {deliveries.map((delivery) => (
-        <Driver delivery={delivery} />
+      {deliveries.map((delivery, index) => (
+        <Driver
+          delivery={delivery}
+          index={index}
+          setDeliveries={setDeliveries}
+          deliveries={deliveries}
+        />
       ))}
     </List>
   );

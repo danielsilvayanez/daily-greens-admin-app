@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ArrowUpIcon from "../icons/ArrowUpIcon";
 
-export default function Driver({ delivery }) {
+export default function Driver({ delivery, index, deliveries, setDeliveries }) {
   const [details, setDetails] = useState(true);
   useEffect(() => {
     console.log(details);
@@ -53,6 +53,9 @@ export default function Driver({ delivery }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    let newDeliveries = [...deliveries];
+    newDeliveries[index].message = newDelivery.message;
+    setDeliveries(newDeliveries);
     setNewDelivery({
       message: "",
     });

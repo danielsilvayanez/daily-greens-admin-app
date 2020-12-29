@@ -1,13 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-import NumbersDashboard from '../components/NumbersDashboard';
-import Driverlist from '../pages/Driverlist';
+import { set } from "object-path";
+import React from "react";
+import styled from "styled-components";
+import NumbersDashboard from "../components/NumbersDashboard";
+import Driverlist from "../pages/Driverlist";
 
-export default function Home({ deliveries }) {
+export default function Home({ deliveries, setDeliveries }) {
   return (
     <DashboardContainer>
       <NumbersDashboard deliveries={deliveries} />
-      <Driverlist deliveries={deliveries} />
+      <Driverlist deliveries={deliveries} setDeliveries={setDeliveries} />
     </DashboardContainer>
   );
 }

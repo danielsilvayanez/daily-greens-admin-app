@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-export default function AddDeliveryForm() {
+export default function AddDeliveryForm({ deliveries, setDeliveries }) {
   const [newDelivery, setNewDelivery] = useState({
-    name: '',
-    street: '',
-    postal: '',
+    address: {
+      name: "",
+      street: "",
+      postal: "",
+    },
     dayMeal: 0,
     weekMeal: 0,
-    item: '',
-    date: '',
-    driver: '',
+    item: "",
+    date: "",
+    driver: "",
+    message: "",
   });
 
   return (
@@ -21,23 +24,23 @@ export default function AddDeliveryForm() {
         <input
           type="text"
           name="name"
-          onChange={handleChange}
-          value={newDelivery.name}
+          onChange={handleAddressChange}
+          value={newDelivery.address.name}
         />
         <label htmlFor="street">Straße, Hausnummer, Stock:</label>
         <input
           type="text"
           name="street"
-          onChange={handleChange}
-          value={newDelivery.street}
+          onChange={handleAddressChange}
+          value={newDelivery.address.street}
         />
 
         <label htmlFor="postal">PLZ, Stadt:</label>
         <input
           type="text"
           name="postal"
-          onChange={handleChange}
-          value={newDelivery.postal}
+          onChange={handleAddressChange}
+          value={newDelivery.address.postal}
         />
         <label htmlFor="dayMeal">Tagesgericht Anzahl:</label>
         <input
@@ -84,6 +87,25 @@ export default function AddDeliveryForm() {
     </FormContainer>
   );
 
+  function handleAddressChange(event) {
+    // *** Alternative zu unten ***
+    // let newNewDelivery = { ...newDelivery };
+    // let newAddress = { ...newDelivery.address };
+    // newAddress[event.target.name] = event.target.value;
+
+    // newNewDelivery.address = newAddress;
+
+    // setNewDelivery(newNewDelivery);
+
+    setNewDelivery({
+      ...newDelivery,
+      address: {
+        ...newDelivery.address,
+        [event.target.name]: event.target.value,
+      },
+    });
+  }
+
   function handleChange(event) {
     setNewDelivery({
       ...newDelivery,
@@ -93,15 +115,20 @@ export default function AddDeliveryForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    let newDeliveries = [...deliveries, newDelivery];
+    setDeliveries(newDeliveries);
+
     setNewDelivery({
-      name: '',
-      street: '',
-      postal: '',
+      address: {
+        name: "",
+        street: "",
+        postal: "",
+      },
       dayMeal: 0,
       weekMeal: 0,
-      item: '',
-      date: '',
-      driver: '',
+      item: "",
+      date: "",
+      driver: "",
     });
   }
 }
@@ -138,7 +165,7 @@ const Form = styled.form`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 1rem;
   color: var(--primaryFontGrey);
   border: none;

@@ -12,7 +12,8 @@
     "start": false,
     "done": false,
     "box": 2,
-    "driver": "Lewis Hamilton"
+    "driver": "Lewis Hamilton",
+    "message": ""
   },
   {
     "date": "24.12.2020",
@@ -27,7 +28,8 @@
     "start": false,
     "done": false,
     "box": 2,
-    "driver": "Sebastian Vettel"
+    "driver": "Sebastian Vettel",
+    "message": ""
   },
   {
     "date": "24.12.2020",
@@ -42,7 +44,8 @@
     "start": false,
     "done": false,
     "box": 2,
-    "driver": "Mickey Mouse"
+    "driver": "Mickey Mouse",
+    "message": ""
   },
   {
     "date": "24.12.2020",
@@ -57,6 +60,7 @@
     "start": false,
     "done": false,
     "box": 2,
-    "driver": "Donald Duck"
+    "driver": "Donald Duck",
+    "message": ""
   }
 ]
