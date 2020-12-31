@@ -18,6 +18,22 @@
   {
     "date": "24.12.2020",
     "address": {
+      "name": "Muster Man",
+      "street": "Musterweg 1",
+      "postal": "11111 MusterCity"
+    },
+    "prio": 1,
+    "dayMeal": 4,
+    "weekMeal": 2,
+    "start": false,
+    "done": false,
+    "box": 2,
+    "driver": "Lewis Hamilton",
+    "message": ""
+  },
+  {
+    "date": "24.12.2020",
+    "address": {
       "name": "George Müller",
       "street": "Musterweg 1",
       "postal": "11111 MusterCity"
