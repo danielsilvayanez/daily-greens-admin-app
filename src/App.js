@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Switch, Route } from "react-router-dom";
-import styled from "styled-components";
-import { Header } from "./components/Header";
-import AddDeliveryForm from "./pages/AddDeliveryForm";
-import Navigation from "./components/Navigation";
-import Home from "./pages/Home";
-import mockDeliveries from "./defaultData.json";
-import Register from "./Firebase/auth/Register";
+import React, { useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
+import { Header } from './components/Header';
+import AddDeliveryForm from './pages/AddDeliveryForm';
+import Navigation from './components/Navigation';
+import Home from './pages/Home';
+import mockDeliveries from './defaultData.json';
+import Register from './Firebase/auth/Register';
 
 export default function App() {
   const [deliveries, setDeliveries] = useState(mockDeliveries);
@@ -19,9 +19,9 @@ export default function App() {
           <Route exact path="/">
             <Home deliveries={deliveries} setDeliveries={setDeliveries} />
           </Route>
-          {/* <Route exact path="/register">
+          <Route exact path="/register">
             <Register />
-          </Route> */}
+          </Route>
           <Route path="/form">
             <AddDeliveryForm
               deliveries={deliveries}

@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
-import firebaseApp from "../index";
-import styled from "styled-components";
+import React, { useRef, useState } from 'react';
+import firebaseApp from 'firebase/app';
+import styled from 'styled-components';
 
 export default function Register() {
   const [isRegistered, setIsRegistered] = useState(false);
@@ -28,17 +28,17 @@ export default function Register() {
         <p>You are registered!</p>
       ) : (
         <form
-          onSubmit={
-            ((event) => event.preventDefault(),
+          onSubmit={(event) => (
+            event.preventDefault(),
             registerToFirebase(
               userName.current.value,
               userEmail.current.value,
               userPassword.current.value
-            ))
-          }
+            )
+          )}
         >
           <div>
-            <StyledLabel htmlFor="user-name">Fahrername</StyledLabel>
+            <StyledLabel htmlFor="user-name">Username</StyledLabel>
             <StyledInput
               htmlId="user-name"
               name="user-name"
