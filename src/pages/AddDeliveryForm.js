@@ -3,11 +3,9 @@ import styled from "styled-components";
 
 export default function AddDeliveryForm({ deliveries, setDeliveries }) {
   const [newDelivery, setNewDelivery] = useState({
-    address: {
-      name: "",
-      street: "",
-      postal: "",
-    },
+    name: "",
+    street: "",
+    postal: "",
     dayMeal: 0,
     weekMeal: 0,
     item: "",
@@ -24,23 +22,23 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
         <input
           type="text"
           name="name"
-          onChange={handleAddressChange}
-          value={newDelivery.address.name}
+          onChange={handleChange}
+          value={newDelivery.name}
         />
         <label htmlFor="street">Straße, Hausnummer, Stock:</label>
         <input
           type="text"
           name="street"
-          onChange={handleAddressChange}
-          value={newDelivery.address.street}
+          onChange={handleChange}
+          value={newDelivery.street}
         />
 
         <label htmlFor="postal">PLZ, Stadt:</label>
         <input
           type="text"
           name="postal"
-          onChange={handleAddressChange}
-          value={newDelivery.address.postal}
+          onChange={handleChange}
+          value={newDelivery.postal}
         />
         <label htmlFor="dayMeal">Tagesgericht Anzahl:</label>
         <input
@@ -87,25 +85,6 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
     </FormContainer>
   );
 
-  function handleAddressChange(event) {
-    // *** Alternative zu unten ***
-    // let newNewDelivery = { ...newDelivery };
-    // let newAddress = { ...newDelivery.address };
-    // newAddress[event.target.name] = event.target.value;
-
-    // newNewDelivery.address = newAddress;
-
-    // setNewDelivery(newNewDelivery);
-
-    setNewDelivery({
-      ...newDelivery,
-      address: {
-        ...newDelivery.address,
-        [event.target.name]: event.target.value,
-      },
-    });
-  }
-
   function handleChange(event) {
     setNewDelivery({
       ...newDelivery,
@@ -117,13 +96,10 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
     event.preventDefault();
     let newDeliveries = [...deliveries, newDelivery];
     setDeliveries(newDeliveries);
-
     setNewDelivery({
-      address: {
-        name: "",
-        street: "",
-        postal: "",
-      },
+      name: "",
+      street: "",
+      postal: "",
       dayMeal: 0,
       weekMeal: 0,
       item: "",

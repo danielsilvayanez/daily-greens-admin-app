@@ -16,9 +16,9 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
         <Container height="150">
           <StyledArrowUpIcon onClick={() => setDetails(!details)} />
           <h3>{delivery.driver}</h3>
-          <p>{delivery.address.name}</p>
-          <p>{delivery.address.street}</p>
-          <p>{delivery.address.postal}</p>
+          <p>{delivery.name}</p>
+          <p>{delivery.street}</p>
+          <p>{delivery.postal}</p>
           <p>Tagesessen: {delivery.dayMeal}</p>
           <p>Wochenessen: {delivery.weekMeal}</p>
           <p>{delivery.prio}. Stopp</p>
@@ -59,6 +59,7 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
     setNewDelivery({
       message: "",
     });
+    console.log("-----> ", newDeliveries);
   }
 }
 

@@ -1,11 +1,9 @@
 [
   {
     "date": "24.12.2020",
-    "address": {
-      "name": "Muster Man",
-      "street": "Musterweg 1",
-      "postal": "11111 MusterCity"
-    },
+    "name": "Muster Man",
+    "street": "Musterweg 1",
+    "postal": "11111 MusterCity",
     "prio": 1,
     "dayMeal": 4,
     "weekMeal": 2,
@@ -17,11 +15,9 @@
   },
   {
     "date": "24.12.2020",
-    "address": {
-      "name": "George Müller",
-      "street": "Musterweg 1",
-      "postal": "11111 MusterCity"
-    },
+    "name": "Schorsch",
+    "street": "Musterweg 1",
+    "postal": "11111 MusterCity",
     "prio": 1,
     "dayMeal": 4,
     "weekMeal": 2,
@@ -33,11 +29,9 @@
   },
   {
     "date": "24.12.2020",
-    "address": {
-      "name": "Jackie Chan",
-      "street": "Musterweg 1",
-      "postal": "11111 MusterCity"
-    },
+    "name": "Peter Pan",
+    "street": "Musterweg 1",
+    "postal": "11111 MusterCity",
     "prio": 1,
     "dayMeal": 4,
     "weekMeal": 2,
@@ -49,11 +43,9 @@
   },
   {
     "date": "24.12.2020",
-    "address": {
-      "name": "Wurstfach Verkäuferin",
-      "street": "Musterweg 1",
-      "postal": "11111 MusterCity"
-    },
+    "name": "Muster Man",
+    "street": "Musterweg 1",
+    "postal": "11111 MusterCity",
     "prio": 1,
     "dayMeal": 4,
     "weekMeal": 2,
