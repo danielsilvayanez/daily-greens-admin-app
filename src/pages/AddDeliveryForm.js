@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-export default function AddDeliveryForm() {
+export default function AddDeliveryForm({ deliveries, setDeliveries }) {
   const [newDelivery, setNewDelivery] = useState({
-    name: '',
-    street: '',
-    postal: '',
+    name: "",
+    street: "",
+    postal: "",
     dayMeal: 0,
     weekMeal: 0,
-    item: '',
-    date: '',
-    driver: '',
+    item: "",
+    date: "",
+    driver: "",
+    message: "",
   });
 
   return (
@@ -93,15 +94,17 @@ export default function AddDeliveryForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    let newDeliveries = [...deliveries, newDelivery];
+    setDeliveries(newDeliveries);
     setNewDelivery({
-      name: '',
-      street: '',
-      postal: '',
+      name: "",
+      street: "",
+      postal: "",
       dayMeal: 0,
       weekMeal: 0,
-      item: '',
-      date: '',
-      driver: '',
+      item: "",
+      date: "",
+      driver: "",
     });
   }
 }
@@ -138,7 +141,7 @@ const Form = styled.form`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 1rem;
   color: var(--primaryFontGrey);
   border: none;

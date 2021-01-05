@@ -1,13 +1,14 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import styled from 'styled-components';
-import { Header } from './components/Header';
-import AddDeliveryForm from './pages/AddDeliveryForm';
-import Navigation from './components/Navigation';
-import Home from './pages/Home';
-import deliveries from './defaultData.json';
+import React, { useState } from "react";
+import { Switch, Route } from "react-router-dom";
+import styled from "styled-components";
+import { Header } from "./components/Header";
+import AddDeliveryForm from "./pages/AddDeliveryForm";
+import Navigation from "./components/Navigation";
+import Home from "./pages/Home";
+import mockDeliveries from "./defaultData.json";
 
 export default function App() {
+  const [deliveries, setDeliveries] = useState(mockDeliveries);
   return (
     <AppGrid>
       <Header />
@@ -15,10 +16,13 @@ export default function App() {
       <main>
         <Switch>
           <Route exact path="/">
-            <Home deliveries={deliveries} />
+            <Home deliveries={deliveries} setDeliveries={setDeliveries} />
           </Route>
           <Route path="/form">
-            <AddDeliveryForm />
+            <AddDeliveryForm
+              deliveries={deliveries}
+              setDeliveries={setDeliveries}
+            />
           </Route>
         </Switch>
       </main>
