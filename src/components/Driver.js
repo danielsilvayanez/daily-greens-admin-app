@@ -21,7 +21,7 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
           <p>{delivery.postal}</p>
           <p>Tagesessen: {delivery.dayMeal}</p>
           <p>Wochenessen: {delivery.weekMeal}</p>
-          <p>{delivery.prio}. Stopp</p>
+          <p>{delivery.stop}. Stopp</p>
 
           <Form onSubmit={handleSubmit}>
             <label htmlFor="name">Notiz: </label>

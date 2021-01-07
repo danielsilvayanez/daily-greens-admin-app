@@ -12,12 +12,39 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
     date: "",
     driver: "",
     message: "",
+    stop: 0,
   });
 
   return (
     <FormContainer>
       <h1>Neuer Auftrag</h1>
       <Form onSubmit={handleSubmit}>
+        <label htmlFor="date">Lieferdatum:</label>
+        <input
+          type="date"
+          name="date"
+          onChange={handleChange}
+          value={newDelivery.date}
+        />
+        <label htmlFor="driver">Fahrer:</label>
+        <select
+          name="driver"
+          id=""
+          onChange={handleChange}
+          value={newDelivery.driver}
+        >
+          <option value="">Fahrer auswählen</option>
+          <option value="Anton">Anton</option>
+          <option value="Edi">Edi</option>
+          <option value="Det">Det</option>
+        </select>
+        <label htmlFor="stop">Stopp:</label>
+        <input
+          type="number"
+          name="stop"
+          onChange={handleChange}
+          value={newDelivery.stop}
+        />
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -42,14 +69,14 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
         />
         <label htmlFor="dayMeal">Tagesgericht Anzahl:</label>
         <input
-          type="text"
+          type="number"
           name="dayMeal"
           onChange={handleChange}
           value={newDelivery.dayMeal}
         />
         <label htmlFor="weekMeal">Wochengericht Anzahl:</label>
         <input
-          type="text"
+          type="number"
           name="weekMeal"
           onChange={handleChange}
           value={newDelivery.weekMeal}
@@ -61,25 +88,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           onChange={handleChange}
           value={newDelivery.item}
         />
-        <label htmlFor="date">Lieferdatum:</label>
-        <input
-          type="date"
-          name="date"
-          onChange={handleChange}
-          value={newDelivery.date}
-        />
-        <label htmlFor="driver">Fahrer:</label>
-        <select
-          name="driver"
-          id=""
-          onChange={handleChange}
-          value={newDelivery.driver}
-        >
-          <option value="">Fahrer auswählen</option>
-          <option value="Anton">Anton</option>
-          <option value="Edi">Edi</option>
-          <option value="Det">Det</option>
-        </select>
+
         <Button>Erstellen</Button>
       </Form>
     </FormContainer>
@@ -105,6 +114,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
       item: "",
       date: "",
       driver: "",
+      stop: 0,
     });
   }
 }
