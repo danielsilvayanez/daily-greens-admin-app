@@ -6,6 +6,7 @@ import AddDeliveryForm from "./pages/AddDeliveryForm";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import mockDeliveries from "./defaultData.json";
+import Register from "./components/auth/Register";
 
 export default function App() {
   const [deliveries, setDeliveries] = useState(mockDeliveries);
@@ -17,6 +18,9 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <Home deliveries={deliveries} setDeliveries={setDeliveries} />
+          </Route>
+          <Route exact path="/register">
+            <Register />
           </Route>
           <Route path="/form">
             <AddDeliveryForm
