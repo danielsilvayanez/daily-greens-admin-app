@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import styled from 'styled-components';
-import { Header } from './components/Header';
-import AddDeliveryForm from './pages/AddDeliveryForm';
-import Navigation from './components/Navigation';
-import Home from './pages/Home';
-import mockDeliveries from './defaultData.json';
-import Register from './Firebase/auth/Register';
+import React, { useState } from "react";
+import { Switch, Route } from "react-router-dom";
+import styled from "styled-components";
+import { Header } from "./components/Header";
+import AddDeliveryForm from "./pages/AddDeliveryForm";
+import Navigation from "./components/Navigation";
+import Home from "./pages/Home";
+import mockDeliveries from "./defaultData.json";
+import Register from "./components/auth/Register";
 
 export default function App() {
   const [deliveries, setDeliveries] = useState(mockDeliveries);

@@ -1,13 +1,12 @@
-const env = process.env;
+// const env = process.env;
 
 const firebaseConfig = {
-  apiKey: env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: env.REACT_APP_FIREBASE_DATABASE_URL,
-  projectId: env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyBKPNWpo213BOeHtRR4xxSpJShjdrnSFu8",
+  authDomain: "daily-greens-12808.firebaseapp.com",
+  projectId: "daily-greens-12808",
+  storageBucket: "daily-greens-12808.appspot.com",
+  messagingSenderId: "1024859839583",
+  appId: "1:1024859839583:web:f236f98a6415850f444fea",
 };
 
 export default firebaseConfig;

@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
-import firebaseApp from 'firebase/app';
-import styled from 'styled-components';
+import React, { useRef, useState } from "react";
+import firebaseApp from "../../Firebase";
+import styled from "styled-components";
 
 export default function Register() {
   const [isRegistered, setIsRegistered] = useState(false);
