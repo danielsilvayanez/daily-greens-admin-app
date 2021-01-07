@@ -8,7 +8,13 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
     console.log(details);
   }, [details]);
 
-  const [newDelivery, setNewDelivery] = useState({ message: "" });
+  const [newDelivery, setNewDelivery] = useState({
+    message: "--- Bitte hier Notizen eingeben --- ",
+  });
+
+  useEffect(() => {
+    setNewDelivery(delivery.message);
+  }, [delivery.message]);
 
   return (
     <>
@@ -24,15 +30,14 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
           <p>{delivery.prio}. Stopp</p>
 
           <Form onSubmit={handleSubmit}>
-            <label htmlFor="name">Notiz: </label>
+            <label htmlFor="message">Notiz: </label>
             <textarea
               type="textarea"
               name="message"
               onChange={handleChange}
-              value={newDelivery.name}
-              placeholder="** Hier kannst du dem Fahrer wichtige Informationen zukommen lassen **"
+              value={newDelivery.message}
+              placeholder={newDelivery}
             />
-
             <Button>Erstellen</Button>
           </Form>
         </Container>
