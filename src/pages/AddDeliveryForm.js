@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 export default function AddDeliveryForm({ deliveries, setDeliveries }) {
   const [newDelivery, setNewDelivery] = useState({
-    name: "",
-    street: "",
-    postal: "",
+    name: '',
+    street: '',
+    phone: '',
     dayMeal: 0,
     weekMeal: 0,
-    item: "",
-    date: "",
-    driver: "",
-    message: "",
+    item: '',
+    date: '',
+    driver: '',
+    message: '',
     stop: 0,
   });
 
@@ -60,10 +60,10 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           value={newDelivery.street}
         />
 
-        <label htmlFor="postal">PLZ, Stadt:</label>
+        <label htmlFor="phone">Telefon:</label>
         <input
           type="text"
-          name="postal"
+          name="phone"
           onChange={handleChange}
           value={newDelivery.postal}
         />
@@ -106,14 +106,14 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
     let newDeliveries = [...deliveries, newDelivery];
     setDeliveries(newDeliveries);
     setNewDelivery({
-      name: "",
-      street: "",
-      postal: "",
+      name: '',
+      street: '',
+      phone: '',
       dayMeal: 0,
       weekMeal: 0,
-      item: "",
-      date: "",
-      driver: "",
+      item: '',
+      date: '',
+      driver: '',
       stop: 0,
     });
   }
@@ -151,7 +151,7 @@ const Form = styled.form`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 1rem;
   color: var(--primaryFontGrey);
   border: none;

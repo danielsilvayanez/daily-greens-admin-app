@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import ArrowUpIcon from "../icons/ArrowUpIcon";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import ArrowUpIcon from '../icons/ArrowUpIcon';
 
 export default function Driver({ delivery, index, deliveries, setDeliveries }) {
   const [details, setDetails] = useState(true);
@@ -9,7 +9,7 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
   }, [details]);
 
   const [newDelivery, setNewDelivery] = useState({
-    message: "--- Bitte hier Notizen eingeben --- ",
+    message: '--- Bitte hier Notizen eingeben --- ',
   });
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
           <h3>{delivery.driver}</h3>
           <p>{delivery.name}</p>
           <p>{delivery.street}</p>
-          <p>{delivery.postal}</p>
+          <p>{delivery.phone}</p>
           <p>Tagesessen: {delivery.dayMeal}</p>
           <p>Wochenessen: {delivery.weekMeal}</p>
           <p>{delivery.stop}. Stopp</p>
@@ -62,9 +62,9 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
     newDeliveries[index].message = newDelivery.message;
     setDeliveries(newDeliveries);
     setNewDelivery({
-      message: "",
+      message: '',
     });
-    console.log("-----> ", newDeliveries);
+    console.log('-----> ', newDeliveries);
   }
 }
 
@@ -95,7 +95,7 @@ const StyledArrowUpIcon = styled(ArrowUpIcon)`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   color: var(--primaryFontGrey);
   border: none;
   border-radius: 5px;
