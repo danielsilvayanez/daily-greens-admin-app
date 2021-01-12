@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import ArrowUpIcon from "../icons/ArrowUpIcon";
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import ArrowUpIcon from '../icons/ArrowUpIcon'
 
 export default function Driver({ delivery, index, deliveries, setDeliveries }) {
-  const [details, setDetails] = useState(true);
+  const [details, setDetails] = useState(false)
   useEffect(() => {
-    console.log(details);
-  }, [details]);
+    console.log(details)
+  }, [details])
 
   const [newDelivery, setNewDelivery] = useState({
-    message: "--- Bitte hier Notizen eingeben --- ",
-  });
+    message: '--- Bitte hier Notizen eingeben --- ',
+  })
 
   useEffect(() => {
-    setNewDelivery(delivery.message);
-  }, [delivery.message]);
+    setNewDelivery(delivery.message)
+  }, [delivery.message])
 
   return (
     <>
@@ -47,24 +47,24 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
         </Container>
       )}
     </>
-  );
+  )
 
   function handleChange(event) {
     setNewDelivery({
       ...newDelivery,
       [event.target.name]: event.target.value,
-    });
+    })
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
-    let newDeliveries = [...deliveries];
-    newDeliveries[index].message = newDelivery.message;
-    setDeliveries(newDeliveries);
+    event.preventDefault()
+    let newDeliveries = [...deliveries]
+    newDeliveries[index].message = newDelivery.message
+    setDeliveries(newDeliveries)
     setNewDelivery({
-      message: "",
-    });
-    console.log("-----> ", newDeliveries);
+      message: '',
+    })
+    console.log('-----> ', newDeliveries)
   }
 }
 
@@ -76,7 +76,7 @@ const Form = styled.form`
   textarea {
     height: 100px;
   }
-`;
+`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -86,20 +86,20 @@ const Container = styled.div`
   border: solid 1px #000;
   margin: 10px;
   padding: 10px;
-`;
+`
 
 const StyledArrowUpIcon = styled(ArrowUpIcon)`
   position: relative;
   left: 225px;
-`;
+`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   color: var(--primaryFontGrey);
   border: none;
   border-radius: 5px;
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
-`;
+`
