@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ArrowUpIcon from '../icons/ArrowUpIcon'
+=======
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import ArrowUpIcon from '../icons/ArrowUpIcon';
+>>>>>>> main
 
 export default function Driver({ delivery, index, deliveries, setDeliveries }) {
   const [details, setDetails] = useState(false)
@@ -10,7 +16,11 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
 
   const [newDelivery, setNewDelivery] = useState({
     message: '--- Bitte hier Notizen eingeben --- ',
+<<<<<<< HEAD
   })
+=======
+  });
+>>>>>>> main
 
   useEffect(() => {
     setNewDelivery(delivery.message)
@@ -24,7 +34,7 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
           <h3>{delivery.driver}</h3>
           <p>{delivery.name}</p>
           <p>{delivery.street}</p>
-          <p>{delivery.postal}</p>
+          <p>{delivery.phone}</p>
           <p>Tagesessen: {delivery.dayMeal}</p>
           <p>Wochenessen: {delivery.weekMeal}</p>
           <p>{delivery.stop}. Stopp</p>
@@ -63,8 +73,13 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
     setDeliveries(newDeliveries)
     setNewDelivery({
       message: '',
+<<<<<<< HEAD
     })
     console.log('-----> ', newDeliveries)
+=======
+    });
+    console.log('-----> ', newDeliveries);
+>>>>>>> main
   }
 }
 
