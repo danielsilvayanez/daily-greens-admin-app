@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react'
+import styled from 'styled-components'
 
 export default function AddDeliveryForm({ deliveries, setDeliveries }) {
   const [newDelivery, setNewDelivery] = useState({
@@ -13,7 +13,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
     driver: '',
     message: '',
     stop: 0,
-  });
+  })
 
   return (
     <FormContainer>
@@ -92,19 +92,19 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
         <Button>Erstellen</Button>
       </Form>
     </FormContainer>
-  );
+  )
 
   function handleChange(event) {
     setNewDelivery({
       ...newDelivery,
       [event.target.name]: event.target.value,
-    });
+    })
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
-    let newDeliveries = [...deliveries, newDelivery];
-    setDeliveries(newDeliveries);
+    event.preventDefault()
+    let newDeliveries = [...deliveries, newDelivery]
+    setDeliveries(newDeliveries)
     setNewDelivery({
       name: '',
       street: '',
@@ -114,8 +114,9 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
       item: '',
       date: '',
       driver: '',
+      message: '',
       stop: 0,
-    });
+    })
   }
 }
 
@@ -125,7 +126,7 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 15px;
-`;
+`
 
 const Form = styled.form`
   display: flex;
@@ -147,7 +148,7 @@ const Form = styled.form`
       outline-color: var(--primaryBGBtnGreen);
     }
   }
-`;
+`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
@@ -159,4 +160,4 @@ const Button = styled.button`
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
-`;
+`

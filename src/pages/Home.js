@@ -1,15 +1,15 @@
-import React from "react";
-import styled from "styled-components";
-import NumbersDashboard from "../components/NumbersDashboard";
-import Driverlist from "../pages/Driverlist";
+import React from 'react'
+import styled from 'styled-components'
+import NumbersDashboard from '../components/NumbersDashboard'
+import Deliveries from '../pages/Deliveries'
 
 export default function Home({ deliveries, setDeliveries }) {
   return (
     <DashboardContainer>
       <NumbersDashboard deliveries={deliveries} />
-      <Driverlist deliveries={deliveries} setDeliveries={setDeliveries} />
+      <Deliveries deliveries={deliveries} setDeliveries={setDeliveries} />
     </DashboardContainer>
-  );
+  )
 }
 
 const DashboardContainer = styled.div`
@@ -17,4 +17,4 @@ const DashboardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`

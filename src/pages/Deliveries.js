@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import Driver from "../components/Driver";
+import React from 'react'
+import styled from 'styled-components'
+import Delivery from '../components/Delivery'
 
-export default function Driverlist({ deliveries, setDeliveries }) {
+export default function Deliveries({ deliveries, setDeliveries }) {
   return (
     <List>
       {deliveries.map((delivery, index) => (
-        <Driver
+        <Delivery
           delivery={delivery}
           index={index}
           setDeliveries={setDeliveries}
@@ -14,11 +14,11 @@ export default function Driverlist({ deliveries, setDeliveries }) {
         />
       ))}
     </List>
-  );
+  )
 }
 
 const List = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+`
