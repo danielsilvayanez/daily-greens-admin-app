@@ -7,10 +7,12 @@ export default function Driverlist({ deliveries, setDeliveries }) {
     <List>
       {deliveries.map((delivery, index) => (
         <Driver
-          delivery={delivery}
+          delivery={delivery.document}
           index={index}
           setDeliveries={setDeliveries}
           deliveries={deliveries}
+          documentId={delivery.documentId}
+          key={delivery.documentId}
         />
       ))}
     </List>

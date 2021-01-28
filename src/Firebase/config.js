@@ -1,12 +1,12 @@
-// const env = process.env;
+import firebase from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBKPNWpo213BOeHtRR4xxSpJShjdrnSFu8",
-  authDomain: "daily-greens-12808.firebaseapp.com",
-  projectId: "daily-greens-12808",
-  storageBucket: "daily-greens-12808.appspot.com",
-  messagingSenderId: "1024859839583",
-  appId: "1:1024859839583:web:f236f98a6415850f444fea",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSEGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 export default firebaseConfig;
