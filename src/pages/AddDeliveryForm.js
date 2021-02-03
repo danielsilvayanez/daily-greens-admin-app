@@ -39,13 +39,13 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           <option value="Edi">Edi</option>
           <option value="Det">Det</option>
         </select> */}
-        {/* <label htmlFor="stop">Stopp:</label>
+        <label htmlFor="stop">Stopp:</label>
         <input
           type="number"
           name="stop"
           onChange={handleChange}
           value={newDelivery.stop}
-        /> */}
+        />
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -82,13 +82,13 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           onChange={handleChange}
           value={newDelivery.weekMeal}
         />
-        {/* <label htmlFor="item">Weiteres Item:</label>
+        <label htmlFor="item">Weiteres Item:</label>
         <input
           type="text"
           name="item"
           onChange={handleChange}
           value={newDelivery.item}
-        /> */}
+        />
 
         <Button>Erstellen</Button>
       </Form>

@@ -4,17 +4,39 @@ import ArrowUpIcon from "../icons/ArrowUpIcon";
 
 export default function Driver({ delivery, index, deliveries, setDeliveries }) {
   const [details, setDetails] = useState(true);
+  const [extra, setExtras] = useState("");
+
   useEffect(() => {
     console.log(details);
   }, [details]);
 
-  const [newDelivery, setNewDelivery] = useState({
-    message: "--- Bitte hier Notizen eingeben --- ",
-  });
+  // const [newDelivery, setNewDelivery] = useState({
+  //   message: "--- Bitte hier Notizen eingeben --- ",
+  // });
 
-  useEffect(() => {
-    setNewDelivery(delivery.message);
-  }, [delivery.message]);
+  // useEffect(() => {
+  //   setNewDelivery(delivery.message);
+  // }, [delivery.message]);
+
+  if (delivery.extra) {
+    for (const [key, value] of Object.entries(delivery.extra)) {
+      setExtras(key);
+      console.log(`${key}: ${value}`);
+
+      // let extra = key;
+      // let amount = value;
+      // return (
+      //   <div>
+      //     <p>
+      //       {amount} {extra}
+      //     </p>
+      //     <p>
+      //       {amount} {extra}
+      //     </p>
+      //   </div>
+      // );
+    }
+  }
 
   return (
     <>
@@ -29,7 +51,12 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
           <p>Wochenessen: {delivery.weekMeal}</p>
           <p>{delivery.stop}. Stopp</p>
           <p>{delivery.box} Box/en</p>
-          <p>Notiz: {delivery.message}</p>
+          <p>Extras: {extra} </p>
+          {/* {delivery.extra ? <h1>{delivery.extra}</h1> : console.log("nix")} */}
+          {/* <p>Extras: {delivery.extra}</p> */}
+          {/* <p>Extras: {delivery.extra}</p> */}
+          {/* Notiz auskommentiert, bis wir uns Gedanken gemacht haben, wohin das Form kommt */}
+          {/* <p>Notiz: {delivery.message}</p> */}
         </Container>
       ) : (
         <Container onClick={() => setDetails(!details)}>
