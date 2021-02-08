@@ -10,7 +10,9 @@ export default function Home({ deliveries }) {
   useEffect(() => {
     if (deliveries.length > 0) {
       setDayMealDailyTotal(
-        deliveries.map((delivery) => delivery.document.daymeal).reduce(reducer)
+        deliveries
+          .map((delivery) => parseInt(delivery.document.daymeal))
+          .reduce(reducer)
       )
 
       setWeekMealDailyTotal(
@@ -20,7 +22,6 @@ export default function Home({ deliveries }) {
       setBoxDailyTotal(
         deliveries.map((delivery) => delivery.document.box).reduce(reducer)
       )
-      console.log('deliveries: ' + deliveries[2].document.extra)
     }
   }, [deliveries])
 
