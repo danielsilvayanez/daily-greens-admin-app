@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { postDelivery } from "../Firebase/services";
 
 export default function AddDeliveryForm({ deliveries, setDeliveries }) {
   const [newDelivery, setNewDelivery] = useState({
-    name: '',
-    street: '',
-    phone: '',
+    name: "",
+    street: "",
+    phone: "",
     dayMeal: 0,
     weekMeal: 0,
-    item: '',
-    date: '',
-    driver: '',
-    message: '',
+    item: "",
+    date: "",
+    driver: "",
+    message: "",
     stop: 0,
   });
 
@@ -26,7 +27,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           onChange={handleChange}
           value={newDelivery.date}
         />
-        <label htmlFor="driver">Fahrer:</label>
+        {/* <label htmlFor="driver">Fahrer:</label>
         <select
           name="driver"
           id=""
@@ -37,7 +38,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           <option value="Anton">Anton</option>
           <option value="Edi">Edi</option>
           <option value="Det">Det</option>
-        </select>
+        </select> */}
         <label htmlFor="stop">Stopp:</label>
         <input
           type="number"
@@ -65,7 +66,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           type="text"
           name="phone"
           onChange={handleChange}
-          value={newDelivery.postal}
+          value={newDelivery.phone}
         />
         <label htmlFor="dayMeal">Tagesgericht Anzahl:</label>
         <input
@@ -105,15 +106,16 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
     event.preventDefault();
     let newDeliveries = [...deliveries, newDelivery];
     setDeliveries(newDeliveries);
+    postDelivery(newDelivery);
     setNewDelivery({
-      name: '',
-      street: '',
-      phone: '',
+      name: "",
+      street: "",
+      phone: "",
       dayMeal: 0,
       weekMeal: 0,
-      item: '',
-      date: '',
-      driver: '',
+      item: "",
+      date: "",
+      driver: "",
       stop: 0,
     });
   }
@@ -151,7 +153,7 @@ const Form = styled.form`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 1rem;
   color: var(--primaryFontGrey);
   border: none;

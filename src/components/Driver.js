@@ -1,82 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import ArrowUpIcon from '../icons/ArrowUpIcon';
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import ArrowUpIcon from '../icons/ArrowUpIcon'
 
 export default function Driver({ delivery, index, deliveries, setDeliveries }) {
-  const [details, setDetails] = useState(true);
-  useEffect(() => {
-    console.log(details);
-  }, [details]);
+  const [details, setDetails] = useState(false)
+  let extraKeys = []
+  let extraValues = []
 
-  const [newDelivery, setNewDelivery] = useState({
-    message: '--- Bitte hier Notizen eingeben --- ',
-  });
-
-  useEffect(() => {
-    setNewDelivery(delivery.message);
-  }, [delivery.message]);
+  if (delivery.extra) {
+    extraKeys = Object.keys(delivery.extra)
+    extraValues = Object.values(delivery.extra)
+  }
 
   return (
     <>
       {details ? (
         <Container height="150">
           <StyledArrowUpIcon onClick={() => setDetails(!details)} />
-          <h3>{delivery.driver}</h3>
-          <p>{delivery.name}</p>
+          {/* <h3>{delivery.driver}</h3> */}
+          <h3>{delivery.name}</h3>
           <p>{delivery.street}</p>
           <p>{delivery.phone}</p>
           <p>Tagesessen: {delivery.dayMeal}</p>
           <p>Wochenessen: {delivery.weekMeal}</p>
           <p>{delivery.stop}. Stopp</p>
-
-          <Form onSubmit={handleSubmit}>
-            <label htmlFor="message">Notiz: </label>
-            <textarea
-              type="textarea"
-              name="message"
-              onChange={handleChange}
-              value={newDelivery.message}
-              placeholder={newDelivery}
-            />
-            <Button>Erstellen</Button>
-          </Form>
+          <p>{delivery.box} Box/en</p>
+          <ul>
+            Extras:
+            {extraKeys.map((key, index) => (
+              <li>
+                {key}: {extraValues[index]}
+              </li>
+            ))}
+          </ul>
         </Container>
       ) : (
         <Container onClick={() => setDetails(!details)}>
-          <h3>{delivery.driver}</h3>
+          <h3>{delivery.name}</h3>
         </Container>
       )}
     </>
-  );
-
-  function handleChange(event) {
-    setNewDelivery({
-      ...newDelivery,
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    let newDeliveries = [...deliveries];
-    newDeliveries[index].message = newDelivery.message;
-    setDeliveries(newDeliveries);
-    setNewDelivery({
-      message: '',
-    });
-    console.log('-----> ', newDeliveries);
-  }
+  )
 }
 
-const Form = styled.form`
-  display: flex;
-  width: 80%;
-  flex-direction: column;
-
-  textarea {
-    height: 100px;
-  }
-`;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -86,12 +52,12 @@ const Container = styled.div`
   border: solid 1px #000;
   margin: 10px;
   padding: 10px;
-`;
+`
 
 const StyledArrowUpIcon = styled(ArrowUpIcon)`
   position: relative;
   left: 225px;
-`;
+`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
@@ -102,4 +68,4 @@ const Button = styled.button`
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
-`;
+`
