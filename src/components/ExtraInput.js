@@ -35,7 +35,10 @@ export default function ExtraInput({ setDelivery, delivery, quantity }) {
   }
 
   function handleSubmit() {
-    setDelivery({ ...delivery, extra: { [extraKey]: extraValue } })
+    setDelivery({
+      ...delivery,
+      extra: { ...delivery.extra, [extraKey]: extraValue },
+    })
     setDisable(!disable)
   }
 }

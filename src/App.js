@@ -16,7 +16,7 @@ export default function App() {
     fetchDeliveries().then((dbResult) => {
       setDeliveries(dbResult)
     })
-  }, [])
+  }, [deliveries])
 
   return (
     <AppGrid>

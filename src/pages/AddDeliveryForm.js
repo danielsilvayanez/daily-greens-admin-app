@@ -22,12 +22,11 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
   const [newDelivery, setNewDelivery] = useState(defaultDelivery)
   const extraInputs = []
 
-  useEffect(() => {
-    console.log('länge' + Object.keys(newDelivery.extra).length)
-    for (let i = 0; i <= Object.keys(newDelivery.extra).length; i++) {
-      extraInputs.push('+')
-    }
-  }, [newDelivery])
+  console.log('länge' + Object.keys(newDelivery.extra).length)
+  for (let i = 0; i <= Object.keys(newDelivery.extra).length; i++) {
+    extraInputs.push('+')
+  }
+
   return (
     <FormContainer>
       <h1>Neuer Auftrag</h1>
