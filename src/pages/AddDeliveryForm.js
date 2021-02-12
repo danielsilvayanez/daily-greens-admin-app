@@ -1,21 +1,33 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { postDelivery } from "../Firebase/services";
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import { postDelivery } from '../Firebase/services'
+import ExtraInput from '../components/ExtraInput'
 
 export default function AddDeliveryForm({ deliveries, setDeliveries }) {
-  const [newDelivery, setNewDelivery] = useState({
-    name: "",
-    street: "",
-    phone: "",
-    dayMeal: 0,
-    weekMeal: 0,
-    item: "",
-    date: "",
-    driver: "",
-    message: "",
+  const defaultDelivery = {
+    name: '',
+    street: '',
+    phone: '',
+    daymeal: 0,
+    weekmeal: 0,
+    extra: {},
+    date: '',
+    driver: '',
+    message: '',
     stop: 0,
-  });
+    box: 0,
+    start: false,
+    done: false,
+  }
+  const [newDelivery, setNewDelivery] = useState(defaultDelivery)
+  const extraInputs = []
 
+  useEffect(() => {
+    console.log('länge' + Object.keys(newDelivery.extra).length)
+    for (let i = 0; i <= Object.keys(newDelivery.extra).length; i++) {
+      extraInputs.push('+')
+    }
+  }, [newDelivery])
   return (
     <FormContainer>
       <h1>Neuer Auftrag</h1>
@@ -27,18 +39,6 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           onChange={handleChange}
           value={newDelivery.date}
         />
-        {/* <label htmlFor="driver">Fahrer:</label>
-        <select
-          name="driver"
-          id=""
-          onChange={handleChange}
-          value={newDelivery.driver}
-        >
-          <option value="">Fahrer auswählen</option>
-          <option value="Anton">Anton</option>
-          <option value="Edi">Edi</option>
-          <option value="Det">Det</option>
-        </select> */}
         <label htmlFor="stop">Stopp:</label>
         <input
           type="number"
@@ -73,51 +73,39 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           type="number"
           name="dayMeal"
           onChange={handleChange}
-          value={newDelivery.dayMeal}
+          value={newDelivery.daymeal}
         />
         <label htmlFor="weekMeal">Wochengericht Anzahl:</label>
         <input
           type="number"
           name="weekMeal"
           onChange={handleChange}
-          value={newDelivery.weekMeal}
+          value={newDelivery.weekmeal}
         />
-        <label htmlFor="item">Weiteres Item:</label>
-        <input
-          type="text"
-          name="item"
-          onChange={handleChange}
-          value={newDelivery.item}
-        />
+        <label htmlFor="extra">Weitere Items:</label>
+
+        {extraInputs.map(() => (
+          <ExtraInput setDelivery={setNewDelivery} delivery={newDelivery} />
+        ))}
 
         <Button>Erstellen</Button>
       </Form>
     </FormContainer>
-  );
+  )
 
   function handleChange(event) {
     setNewDelivery({
       ...newDelivery,
       [event.target.name]: event.target.value,
-    });
+    })
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
-    let newDeliveries = [...deliveries, newDelivery];
-    setDeliveries(newDeliveries);
-    postDelivery(newDelivery);
-    setNewDelivery({
-      name: "",
-      street: "",
-      phone: "",
-      dayMeal: 0,
-      weekMeal: 0,
-      item: "",
-      date: "",
-      driver: "",
-      stop: 0,
-    });
+    event.preventDefault()
+    let newDeliveries = [...deliveries, newDelivery]
+    setDeliveries(newDeliveries)
+    postDelivery(newDelivery)
+    setNewDelivery(defaultDelivery)
   }
 }
 
@@ -127,7 +115,7 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 15px;
-`;
+`
 
 const Form = styled.form`
   display: flex;
@@ -149,11 +137,11 @@ const Form = styled.form`
       outline-color: var(--primaryBGBtnGreen);
     }
   }
-`;
+`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 1rem;
   color: var(--primaryFontGrey);
   border: none;
@@ -161,4 +149,4 @@ const Button = styled.button`
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
-`;
+`
