@@ -30,6 +30,7 @@ export default function Delivery({
           <p>Wochenessen: {delivery.weekmeal}</p>
           <p>Stopp: {delivery.stop}</p>
           <p>Boxen: {delivery.box} </p>
+          <p>Kleine Boxen: {delivery.smallbox} </p>
           <ul>
             Extras:
             {extraKeys.map((key, index) => (

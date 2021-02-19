@@ -16,6 +16,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
     message: '',
     stop: 0,
     box: 0,
+    smallbox: 0,
     start: false,
     done: false,
   }
@@ -87,7 +88,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           <ExtraInput setDelivery={setNewDelivery} delivery={newDelivery} />
         ))}
 
-        <Button>Erstellen</Button>
+        <Button onClick={handleSubmit}>Erstellen</Button>
       </Form>
     </FormContainer>
   )
