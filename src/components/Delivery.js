@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ArrowUpIcon from '../icons/ArrowUpIcon'
+import Edit from './Edit'
 
-export default function Driver({ delivery, index, deliveries, setDeliveries }) {
+export default function Delivery({
+  delivery,
+  index,
+  deliveries,
+  setDeliveries,
+  documentId,
+}) {
   const [details, setDetails] = useState(false)
+  const [edit, setEdit] = useState(false)
+  const [editkey, setEditkey] = useState('')
   let extraKeys = []
   let extraValues = []
 
@@ -11,20 +20,30 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
     extraKeys = Object.keys(delivery.extra)
     extraValues = Object.values(delivery.extra)
   }
-
+  function toggleEdit(name) {
+    setEditkey(name)
+    setEdit(true)
+  }
+  console.log(deliveries[index].document)
   return (
     <>
       {details ? (
         <Container height="150">
           <StyledArrowUpIcon onClick={() => setDetails(!details)} />
-          {/* <h3>{delivery.driver}</h3> */}
-          <h3>{delivery.name}</h3>
-          <p>{delivery.street}</p>
-          <p>{delivery.phone}</p>
-          <p>Tagesessen: {delivery.dayMeal}</p>
-          <p>Wochenessen: {delivery.weekMeal}</p>
-          <p>{delivery.stop}. Stopp</p>
-          <p>{delivery.box} Box/en</p>
+          <h3 onClick={() => toggleEdit('name')}>Name: {delivery.name}</h3>
+          <p onClick={() => toggleEdit('street')}>Straße: {delivery.street}</p>
+          <p onClick={() => toggleEdit('phone')}>Tel.: {delivery.phone}</p>
+          <p onClick={() => toggleEdit('daymeal')}>
+            Tagesessen: {delivery.daymeal}
+          </p>
+          <p onClick={() => toggleEdit('weekmeal')}>
+            Wochenessen: {delivery.weekmeal}
+          </p>
+          <p onClick={() => toggleEdit('stop')}>Stopp: {delivery.stop}</p>
+          <p onClick={() => toggleEdit('box')}>Boxen: {delivery.box} </p>
+          <p onClick={() => toggleEdit('smallbox')}>
+            Kleine Boxen: {delivery.smallbox}
+          </p>
           <ul>
             Extras:
             {extraKeys.map((key, index) => (
@@ -36,8 +55,18 @@ export default function Driver({ delivery, index, deliveries, setDeliveries }) {
         </Container>
       ) : (
         <Container onClick={() => setDetails(!details)}>
-          <h3>{delivery.name}</h3>
+          <h3>Name: {delivery.name}</h3>
         </Container>
+      )}
+      {edit && (
+        <Edit
+          editkey={editkey}
+          index={index}
+          deliveries={deliveries}
+          setDeliveries={setDeliveries}
+          documentId={documentId}
+          toggleEdit={setEdit}
+        />
       )}
     </>
   )
