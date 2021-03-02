@@ -13,6 +13,7 @@ import useAuth from "./components/auth/useAuth";
 import LoginContext from "./components/auth/LoginContext";
 import firebaseApp from "./Firebase/index";
 import UserBar from "./components/auth/UserBar";
+import Archive from "./pages/Archive";
 
 export default function App() {
   const [deliveries, setDeliveries] = useState([]);
@@ -38,6 +39,12 @@ export default function App() {
               </Route>
               <Route exact path="/register">
                 <Register />
+              </Route>
+              <Route exact path="/archive">
+                <Archive
+                  deliveries={deliveries}
+                  setDeliveries={setDeliveries}
+                />
               </Route>
               <Route path="/form">
                 <AddDeliveryForm

@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export default function Navigation() {
   return (
@@ -9,6 +9,7 @@ export default function Navigation() {
         Dashboard
       </StyledNavLink>
       <StyledNavLink to="/form">Auftrag erstellen</StyledNavLink>
+      <StyledNavLink to="/archive">erledigte Aufträge</StyledNavLink>
     </Nav>
   );
 }
