@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ArrowUpIcon from "../icons/ArrowUpIcon";
 import Edit from "./Edit";
@@ -13,13 +13,9 @@ export default function Delivery({
   const [details, setDetails] = useState(false);
   const [edit, setEdit] = useState(false);
   const [editkey, setEditkey] = useState("");
-  let extraKeys = [];
-  let extraValues = [];
+  const extraKeys = Object.keys(delivery.extra);
+  const extraValues = Object.values(delivery.extra);
 
-  if (delivery.extra) {
-    extraKeys = Object.keys(delivery.extra);
-    extraValues = Object.values(delivery.extra);
-  }
   function toggleEdit(name) {
     setEditkey(name);
     setEdit(true);
@@ -53,6 +49,9 @@ export default function Delivery({
               </li>
             ))}
           </ul>
+          <p onClick={() => toggleEdit("message")}>
+            Notiz: {delivery.message}{" "}
+          </p>
         </Container>
       ) : (
         <Container onClick={() => setDetails(!details)}>

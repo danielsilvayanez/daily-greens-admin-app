@@ -17,13 +17,14 @@ import Archive from "./pages/Archive";
 
 export default function App() {
   const [deliveries, setDeliveries] = useState([]);
+  const [localDeliveries, setLocalDeliveries] = useState([]);
   const user = useAuth();
 
   useEffect(() => {
     fetchDeliveries().then((dbResult) => {
       setDeliveries(dbResult);
     });
-  }, []);
+  }, [localDeliveries]);
 
   return (
     <LoginContext.Provider value={{ user, firebaseApp }}>
@@ -35,7 +36,10 @@ export default function App() {
           <main>
             <Switch>
               <Route exact path="/">
-                <Home deliveries={deliveries} setDeliveries={setDeliveries} />
+                <Home
+                  deliveries={deliveries}
+                  setDeliveries={setLocalDeliveries}
+                />
               </Route>
               <Route exact path="/register">
                 <Register />
@@ -43,13 +47,13 @@ export default function App() {
               <Route exact path="/archive">
                 <Archive
                   deliveries={deliveries}
-                  setDeliveries={setDeliveries}
+                  setDeliveries={setLocalDeliveries}
                 />
               </Route>
               <Route path="/form">
                 <AddDeliveryForm
                   deliveries={deliveries}
-                  setDeliveries={setDeliveries}
+                  setDeliveries={setLocalDeliveries}
                 />
               </Route>
             </Switch>
