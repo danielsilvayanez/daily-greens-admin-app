@@ -38,6 +38,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           name="date"
           onChange={handleChange}
           value={newDelivery.date}
+          required
         />
         <label htmlFor="name">Name:</label>
         <input
