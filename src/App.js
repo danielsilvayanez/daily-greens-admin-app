@@ -15,6 +15,7 @@ import UserBar from './components/auth/UserBar'
 
 export default function App() {
   const [deliveries, setDeliveries] = useState([])
+  const [localDeliveries, setLocalDeliveries] = useState([])
   const [meals, setMeals] = useState()
   const user = useAuth()
 
@@ -26,7 +27,8 @@ export default function App() {
     fetchMeals().then((dbResult) => {
       setMeals(dbResult[0])
     })
-  }, [])
+  }, [localDeliveries])
+
   useEffect(() => {
     console.log('Meals -> ', meals)
   }, [meals])
@@ -41,15 +43,24 @@ export default function App() {
           <main>
             <Switch>
               <Route exact path="/">
-                <Home deliveries={deliveries} setDeliveries={setDeliveries} />
+                <Home
+                  deliveries={deliveries}
+                  setDeliveries={setLocalDeliveries}
+                />
               </Route>
               <Route exact path="/register">
                 <Register />
               </Route>
+              <Route exact path="/archive">
+                <Archive
+                  deliveries={deliveries}
+                  setDeliveries={setLocalDeliveries}
+                />
+              </Route>
               <Route path="/form">
                 <AddDeliveryForm
                   deliveries={deliveries}
-                  setDeliveries={setDeliveries}
+                  setDeliveries={setLocalDeliveries}
                 />
               </Route>
             </Switch>

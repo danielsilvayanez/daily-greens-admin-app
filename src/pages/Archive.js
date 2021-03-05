@@ -1,29 +1,21 @@
 import React from "react";
-import styled from "styled-components";
 import Delivery from "../components/Delivery";
 
-export default function Deliverylist({ deliveries, setDeliveries }) {
+export default function Archive({ deliveries, setDeliveries }) {
   return (
-    <List>
+    <ul>
       {deliveries.map(
         (delivery, index) =>
-          !delivery.document.done && (
+          delivery.document.done && (
             <Delivery
               delivery={delivery.document}
               index={index}
-              setDeliveries={setDeliveries}
               deliveries={deliveries}
+              setDeliveries={setDeliveries}
               documentId={delivery.documentId}
-              key={delivery.documentId}
             />
           )
       )}
-    </List>
+    </ul>
   );
 }
-
-const List = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
