@@ -52,7 +52,6 @@ export function postDelivery(data) {
 }
 
 export function deleteDelivery(documentId, data, index) {
-  console.log("--->data gelöscht!", data, index);
   return deliveryRef
     .doc(documentId)
     .delete(data[index])

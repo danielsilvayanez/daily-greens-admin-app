@@ -22,6 +22,14 @@ export default function Delivery({
     setEdit(true);
   }
 
+  function handleDelete(documentId, delivery, index, setDeliveries) {
+    setDeliveries([
+      ...deliveries.slice(0, index),
+      ...deliveries.slice(index + 1),
+    ]);
+    deleteDelivery(documentId, delivery, index);
+  }
+
   console.log("mit index", deliveries[index].document);
   return (
     <>
@@ -56,7 +64,7 @@ export default function Delivery({
           </p>
           <button
             onClick={() => {
-              deleteDelivery(documentId, delivery, index);
+              handleDelete(documentId, delivery, index, setDeliveries);
             }}
           >
             DELETE
