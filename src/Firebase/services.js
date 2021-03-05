@@ -51,13 +51,9 @@ export function postDelivery(data) {
     });
 }
 
-// export function fetchDeliveries() {
-//   return db.get().then((querySnapshot) => {
-//     let deliveriesData = [];
-//     querySnapshot.forEach((doc) => {
-//       deliveriesData.push(doc.data());
-//     });
-
-//     return deliveriesData;
-//   });
-// }
+export function deleteDelivery(documentId, data, index) {
+  return deliveryRef
+    .doc(documentId)
+    .delete(data[index])
+    .then(() => {});
+}

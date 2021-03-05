@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { deleteDelivery } from "../Firebase/services";
 import ArrowUpIcon from "../icons/ArrowUpIcon";
 import Edit from "./Edit";
 
@@ -20,7 +21,16 @@ export default function Delivery({
     setEditkey(name);
     setEdit(true);
   }
-  console.log(deliveries[index].document);
+
+  function handleDelete(documentId, delivery, index, setDeliveries) {
+    setDeliveries([
+      ...deliveries.slice(0, index),
+      ...deliveries.slice(index + 1),
+    ]);
+    deleteDelivery(documentId, delivery, index);
+  }
+
+  console.log("mit index", deliveries[index].document);
   return (
     <>
       {details ? (
@@ -52,6 +62,13 @@ export default function Delivery({
           <p onClick={() => toggleEdit("message")}>
             Notiz: {delivery.message}{" "}
           </p>
+          <button
+            onClick={() => {
+              handleDelete(documentId, delivery, index, setDeliveries);
+            }}
+          >
+            DELETE
+          </button>
         </Container>
       ) : (
         <Container onClick={() => setDetails(!details)}>
