@@ -1,14 +1,15 @@
-import React from "react";
-import styled from "styled-components";
-import Delivery from "../components/Delivery";
+import React from 'react'
+import styled from 'styled-components'
+import Delivery from '../components/Delivery'
 
-export default function Deliverylist({ deliveries, setDeliveries }) {
+export default function Deliverylist({ deliveries, setDeliveries, meals }) {
   return (
     <List>
       {deliveries.map(
         (delivery, index) =>
           !delivery.document.done && (
             <Delivery
+              meals={meals}
               delivery={delivery.document}
               index={index}
               setDeliveries={setDeliveries}
@@ -19,11 +20,11 @@ export default function Deliverylist({ deliveries, setDeliveries }) {
           )
       )}
     </List>
-  );
+  )
 }
 
 const List = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+`
