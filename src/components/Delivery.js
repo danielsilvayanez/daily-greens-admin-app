@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import ArrowUpIcon from "../icons/ArrowUpIcon";
-import Edit from "./Edit";
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import ArrowUpIcon from '../icons/ArrowUpIcon'
+import Edit from './Edit'
 
 export default function Delivery({
   delivery,
@@ -9,36 +9,46 @@ export default function Delivery({
   deliveries,
   setDeliveries,
   documentId,
+  meals,
 }) {
-  const [details, setDetails] = useState(false);
-  const [edit, setEdit] = useState(false);
-  const [editkey, setEditkey] = useState("");
-  const extraKeys = Object.keys(delivery.extra);
-  const extraValues = Object.values(delivery.extra);
+  const [details, setDetails] = useState(false)
+  const [edit, setEdit] = useState(false)
+  const [editkey, setEditkey] = useState('')
+  const extraKeys = Object.keys(delivery.extra)
+  const extraValues = Object.values(delivery.extra)
 
   function toggleEdit(name) {
-    setEditkey(name);
-    setEdit(true);
+    setEditkey(name)
+    setEdit(true)
   }
-  console.log(deliveries[index].document);
+
   return (
     <>
       {details ? (
         <Container height="150">
           <StyledArrowUpIcon onClick={() => setDetails(!details)} />
-          <h3 onClick={() => toggleEdit("name")}>Name: {delivery.name}</h3>
-          <p onClick={() => toggleEdit("date")}>Datum: {delivery.date}</p>
-          <p onClick={() => toggleEdit("street")}>Straße: {delivery.street}</p>
-          <p onClick={() => toggleEdit("phone")}>Tel.: {delivery.phone}</p>
-          <p onClick={() => toggleEdit("daymeal")}>
+          <h3 onClick={() => toggleEdit('name')}>Name: {delivery.name}</h3>
+          <p onClick={() => toggleEdit('date')}>Datum: {delivery.date}</p>
+          <p onClick={() => toggleEdit('street')}>Straße: {delivery.street}</p>
+          <p onClick={() => toggleEdit('phone')}>Tel.: {delivery.phone}</p>
+          <p onClick={() => toggleEdit('daymeal')}>
             Tagesessen: {delivery.daymeal}
           </p>
-          <p onClick={() => toggleEdit("weekmeal")}>
-            Wochenessen: {delivery.weekmeal}
+          <p onClick={() => toggleEdit('weekmeal2')}>
+            {meals.document.weekmeal1}: {delivery.weekmeal1}
           </p>
-          <p onClick={() => toggleEdit("stop")}>Stopp: {delivery.stop}</p>
-          <p onClick={() => toggleEdit("box")}>Boxen: {delivery.box} </p>
-          <p onClick={() => toggleEdit("smallbox")}>
+          <p onClick={() => toggleEdit('weekmeal2')}>
+            {meals.document.weekmeal2}: {delivery.weekmeal2}
+          </p>
+          <p onClick={() => toggleEdit('dessert1')}>
+            {meals.document.dessert1}: {delivery.dessert1}
+          </p>
+          <p onClick={() => toggleEdit('dessert2')}>
+            {meals.document.dessert2}: {delivery.dessert2}
+          </p>
+          <p onClick={() => toggleEdit('stop')}>Stopp: {delivery.stop}</p>
+          <p onClick={() => toggleEdit('box')}>Boxen: {delivery.box} </p>
+          <p onClick={() => toggleEdit('smallbox')}>
             Kleine Boxen: {delivery.smallbox}
           </p>
           <ul>
@@ -49,8 +59,8 @@ export default function Delivery({
               </li>
             ))}
           </ul>
-          <p onClick={() => toggleEdit("message")}>
-            Notiz: {delivery.message}{" "}
+          <p onClick={() => toggleEdit('message')}>
+            Notiz: {delivery.message}{' '}
           </p>
         </Container>
       ) : (
@@ -71,7 +81,7 @@ export default function Delivery({
         />
       )}
     </>
-  );
+  )
 }
 
 const Container = styled.div`
@@ -83,20 +93,20 @@ const Container = styled.div`
   border: solid 1px #000;
   margin: 10px;
   padding: 10px;
-`;
+`
 
 const StyledArrowUpIcon = styled(ArrowUpIcon)`
   position: relative;
   left: 225px;
-`;
+`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   color: var(--primaryFontGrey);
   border: none;
   border-radius: 5px;
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
-`;
+`

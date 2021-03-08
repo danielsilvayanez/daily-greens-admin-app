@@ -12,11 +12,12 @@ import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './Firebase/index'
 import UserBar from './components/auth/UserBar'
+import Archive from './pages/Archive'
 
 export default function App() {
   const [deliveries, setDeliveries] = useState([])
   const [localDeliveries, setLocalDeliveries] = useState([])
-  const [meals, setMeals] = useState()
+  const [meals, setMeals] = useState({})
   const user = useAuth()
 
   useEffect(() => {
@@ -29,10 +30,6 @@ export default function App() {
     })
   }, [localDeliveries])
 
-  useEffect(() => {
-    console.log('Meals -> ', meals)
-  }, [meals])
-
   return (
     <LoginContext.Provider value={{ user, firebaseApp }}>
       {user ? (
@@ -44,6 +41,7 @@ export default function App() {
             <Switch>
               <Route exact path="/">
                 <Home
+                  meals={meals}
                   deliveries={deliveries}
                   setDeliveries={setLocalDeliveries}
                 />

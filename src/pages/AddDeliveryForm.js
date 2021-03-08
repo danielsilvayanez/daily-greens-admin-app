@@ -1,31 +1,34 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { postDelivery } from "../Firebase/services";
-import ExtraInput from "../components/ExtraInput";
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import { postDelivery } from '../Firebase/services'
+import ExtraInput from '../components/ExtraInput'
 
 export default function AddDeliveryForm({ deliveries, setDeliveries }) {
   const defaultDelivery = {
-    name: "",
-    street: "",
-    phone: "",
+    name: '',
+    street: '',
+    phone: '',
     daymeal: 0,
-    weekmeal: 0,
+    weekmeal1: 0,
+    weekmeal2: 0,
+    dessert1: 0,
+    dessert2: 0,
     extra: {},
-    date: "",
-    driver: "",
-    message: "",
+    date: '',
+    driver: '',
+    message: '',
     stop: 0,
     box: 0,
     smallbox: 0,
     start: false,
     done: false,
-  };
-  const [newDelivery, setNewDelivery] = useState(defaultDelivery);
-  const extraInputs = [];
+  }
+  const [newDelivery, setNewDelivery] = useState(defaultDelivery)
+  const extraInputs = []
 
-  console.log("länge" + Object.keys(newDelivery.extra).length);
+  console.log('länge' + Object.keys(newDelivery.extra).length)
   for (let i = 0; i <= Object.keys(newDelivery.extra).length; i++) {
-    extraInputs.push("+");
+    extraInputs.push('+')
   }
 
   return (
@@ -78,9 +81,27 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
         <label htmlFor="weekmeal">Wochengericht Anzahl:</label>
         <input
           type="number"
-          name="weekmeal"
+          name="weekmeal1"
           onChange={handleChange}
-          value={newDelivery.weekmeal}
+          value={newDelivery.weekmeal1}
+        />
+        <input
+          type="number"
+          name="weekmeal2"
+          onChange={handleChange}
+          value={newDelivery.weekmeal2}
+        />
+        <input
+          type="number"
+          name="dessert1"
+          onChange={handleChange}
+          value={newDelivery.dessert1}
+        />
+        <input
+          type="number"
+          name="dessert2"
+          onChange={handleChange}
+          value={newDelivery.dessert2}
         />
         <label htmlFor="extra">Weitere Items:</label>
 
@@ -91,21 +112,21 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
         <Button onClick={handleSubmit}>Erstellen</Button>
       </Form>
     </FormContainer>
-  );
+  )
 
   function handleChange(event) {
     setNewDelivery({
       ...newDelivery,
       [event.target.name]: event.target.value,
-    });
+    })
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
-    let newDeliveries = [...deliveries, newDelivery];
-    setDeliveries(newDeliveries);
-    postDelivery(newDelivery);
-    setNewDelivery(defaultDelivery);
+    event.preventDefault()
+    let newDeliveries = [...deliveries, newDelivery]
+    setDeliveries(newDeliveries)
+    postDelivery(newDelivery)
+    setNewDelivery(defaultDelivery)
   }
 }
 
@@ -115,7 +136,7 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 15px;
-`;
+`
 
 const Form = styled.form`
   display: flex;
@@ -137,11 +158,11 @@ const Form = styled.form`
       outline-color: var(--primaryBGBtnGreen);
     }
   }
-`;
+`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 1rem;
   color: var(--primaryFontGrey);
   border: none;
@@ -149,4 +170,4 @@ const Button = styled.button`
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
-`;
+`
