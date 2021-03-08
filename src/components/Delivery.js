@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import ArrowUpIcon from '../icons/ArrowUpIcon'
-import Edit from './Edit'
+import React, { useState } from "react";
+import styled from "styled-components";
+import { deleteDelivery } from "../Firebase/services";
+import ArrowUpIcon from "../icons/ArrowUpIcon";
+import Edit from "./Edit";
 
 export default function Delivery({
   delivery,
@@ -20,6 +21,14 @@ export default function Delivery({
   function toggleEdit(name) {
     setEditkey(name)
     setEdit(true)
+  }
+
+  function handleDelete(documentId, delivery, index, setDeliveries) {
+    setDeliveries([
+      ...deliveries.slice(0, index),
+      ...deliveries.slice(index + 1),
+    ]);
+    deleteDelivery(documentId, delivery, index);
   }
 
   return (
@@ -62,6 +71,13 @@ export default function Delivery({
           <p onClick={() => toggleEdit('message')}>
             Notiz: {delivery.message}{' '}
           </p>
+          <button
+            onClick={() => {
+              handleDelete(documentId, delivery, index, setDeliveries);
+            }}
+          >
+            DELETE
+          </button>
         </Container>
       ) : (
         <Container onClick={() => setDetails(!details)}>
