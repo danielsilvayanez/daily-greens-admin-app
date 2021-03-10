@@ -1,25 +1,25 @@
-import { deliveryRef, mealRef } from './index'
+import { deliveryRef, mealRef } from './index';
 
 export async function fetchDeliveries() {
   const dbResult = await deliveryRef.get().then((data) => {
-    const deliveryData = []
+    const deliveryData = [];
     data.forEach((doc) => {
-      deliveryData.push({ document: doc.data(), documentId: doc.id })
-    })
-    return deliveryData
-  })
-  return dbResult
+      deliveryData.push({ document: doc.data(), documentId: doc.id });
+    });
+    return deliveryData;
+  });
+  return dbResult;
 }
 
 export async function fetchMeals() {
   const dbResult = await mealRef.get().then((data) => {
-    const mealData = []
+    const mealData = [];
     data.forEach((doc) => {
-      mealData.push({ document: doc.data(), documentId: doc.id })
-    })
-    return mealData
-  })
-  return dbResult
+      mealData.push({ document: doc.data(), documentId: doc.id });
+    });
+    return mealData;
+  });
+  return dbResult;
 }
 
 export function patchMeals(documentId, data) {
@@ -32,10 +32,10 @@ export function patchMeals(documentId, data) {
         .get()
         .then((doc) => {
           if (doc.exists) {
-            return doc.data()
+            return doc.data();
           }
-        })
-    })
+        });
+    });
 }
 
 export function patchDelivery(documentId, data) {
@@ -48,23 +48,23 @@ export function patchDelivery(documentId, data) {
         .get()
         .then((doc) => {
           if (doc.exists) {
-            return doc.data()
+            return doc.data();
           }
-        })
-    })
+        });
+    });
 }
 
 export function postDelivery(data) {
   return deliveryRef
     .add(data)
     .then((docRef) => {
-      const documentId = docRef.id
+      const documentId = docRef.id;
 
       deliveryRef.doc(documentId).update({
         _id: documentId,
-      })
+      });
 
-      return documentId
+      return documentId;
     })
     .then((documentId) => {
       return deliveryRef
@@ -72,10 +72,10 @@ export function postDelivery(data) {
         .get()
         .then((doc) => {
           if (doc.exists) {
-            return doc.data()
+            return doc.data();
           }
-        })
-    })
+        });
+    });
 }
 
 export function deleteDelivery(documentId, data, index) {

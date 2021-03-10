@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { deleteDelivery } from "../Firebase/services";
-import ArrowUpIcon from "../icons/ArrowUpIcon";
-import Edit from "./Edit";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { deleteDelivery, patchDelivery } from '../Firebase/services';
+import ArrowUpIcon from '../icons/ArrowUpIcon';
+import Edit from './Edit';
+import drivers from '../defaultDriver.json';
 
 export default function Delivery({
   delivery,
@@ -12,15 +13,16 @@ export default function Delivery({
   documentId,
   meals,
 }) {
-  const [details, setDetails] = useState(false)
-  const [edit, setEdit] = useState(false)
-  const [editkey, setEditkey] = useState('')
-  const extraKeys = Object.keys(delivery.extra)
-  const extraValues = Object.values(delivery.extra)
+  const [details, setDetails] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [editkey, setEditkey] = useState('');
+  const extraKeys = Object.keys(delivery.extra);
+  const extraValues = Object.values(delivery.extra);
+  const [selectDriver, setSelectDriver] = useState(delivery.driverId);
 
   function toggleEdit(name) {
-    setEditkey(name)
-    setEdit(true)
+    setEditkey(name);
+    setEdit(true);
   }
 
   function handleDelete(documentId, delivery, index, setDeliveries) {
@@ -29,6 +31,14 @@ export default function Delivery({
       ...deliveries.slice(index + 1),
     ]);
     deleteDelivery(documentId, delivery, index);
+  }
+
+  function handleSelect(event) {
+    event.preventDefault();
+    setSelectDriver(event.target.value);
+    let newDelivery = { ...delivery };
+    newDelivery.driverId = event.target.value;
+    patchDelivery(documentId, newDelivery);
   }
 
   return (
@@ -40,6 +50,13 @@ export default function Delivery({
           <p onClick={() => toggleEdit('date')}>Datum: {delivery.date}</p>
           <p onClick={() => toggleEdit('street')}>Straße: {delivery.street}</p>
           <p onClick={() => toggleEdit('phone')}>Tel.: {delivery.phone}</p>
+          <select value={selectDriver} name="driver" onChange={handleSelect}>
+            <option value="">Fahrer auswählen</option>
+            {drivers.map((driver) => (
+              <option value={driver.driverId}>{driver.driverName}</option>
+            ))}
+          </select>
+
           <p onClick={() => toggleEdit('daymeal')}>
             Tagesessen: {delivery.daymeal}
           </p>
@@ -97,7 +114,7 @@ export default function Delivery({
         />
       )}
     </>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -109,12 +126,12 @@ const Container = styled.div`
   border: solid 1px #000;
   margin: 10px;
   padding: 10px;
-`
+`;
 
 const StyledArrowUpIcon = styled(ArrowUpIcon)`
   position: relative;
   left: 225px;
-`
+`;
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
@@ -125,4 +142,4 @@ const Button = styled.button`
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
-`
+`;
