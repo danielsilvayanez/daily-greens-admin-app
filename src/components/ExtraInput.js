@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-export default function ExtraInput({ setDelivery, delivery, quantity }) {
+export default function ExtraInput({ setDelivery, delivery }) {
   const [extraKey, setExtraKey] = useState('')
   const [extraValue, setExtraValue] = useState(0)
   const [disable, setDisable] = useState(false)

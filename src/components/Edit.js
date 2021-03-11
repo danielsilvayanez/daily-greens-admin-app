@@ -49,7 +49,6 @@ export default function Edit({
     newDeliveries[index].document[editkey] = edit[editkey]
     console.log(newDeliveries[index])
     setDeliveries(newDeliveries)
-    console.log(newDeliveries[index].document)
     patchDelivery(documentId, newDeliveries[index].document)
     toggleEdit(false)
   }

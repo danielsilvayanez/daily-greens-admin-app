@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { deleteDelivery, patchDelivery } from '../Firebase/services';
-import ArrowUpIcon from '../icons/ArrowUpIcon';
-import Edit from './Edit';
-import drivers from '../defaultDriver.json';
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { deleteDelivery, patchDelivery } from '../Firebase/services'
+import ArrowUpIcon from '../icons/ArrowUpIcon'
+import Edit from './Edit'
+import drivers from '../defaultDriver.json'
 
 export default function Delivery({
   delivery,
@@ -13,32 +13,33 @@ export default function Delivery({
   documentId,
   meals,
 }) {
-  const [details, setDetails] = useState(false);
-  const [edit, setEdit] = useState(false);
-  const [editkey, setEditkey] = useState('');
-  const extraKeys = Object.keys(delivery.extra);
-  const extraValues = Object.values(delivery.extra);
-  const [selectDriver, setSelectDriver] = useState(delivery.driverId);
+  const [details, setDetails] = useState(false)
+  const [edit, setEdit] = useState(false)
+  const [editkey, setEditkey] = useState('')
+  const [extraEdit, setExtraEdit] = useState(false)
+  const extraKeys = Object.keys(delivery.extra)
+  const extraValues = Object.values(delivery.extra)
+  const [selectDriver, setSelectDriver] = useState(delivery.driverId)
 
   function toggleEdit(name) {
-    setEditkey(name);
-    setEdit(true);
+    setEditkey(name)
+    setEdit(true)
   }
 
   function handleDelete(documentId, delivery, index, setDeliveries) {
     setDeliveries([
       ...deliveries.slice(0, index),
       ...deliveries.slice(index + 1),
-    ]);
-    deleteDelivery(documentId, delivery, index);
+    ])
+    deleteDelivery(documentId, delivery, index)
   }
 
   function handleSelect(event) {
-    event.preventDefault();
-    setSelectDriver(event.target.value);
-    let newDelivery = { ...delivery };
-    newDelivery.driverId = event.target.value;
-    patchDelivery(documentId, newDelivery);
+    event.preventDefault()
+    setSelectDriver(event.target.value)
+    let newDelivery = { ...delivery }
+    newDelivery.driverId = event.target.value
+    patchDelivery(documentId, newDelivery)
   }
 
   return (
@@ -77,7 +78,7 @@ export default function Delivery({
           <p onClick={() => toggleEdit('smallbox')}>
             Kleine Boxen: {delivery.smallbox}
           </p>
-          <ul>
+          <ul onClick={}>
             Extras:
             {extraKeys.map((key, index) => (
               <li>
@@ -90,7 +91,7 @@ export default function Delivery({
           </p>
           <button
             onClick={() => {
-              handleDelete(documentId, delivery, index, setDeliveries);
+              handleDelete(documentId, delivery, index, setDeliveries)
             }}
           >
             DELETE
@@ -114,7 +115,7 @@ export default function Delivery({
         />
       )}
     </>
-  );
+  )
 }
 
 const Container = styled.div`
@@ -126,12 +127,12 @@ const Container = styled.div`
   border: solid 1px #000;
   margin: 10px;
   padding: 10px;
-`;
+`
 
 const StyledArrowUpIcon = styled(ArrowUpIcon)`
   position: relative;
   left: 225px;
-`;
+`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
@@ -142,4 +143,4 @@ const Button = styled.button`
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
-`;
+`
