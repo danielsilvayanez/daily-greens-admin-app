@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { deleteDelivery, patchDelivery } from '../Firebase/services';
-import ArrowUpIcon from '../icons/ArrowUpIcon';
-import Edit from './Edit';
-import drivers from '../defaultDriver.json';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { deleteDelivery, patchDelivery } from "../Firebase/services";
+import ArrowUpIcon from "../icons/ArrowUpIcon";
+import Edit from "./Edit";
+import drivers from "../defaultDriver.json";
 
 export default function Delivery({
   delivery,
@@ -15,7 +15,7 @@ export default function Delivery({
 }) {
   const [details, setDetails] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [editkey, setEditkey] = useState('');
+  const [editkey, setEditkey] = useState("");
   const extraKeys = Object.keys(delivery.extra);
   const extraValues = Object.values(delivery.extra);
   const [selectDriver, setSelectDriver] = useState(delivery.driverId);
@@ -46,10 +46,10 @@ export default function Delivery({
       {details ? (
         <Container height="150">
           <StyledArrowUpIcon onClick={() => setDetails(!details)} />
-          <h3 onClick={() => toggleEdit('name')}>Name: {delivery.name}</h3>
-          <p onClick={() => toggleEdit('date')}>Datum: {delivery.date}</p>
-          <p onClick={() => toggleEdit('street')}>Straße: {delivery.street}</p>
-          <p onClick={() => toggleEdit('phone')}>Tel.: {delivery.phone}</p>
+          <h3 onClick={() => toggleEdit("name")}>Name: {delivery.name}</h3>
+          <p onClick={() => toggleEdit("date")}>Datum: {delivery.date}</p>
+          <p onClick={() => toggleEdit("street")}>Straße: {delivery.street}</p>
+          <p onClick={() => toggleEdit("phone")}>Tel.: {delivery.phone}</p>
           <select value={selectDriver} name="driver" onChange={handleSelect}>
             <option value="">Fahrer auswählen</option>
             {drivers.map((driver) => (
@@ -57,24 +57,24 @@ export default function Delivery({
             ))}
           </select>
 
-          <p onClick={() => toggleEdit('daymeal')}>
+          <p onClick={() => toggleEdit("daymeal")}>
             Tagesessen: {delivery.daymeal}
           </p>
-          <p onClick={() => toggleEdit('weekmeal2')}>
+          <p onClick={() => toggleEdit("weekmeal2")}>
             {meals.document.weekmeal1}: {delivery.weekmeal1}
           </p>
-          <p onClick={() => toggleEdit('weekmeal2')}>
+          <p onClick={() => toggleEdit("weekmeal2")}>
             {meals.document.weekmeal2}: {delivery.weekmeal2}
           </p>
-          <p onClick={() => toggleEdit('dessert1')}>
+          <p onClick={() => toggleEdit("dessert1")}>
             {meals.document.dessert1}: {delivery.dessert1}
           </p>
-          <p onClick={() => toggleEdit('dessert2')}>
+          <p onClick={() => toggleEdit("dessert2")}>
             {meals.document.dessert2}: {delivery.dessert2}
           </p>
-          <p onClick={() => toggleEdit('stop')}>Stopp: {delivery.stop}</p>
-          <p onClick={() => toggleEdit('box')}>Boxen: {delivery.box} </p>
-          <p onClick={() => toggleEdit('smallbox')}>
+          <p onClick={() => toggleEdit("stop")}>Stopp: {delivery.stop}</p>
+          <p onClick={() => toggleEdit("box")}>Boxen: {delivery.box} </p>
+          <p onClick={() => toggleEdit("smallbox")}>
             Kleine Boxen: {delivery.smallbox}
           </p>
           <ul>
@@ -85,8 +85,8 @@ export default function Delivery({
               </li>
             ))}
           </ul>
-          <p onClick={() => toggleEdit('message')}>
-            Notiz: {delivery.message}{' '}
+          <p onClick={() => toggleEdit("message")}>
+            Notiz: {delivery.message}{" "}
           </p>
           <button
             onClick={() => {
@@ -126,6 +126,7 @@ const Container = styled.div`
   border: solid 1px #000;
   margin: 10px;
   padding: 10px;
+  background-color: var(--primaryBgWhite);
 `;
 
 const StyledArrowUpIcon = styled(ArrowUpIcon)`
@@ -135,7 +136,7 @@ const StyledArrowUpIcon = styled(ArrowUpIcon)`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   color: var(--primaryFontGrey);
   border: none;
   border-radius: 5px;
