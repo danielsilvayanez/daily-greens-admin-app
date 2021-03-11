@@ -6,10 +6,10 @@ export default function Navigation() {
   return (
     <Nav>
       <StyledNavLink exact to="/">
-        Dashboard
+        Aufträge (offen)
       </StyledNavLink>
+      <StyledNavLink to="/archive">Aufträge (erledigt) </StyledNavLink>
       <StyledNavLink to="/form">Auftrag erstellen</StyledNavLink>
-      <StyledNavLink to="/archive">erledigte Aufträge</StyledNavLink>
     </Nav>
   );
 }
@@ -30,6 +30,6 @@ const StyledNavLink = styled(NavLink)`
   }
 
   &.active {
-    color: var(--primaryBGBtnGreen);
+    color: var(--primaryBgWhite);
   }
 `;
