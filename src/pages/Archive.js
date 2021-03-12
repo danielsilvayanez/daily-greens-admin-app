@@ -1,6 +1,6 @@
-import React from "react";
-import Delivery from "../components/Delivery";
-import styled from "styled-components";
+import React from 'react'
+import Delivery from '../components/Delivery'
+import styled from 'styled-components'
 export default function Archive({ deliveries, setDeliveries, meals }) {
   return (
     <StyledUl>
@@ -14,11 +14,12 @@ export default function Archive({ deliveries, setDeliveries, meals }) {
               deliveries={deliveries}
               setDeliveries={setDeliveries}
               documentId={delivery.documentId}
+              key={delivery.documentId}
             />
           )
       )}
     </StyledUl>
-  );
+  )
 }
 
 const StyledUl = styled.ul`
@@ -26,4 +27,4 @@ const StyledUl = styled.ul`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`

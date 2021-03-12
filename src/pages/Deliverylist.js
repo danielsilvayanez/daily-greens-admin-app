@@ -2,12 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import Delivery from '../components/Delivery'
 
-export default function Deliverylist({ deliveries, setDeliveries, meals }) {
+export default function Deliverylist({
+  deliveries,
+  setDeliveries,
+  meals,
+  date,
+}) {
   return (
     <List>
       {deliveries.map(
         (delivery, index) =>
-          !delivery.document.done && (
+          //delivery.document.date >= date && console.log('yay')
+          delivery.document.done && (
             <Delivery
               meals={meals}
               delivery={delivery.document}

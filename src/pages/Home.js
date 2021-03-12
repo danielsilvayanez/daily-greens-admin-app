@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import Meals from "../components/Meals";
+import React, { useEffect } from 'react'
+import styled from 'styled-components'
+import Meals from '../components/Meals'
 // import NumbersDashboard from '../components/NumbersDashboard'
-import Deliverylist from "../pages/Deliverylist";
+import Deliverylist from '../pages/Deliverylist'
 
-export default function Home({ deliveries, setDeliveries, meals }) {
+export default function Home({ deliveries, setDeliveries, meals, date }) {
   return (
     <DashboardContainer>
       <Meals dbData={meals} />
@@ -13,9 +13,10 @@ export default function Home({ deliveries, setDeliveries, meals }) {
         deliveries={deliveries}
         setDeliveries={setDeliveries}
         meals={meals}
+        date={date}
       />
     </DashboardContainer>
-  );
+  )
 }
 
 const DashboardContainer = styled.div`
@@ -23,4 +24,4 @@ const DashboardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`

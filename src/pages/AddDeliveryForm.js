@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { postDelivery } from '../Firebase/services'
 import ExtraInput from '../components/ExtraInput'
 
-export default function AddDeliveryForm({ deliveries, setDeliveries }) {
+export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
   const defaultDelivery = {
     name: '',
     street: '',
@@ -23,10 +23,20 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
     start: false,
     done: false,
   }
+  const defaultMeals = {
+    weekmeal1: '',
+    weekmeal2: '',
+    dessert1: '',
+    dessert2: '',
+  }
+  const [meals, setMeals] = useState(defaultMeals)
   const [newDelivery, setNewDelivery] = useState(defaultDelivery)
   const extraInputs = []
 
-  console.log('länge' + Object.keys(newDelivery.extra).length)
+  useEffect(() => {
+    Object.keys(dbData).length > 0 && setMeals(dbData.document)
+  }, [dbData])
+
   for (let i = 0; i <= Object.keys(newDelivery.extra).length; i++) {
     extraInputs.push('+')
   }
@@ -79,25 +89,28 @@ export default function AddDeliveryForm({ deliveries, setDeliveries }) {
           onChange={handleChange}
           value={newDelivery.daymeal}
         />
-        <label htmlFor="weekmeal">Wochengericht Anzahl:</label>
+        <label htmlFor="weekmeal1">{meals.weekmeal1}:</label>
         <input
           type="number"
           name="weekmeal1"
           onChange={handleChange}
           value={newDelivery.weekmeal1}
         />
+        <label htmlFor="weekmeal2">{meals.weekmeal2}:</label>
         <input
           type="number"
           name="weekmeal2"
           onChange={handleChange}
           value={newDelivery.weekmeal2}
         />
+        <label htmlFor="dessert1">{meals.dessert1}:</label>
         <input
           type="number"
           name="dessert1"
           onChange={handleChange}
           value={newDelivery.dessert1}
         />
+        <label htmlFor="dessert2">{meals.dessert2}:</label>
         <input
           type="number"
           name="dessert2"
