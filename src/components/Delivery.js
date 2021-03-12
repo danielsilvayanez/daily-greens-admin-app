@@ -21,8 +21,12 @@ export default function Delivery({
   const [selectDriver, setSelectDriver] = useState(delivery.driverId)
 
   function toggleEdit(name) {
-    setEditkey(name)
-    setEdit(true)
+    edit && setEdit(false)
+
+    setTimeout(() => {
+      setEditkey(name)
+      setEdit(true)
+    }, 200)
   }
 
   function handleDelete(documentId, delivery, index, setDeliveries) {
