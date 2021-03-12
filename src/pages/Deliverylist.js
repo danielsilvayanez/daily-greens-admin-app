@@ -13,7 +13,7 @@ export default function Deliverylist({
       {deliveries.map(
         (delivery, index) =>
           //delivery.document.date >= date && console.log('yay')
-          delivery.document.done && (
+          !delivery.document.done && (
             <Delivery
               meals={meals}
               delivery={delivery.document}
