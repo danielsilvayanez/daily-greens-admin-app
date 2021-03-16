@@ -1,44 +1,45 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import { postDelivery } from '../Firebase/services'
-import ExtraInput from '../components/ExtraInput'
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { postDelivery } from "../Firebase/services";
+import ExtraInput from "../components/ExtraInput";
 
 export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
   const defaultDelivery = {
-    name: '',
-    street: '',
-    phone: '',
+    name: "",
+    street: "",
+    phone: "",
     daymeal: 0,
     weekmeal1: 0,
     weekmeal2: 0,
     dessert1: 0,
     dessert2: 0,
     extra: {},
-    date: '',
-    driver: '',
-    message: '',
+    date: "",
+    driver: "",
+    message: "",
     stop: 0,
     box: 0,
     smallbox: 0,
     start: false,
     done: false,
-  }
+    newcustomer: false,
+  };
   const defaultMeals = {
-    weekmeal1: '',
-    weekmeal2: '',
-    dessert1: '',
-    dessert2: '',
-  }
-  const [meals, setMeals] = useState(defaultMeals)
-  const [newDelivery, setNewDelivery] = useState(defaultDelivery)
-  const extraInputs = []
+    weekmeal1: "",
+    weekmeal2: "",
+    dessert1: "",
+    dessert2: "",
+  };
+  const [meals, setMeals] = useState(defaultMeals);
+  const [newDelivery, setNewDelivery] = useState(defaultDelivery);
+  const extraInputs = [];
 
   useEffect(() => {
-    Object.keys(dbData).length > 0 && setMeals(dbData.document)
-  }, [dbData])
+    Object.keys(dbData).length > 0 && setMeals(dbData.document);
+  }, [dbData]);
 
   for (let i = 0; i <= Object.keys(newDelivery.extra).length; i++) {
-    extraInputs.push('+')
+    extraInputs.push("+");
   }
 
   return (
@@ -122,25 +123,31 @@ export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
         {extraInputs.map(() => (
           <ExtraInput setDelivery={setNewDelivery} delivery={newDelivery} />
         ))}
-
+        <label htmlFor="newcustomer">Neukunde</label>
+        <input type="checkbox" name="newcustomer" onChange={handleChange} />
         <Button onClick={handleSubmit}>Erstellen</Button>
       </Form>
     </FormContainer>
-  )
+  );
 
   function handleChange(event) {
-    setNewDelivery({
-      ...newDelivery,
-      [event.target.name]: event.target.value,
-    })
+    event.target.name === "newcustomer"
+      ? setNewDelivery({
+          ...newDelivery,
+          [event.target.name]: event.target.checked,
+        })
+      : setNewDelivery({
+          ...newDelivery,
+          [event.target.name]: event.target.value,
+        });
   }
 
   function handleSubmit(event) {
-    event.preventDefault()
-    let newDeliveries = [...deliveries, newDelivery]
-    setDeliveries(newDeliveries)
-    postDelivery(newDelivery)
-    setNewDelivery(defaultDelivery)
+    event.preventDefault();
+    let newDeliveries = [...deliveries, newDelivery];
+    setDeliveries(newDeliveries);
+    postDelivery(newDelivery);
+    setNewDelivery(defaultDelivery);
   }
 }
 
@@ -150,7 +157,7 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 15px;
-`
+`;
 
 const Form = styled.form`
   display: flex;
@@ -172,11 +179,11 @@ const Form = styled.form`
       outline-color: var(--primaryBGBtnGreen);
     }
   }
-`
+`;
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 1rem;
   color: var(--primaryFontGrey);
   border: none;
@@ -184,4 +191,4 @@ const Button = styled.button`
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
-`
+`;
