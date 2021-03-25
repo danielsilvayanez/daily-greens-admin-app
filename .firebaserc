@@ -1,5 +1,12 @@
 {
   "projects": {
     "default": "daily-greens-12808"
+  },
+  "targets": {
+    "daily-greens-12808": {
+      "hosting": {
+        "cockpit": ["daily-greens-cockpit"]
+      }
+    }
   }
 }
