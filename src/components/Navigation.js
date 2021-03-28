@@ -28,8 +28,4 @@ const StyledNavLink = styled(NavLink)`
   :visited {
     color: var(--primaryFontGrey);
   }
-
-  &.active {
-    color: var(--primaryBgWhite);
-  }
 `;

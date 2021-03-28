@@ -15,7 +15,7 @@ export default createGlobalStyle`
     }
     
     body {
-        background-image: linear-gradient(#ff9d2f, #ff6126);
+        background-color: (--primaryBgWhite);
         color: var(--primaryFontGrey);
         font-family: 'Lato', sans-serif;
         font-weight: bolder;

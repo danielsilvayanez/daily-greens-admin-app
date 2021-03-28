@@ -126,6 +126,7 @@ export default function Delivery({
           <h3>
             {delivery.name} ({delivery.date})
           </h3>
+          <p>Stop: {delivery.stop}</p>
         </Container>
       )}
       {edit && (
