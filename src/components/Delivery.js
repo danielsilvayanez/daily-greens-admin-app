@@ -60,9 +60,51 @@ export default function Delivery({
         <Container height="150" primary={delivery.start}>
           <StyledArrowUpIcon onClick={() => setDetails(!details)} />
           <h3 onClick={() => toggleEdit("name")}>Name: {delivery.name}</h3>
-          <p onClick={() => toggleEdit("date")}>Datum: {delivery.date}</p>
           <p onClick={() => toggleEdit("street")}>Straße: {delivery.street}</p>
+          <p onClick={() => toggleEdit("date")}>Lieferdatum: {delivery.date}</p>
+          <p onClick={() => toggleEdit("stop")}>Stopp: {delivery.stop}</p>
+          <p onClick={() => toggleEdit("daymeal")}>
+            Tagesgericht: {delivery.daymeal}
+          </p>
+          <p onClick={() => toggleEdit("weekmeal1")}>
+            {" "}
+            Weekmeal1 ({meals.document.weekmeal1}): {delivery.weekmeal1}
+          </p>
+          <p onClick={() => toggleEdit("weekmeal2")}>
+            Weekmeal2 ({meals.document.weekmeal2}): {delivery.weekmeal2}
+          </p>
+          <p onClick={() => toggleEdit("dessert1")}>
+            Dessert1 ({meals.document.dessert1}): {delivery.dessert1}
+          </p>
+          <p onClick={() => toggleEdit("dessert2")}>
+            Dessert2 ({meals.document.dessert2}): {delivery.dessert2}
+          </p>
+
+          <div>
+            {extraKeys.map((key, index) => (
+              <p key={key}>
+                Extra: {key}: {extraValues[index]}
+              </p>
+            ))}
+          </div>
+          <p onClick={() => toggleEdit("message")}>
+            Kommentar: {delivery.message}{" "}
+          </p>
+          <p onClick={() => toggleEdit("box")}>Boxen groß: {delivery.box} </p>
+          <p onClick={() => toggleEdit("smallbox")}>
+            Boxen klein: {delivery.smallbox}
+          </p>
+          <p>Notiz Fahrer: coming...</p>
           <p onClick={() => toggleEdit("phone")}>Tel.: {delivery.phone}</p>
+          <NewCustomerContainer>
+            <label htmlFor="newcustomer">Neukunde</label>
+            <input
+              type="checkbox"
+              name="newcustomer"
+              onChange={handleCheckbox}
+              checked={check}
+            />
+          </NewCustomerContainer>
           <select value={selectDriver} name="driver" onChange={handleSelect}>
             <option value="">Fahrer auswählen</option>
             {drivers.map((driver) => (
@@ -72,51 +114,13 @@ export default function Delivery({
             ))}
           </select>
 
-          <p onClick={() => toggleEdit("daymeal")}>
-            Tagesessen: {delivery.daymeal}
-          </p>
-          <p onClick={() => toggleEdit("weekmeal2")}>
-            {meals.document.weekmeal1}: {delivery.weekmeal1}
-          </p>
-          <p onClick={() => toggleEdit("weekmeal2")}>
-            {meals.document.weekmeal2}: {delivery.weekmeal2}
-          </p>
-          <p onClick={() => toggleEdit("dessert1")}>
-            {meals.document.dessert1}: {delivery.dessert1}
-          </p>
-          <p onClick={() => toggleEdit("dessert2")}>
-            {meals.document.dessert2}: {delivery.dessert2}
-          </p>
-          <p onClick={() => toggleEdit("stop")}>Stopp: {delivery.stop}</p>
-          <p onClick={() => toggleEdit("box")}>Boxen: {delivery.box} </p>
-          <p onClick={() => toggleEdit("smallbox")}>
-            Kleine Boxen: {delivery.smallbox}
-          </p>
-          <ul>
-            Extras:
-            {extraKeys.map((key, index) => (
-              <li key={key}>
-                {key}: {extraValues[index]}
-              </li>
-            ))}
-          </ul>
-          <p onClick={() => toggleEdit("message")}>
-            Notiz: {delivery.message}{" "}
-          </p>
-          <label htmlFor="newcustomer">Neukunde</label>
-          <input
-            type="checkbox"
-            name="newcustomer"
-            onChange={handleCheckbox}
-            checked={check}
-          />
-          <button
+          <Button
             onClick={() => {
               handleDelete(documentId, delivery, index, setDeliveries);
             }}
           >
             DELETE
-          </button>
+          </Button>
         </Container>
       ) : (
         <Container
@@ -126,7 +130,10 @@ export default function Delivery({
           <h3>
             {delivery.name} ({delivery.date})
           </h3>
-          <p>Stop: {delivery.stop}</p>
+          <p>
+            Stop: {delivery.stop} - Große Boxen: {delivery.box} - Kleine Boxen:{" "}
+            {delivery.smallbox}
+          </p>
         </Container>
       )}
       {edit && (
@@ -148,7 +155,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 30rem;
   justify-content: space-around;
-  align-items: center;
+  align-items: left;
   border: solid 1px #000;
   margin: 10px;
   padding: 10px;
@@ -159,6 +166,12 @@ const Container = styled.div`
 const StyledArrowUpIcon = styled(ArrowUpIcon)`
   position: relative;
   left: 225px;
+`;
+
+const NewCustomerContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
 `;
 
 const Button = styled.button`
