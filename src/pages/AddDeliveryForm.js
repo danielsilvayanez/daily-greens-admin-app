@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { postDelivery } from "../Firebase/services";
 import ExtraInput from "../components/ExtraInput";
+import drivers from "../defaultDriver.json";
 
 export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
   const defaultDelivery = {
@@ -15,7 +16,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
     dessert2: 0,
     extra: {},
     date: "",
-    driver: "",
+    driverId: "",
     message: "",
     stop: 0,
     box: 0,
@@ -54,6 +55,19 @@ export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
           value={newDelivery.date}
           required
         />
+        <label htmlFor="drivers">Fahrer:</label>
+        <select
+          id="drivers"
+          value={newDelivery.driverId}
+          name="driverId"
+          onChange={handleChange}
+        >
+          {drivers.map((driver) => (
+            <option key={driver.driverId} value={driver.driverId}>
+              {driver.driverName}
+            </option>
+          ))}
+        </select>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
