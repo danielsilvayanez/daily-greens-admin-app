@@ -21,7 +21,7 @@ export default function Delivery({
   const extraKeys = Object.keys(delivery.extra);
   const extraValues = Object.values(delivery.extra);
   const [selectDriver, setSelectDriver] = useState(delivery.driverId);
-
+  console.log("fahrer", delivery);
   function handleCheckbox(event) {
     let newDelivery = { ...delivery };
     newDelivery.newcustomer = event.target.checked;
@@ -59,68 +59,79 @@ export default function Delivery({
       {details ? (
         <Container height="150" primary={delivery.start}>
           <StyledArrowUpIcon onClick={() => setDetails(!details)} />
-          <h3 onClick={() => toggleEdit("name")}>Name: {delivery.name}</h3>
-          <p onClick={() => toggleEdit("street")}>Straße: {delivery.street}</p>
-          <p onClick={() => toggleEdit("date")}>Lieferdatum: {delivery.date}</p>
-          <p onClick={() => toggleEdit("stop")}>Stopp: {delivery.stop}</p>
-          <p onClick={() => toggleEdit("daymeal")}>
-            Tagesgericht: {delivery.daymeal}
-          </p>
-          <p onClick={() => toggleEdit("weekmeal1")}>
-            {" "}
-            Weekmeal1 ({meals.document.weekmeal1}): {delivery.weekmeal1}
-          </p>
-          <p onClick={() => toggleEdit("weekmeal2")}>
-            Weekmeal2 ({meals.document.weekmeal2}): {delivery.weekmeal2}
-          </p>
-          <p onClick={() => toggleEdit("dessert1")}>
-            Dessert1 ({meals.document.dessert1}): {delivery.dessert1}
-          </p>
-          <p onClick={() => toggleEdit("dessert2")}>
-            Dessert2 ({meals.document.dessert2}): {delivery.dessert2}
-          </p>
-
           <div>
-            {extraKeys.map((key, index) => (
-              <p key={key}>
-                Extra: {key}: {extraValues[index]}
-              </p>
-            ))}
+            <h3 onClick={() => toggleEdit("name")}>Name: {delivery.name}</h3>
+            <p onClick={() => toggleEdit("street")}>
+              Straße: {delivery.street}
+            </p>
+            <p onClick={() => toggleEdit("date")}>
+              Lieferdatum: {delivery.date}
+            </p>
+            <p onClick={() => toggleEdit("stop")}>Stopp: {delivery.stop}</p>
+            <p onClick={() => toggleEdit("daymeal")}>
+              Tagesgericht: {delivery.daymeal}
+            </p>
+            <p onClick={() => toggleEdit("weekmeal1")}>
+              {" "}
+              Weekmeal1 ({meals.document.weekmeal1}): {delivery.weekmeal1}
+            </p>
+            <p onClick={() => toggleEdit("weekmeal2")}>
+              Weekmeal2 ({meals.document.weekmeal2}): {delivery.weekmeal2}
+            </p>
+            <p onClick={() => toggleEdit("dessert1")}>
+              Dessert1 ({meals.document.dessert1}): {delivery.dessert1}
+            </p>
+            <p onClick={() => toggleEdit("dessert2")}>
+              Dessert2 ({meals.document.dessert2}): {delivery.dessert2}
+            </p>
+            <div>
+              {extraKeys.map((key, index) => (
+                <p key={key}>
+                  Extra: {key}: {extraValues[index]}
+                </p>
+              ))}
+            </div>
+            <p onClick={() => toggleEdit("message")}>
+              Kommentar: {delivery.message}{" "}
+            </p>
+            <p onClick={() => toggleEdit("box")}>Boxen groß: {delivery.box} </p>
+            <p onClick={() => toggleEdit("smallbox")}>
+              Boxen klein: {delivery.smallbox}
+            </p>
+            <p>Notiz Fahrer: coming...</p>
+            <p onClick={() => toggleEdit("phone")}>Tel.: {delivery.phone}</p>
+            <NewCustomerContainer>
+              <label htmlFor="newcustomer">Neukunde</label>
+              <input
+                type="checkbox"
+                name="newcustomer"
+                onChange={handleCheckbox}
+                checked={check}
+              />
+            </NewCustomerContainer>
+            <DriverContainer>
+              <label htmlFor="drivers">Fahrer:</label>
+              <select
+                id="drivers"
+                value={selectDriver}
+                name="driver"
+                onChange={handleSelect}
+              >
+                {drivers.map((driver) => (
+                  <option key={driver.driverId} value={driver.driverId}>
+                    {driver.driverName}
+                  </option>
+                ))}
+              </select>
+            </DriverContainer>
+            <Button
+              onClick={() => {
+                handleDelete(documentId, delivery, index, setDeliveries);
+              }}
+            >
+              DELETE
+            </Button>
           </div>
-          <p onClick={() => toggleEdit("message")}>
-            Kommentar: {delivery.message}{" "}
-          </p>
-          <p onClick={() => toggleEdit("box")}>Boxen groß: {delivery.box} </p>
-          <p onClick={() => toggleEdit("smallbox")}>
-            Boxen klein: {delivery.smallbox}
-          </p>
-          <p>Notiz Fahrer: coming...</p>
-          <p onClick={() => toggleEdit("phone")}>Tel.: {delivery.phone}</p>
-          <NewCustomerContainer>
-            <label htmlFor="newcustomer">Neukunde</label>
-            <input
-              type="checkbox"
-              name="newcustomer"
-              onChange={handleCheckbox}
-              checked={check}
-            />
-          </NewCustomerContainer>
-          <select value={selectDriver} name="driver" onChange={handleSelect}>
-            <option value="">Fahrer auswählen</option>
-            {drivers.map((driver) => (
-              <option key={driver.driverId} value={driver.driverId}>
-                {driver.driverName}
-              </option>
-            ))}
-          </select>
-
-          <Button
-            onClick={() => {
-              handleDelete(documentId, delivery, index, setDeliveries);
-            }}
-          >
-            DELETE
-          </Button>
         </Container>
       ) : (
         <Container
@@ -169,6 +180,12 @@ const StyledArrowUpIcon = styled(ArrowUpIcon)`
 `;
 
 const NewCustomerContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+`;
+
+const DriverContainer = styled.div`
   display: flex;
   align-items: baseline;
   gap: 5px;
