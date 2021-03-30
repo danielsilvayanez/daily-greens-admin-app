@@ -181,7 +181,7 @@ const FormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 15px;
+  padding: 15px 0;
 `;
 
 const Form = styled.form`
