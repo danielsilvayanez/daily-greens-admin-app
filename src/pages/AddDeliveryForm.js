@@ -90,7 +90,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
           onChange={handleChange}
           value={newDelivery.phone}
         />
-        <label htmlFor="message">Notiz:</label>
+        <label htmlFor="message">Kommentar:</label>
         <textarea
           type="text"
           name="message"
@@ -137,9 +137,20 @@ export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
         {extraInputs.map(() => (
           <ExtraInput setDelivery={setNewDelivery} delivery={newDelivery} />
         ))}
-        <label htmlFor="newcustomer">Neukunde</label>
-        <input type="checkbox" name="newcustomer" onChange={handleChange} />
-        <Button onClick={handleSubmit}>Erstellen</Button>
+
+        <label htmlFor="newcustomer">
+          Neukunde:
+          <input
+            style={{ margin: "0" }}
+            type="checkbox"
+            name="newcustomer"
+            onChange={handleChange}
+          />
+        </label>
+
+        <Button onClick={handleSubmit} disabled={!newDelivery.date}>
+          Erstellen
+        </Button>
       </Form>
     </FormContainer>
   );
@@ -181,6 +192,11 @@ const Form = styled.form`
     margin-top: 15px;
   }
 
+  textarea {
+    width: 25rem;
+    height: 3rem;
+  }
+
   input,
   select {
     width: 25rem;
@@ -205,4 +221,9 @@ const Button = styled.button`
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
+
+  :disabled {
+    color: darkgray;
+    background-color: grey;
+  }
 `;
