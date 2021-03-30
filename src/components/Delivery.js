@@ -72,17 +72,16 @@ export default function Delivery({
               Tagesgericht: {delivery.daymeal}
             </p>
             <p onClick={() => toggleEdit("weekmeal1")}>
-              {" "}
-              Weekmeal1 ({meals.document.weekmeal1}): {delivery.weekmeal1}
+              {meals.document.weekmeal1}: {delivery.weekmeal1}
             </p>
             <p onClick={() => toggleEdit("weekmeal2")}>
-              Weekmeal2 ({meals.document.weekmeal2}): {delivery.weekmeal2}
+              {meals.document.weekmeal2}: {delivery.weekmeal2}
             </p>
             <p onClick={() => toggleEdit("dessert1")}>
-              Dessert1 ({meals.document.dessert1}): {delivery.dessert1}
+              {meals.document.dessert1}: {delivery.dessert1}
             </p>
             <p onClick={() => toggleEdit("dessert2")}>
-              Dessert2 ({meals.document.dessert2}): {delivery.dessert2}
+              {meals.document.dessert2}: {delivery.dessert2}
             </p>
             <div>
               {extraKeys.map((key, index) => (
