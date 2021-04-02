@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import Delivery from '../components/Delivery'
+import React from "react";
+import styled from "styled-components";
+import Delivery from "../components/Delivery";
 
 export default function Deliverylist({
   deliveries,
@@ -8,29 +8,70 @@ export default function Deliverylist({
   meals,
   date,
 }) {
+  // function compare(a, b) {
+  //   const stopA = a.document.stop;
+  //   const stopB = b.document.stop;
+
+  //   let comparison = 0;
+  //   if (stopA > stopB) {
+  //     comparison = 1;
+  //   } else {
+  //     comparison = -1;
+  //   }
+  //   return comparison;
+  // }
+  // deliveries.sort(compare);
+
   return (
-    <List>
-      {deliveries.map(
-        (delivery, index) =>
-          //delivery.document.date >= date && console.log('yay')
-          !delivery.document.done && (
-            <Delivery
-              meals={meals}
-              delivery={delivery.document}
-              index={index}
-              setDeliveries={setDeliveries}
-              deliveries={deliveries}
-              documentId={delivery.documentId}
-              key={delivery.documentId}
-            />
-          )
-      )}
-    </List>
-  )
+    <StyledListContainer>
+      <H2>Heute</H2>
+      <List>
+        {deliveries.map(
+          (delivery, index) =>
+            !delivery.document.done &&
+            delivery.document.date === date && (
+              <Delivery
+                meals={meals}
+                delivery={delivery.document}
+                index={index}
+                setDeliveries={setDeliveries}
+                deliveries={deliveries}
+                documentId={delivery.documentId}
+                key={delivery.documentId}
+              />
+            )
+        )}
+      </List>
+      <H2>Zukunft</H2>
+      <List>
+        {deliveries.map(
+          (delivery, index) =>
+            !delivery.document.done &&
+            delivery.document.date !== date && (
+              <Delivery
+                meals={meals}
+                delivery={delivery.document}
+                index={index}
+                setDeliveries={setDeliveries}
+                deliveries={deliveries}
+                documentId={delivery.documentId}
+                key={delivery.documentId}
+              />
+            )
+        )}
+      </List>
+    </StyledListContainer>
+  );
 }
 
 const List = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
+
+const StyledListContainer = styled.div``;
+
+const H2 = styled.h2`
+  margin: 15px 0 0;
+`;
