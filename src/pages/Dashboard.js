@@ -106,24 +106,22 @@ export default function Dashboard({ deliveries, meals }) {
   );
 }
 
-const StyledSalutation = styled.h1`
-  margin-top: 10px;
-`;
-
 const StyledArea = styled.section`
   display: flex;
-  align-items: left;
+  justify-content: center;
+  align-items: center;
   margin: 0 5px;
   flex-direction: column;
 `;
 
 const StyledOverview = styled.section`
   margin-top: 10px;
-  padding: 10px;
+  padding: 20px;
   font-size: 1.6em;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
   border-radius: 25px;
   background-color: var(--primaryBgWhite);
+  width: 500px;
 `;

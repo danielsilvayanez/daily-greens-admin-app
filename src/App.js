@@ -43,9 +43,11 @@ export default function App() {
   function compare(a, b) {
     const dateA = a.document.date;
     const dateB = b.document.date;
+    const stopA = a.document.stop;
+    const stopB = b.document.stop;
 
     let comparison = 0;
-    if (dateA > dateB) {
+    if (dateA && stopA > dateB && stopB) {
       comparison = 1;
     } else {
       comparison = -1;
