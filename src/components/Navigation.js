@@ -6,9 +6,10 @@ export default function Navigation() {
   return (
     <Nav>
       <StyledNavLink exact to="/">
-        Aufträge (offen)
+        Aufträge Übersicht
       </StyledNavLink>
-      <StyledNavLink to="/archive">Aufträge (erledigt) </StyledNavLink>
+      <StyledNavLink to="/home"> Aufträge (offen) </StyledNavLink>
+      <StyledNavLink to="/archive">Aufträge erledigt </StyledNavLink>
       <StyledNavLink to="/form">Auftrag erstellen</StyledNavLink>
     </Nav>
   );

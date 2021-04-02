@@ -13,6 +13,7 @@ import LoginContext from "./components/auth/LoginContext";
 import firebaseApp from "./Firebase/index";
 import UserBar from "./components/auth/UserBar";
 import Archive from "./pages/Archive";
+import Dashboard from "./pages/Dashboard";
 
 export default function App() {
   const today = new Date();
@@ -20,7 +21,6 @@ export default function App() {
   const [localDeliveries, setLocalDeliveries] = useState([]);
   const [meals, setMeals] = useState({});
   const [date, setDate] = useState("");
-
   const user = useAuth();
 
   useEffect(() => {
@@ -32,7 +32,11 @@ export default function App() {
       setMeals(dbResult[0]);
     });
     setDate(
-      today.getDate() + "." + (today.getMonth() + 1) + "." + today.getFullYear()
+      today.getFullYear() +
+        "-" +
+        ("0" + (today.getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + today.getDate()).slice(-2)
     );
   }, [localDeliveries]);
 
@@ -49,6 +53,11 @@ export default function App() {
     return comparison;
   }
 
+  let todaysDeliveries = [];
+  deliveries.map((delivery) => {
+    delivery.document.date === date && todaysDeliveries.push(delivery.document);
+  });
+
   return (
     <LoginContext.Provider value={{ user, firebaseApp }}>
       {user ? (
@@ -59,6 +68,14 @@ export default function App() {
           <main>
             <Switch>
               <Route exact path="/">
+                <Dashboard
+                  date={date}
+                  meals={meals}
+                  deliveries={todaysDeliveries}
+                  setDeliveries={setLocalDeliveries}
+                />
+              </Route>
+              <Route exact path="/home">
                 <Home
                   date={date}
                   meals={meals}
