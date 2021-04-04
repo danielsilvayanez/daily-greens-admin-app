@@ -8,20 +8,6 @@ export default function Deliverylist({
   meals,
   date,
 }) {
-  // function compare(a, b) {
-  //   const stopA = a.document.stop;
-  //   const stopB = b.document.stop;
-
-  //   let comparison = 0;
-  //   if (stopA > stopB) {
-  //     comparison = 1;
-  //   } else {
-  //     comparison = -1;
-  //   }
-  //   return comparison;
-  // }
-  // deliveries.sort(compare);
-
   return (
     <StyledListContainer>
       <H2>Heute</H2>

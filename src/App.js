@@ -93,6 +93,7 @@ export default function App() {
                   deliveries={deliveries}
                   setDeliveries={setLocalDeliveries}
                   meals={meals}
+                  date={date}
                 />
               </Route>
               <Route path="/form">
