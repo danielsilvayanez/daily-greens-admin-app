@@ -91,13 +91,17 @@ export default function Delivery({
               ))}
             </div>
             <p onClick={() => toggleEdit("message")}>
-              Kommentar: {delivery.message}{" "}
+              Kommentar:
+              <ImportantMessage>"{delivery.message}"</ImportantMessage>
             </p>
             <p onClick={() => toggleEdit("box")}>Boxen groß: {delivery.box} </p>
             <p onClick={() => toggleEdit("smallbox")}>
               Boxen klein: {delivery.smallbox}
             </p>
-            <p>Notiz Fahrer: coming...</p>
+            <p>
+              Notiz Fahrer:
+              <ImportantMessage>"{delivery.drivermessage}"</ImportantMessage>
+            </p>
             <p onClick={() => toggleEdit("phone")}>Tel.: {delivery.phone}</p>
             <NewCustomerContainer>
               <label htmlFor="newcustomer">Neukunde</label>
@@ -176,6 +180,12 @@ const Container = styled.div`
 const StyledArrowUpIcon = styled(ArrowUpIcon)`
   position: relative;
   left: 225px;
+`;
+
+const ImportantMessage = styled.span`
+  color: var(--secondaryBGPurple);
+  font-weight: bold;
+  font-style: italic;
 `;
 
 const NewCustomerContainer = styled.div`

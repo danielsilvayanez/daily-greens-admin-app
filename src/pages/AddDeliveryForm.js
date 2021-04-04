@@ -18,6 +18,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
     date: "",
     driverId: drivers[0].driverId,
     message: "",
+    drivermessage: "",
     stop: 0,
     box: 0,
     smallbox: 0,
