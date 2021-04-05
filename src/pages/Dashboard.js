@@ -97,11 +97,6 @@ export default function Dashboard({ deliveries, meals }) {
           </p>
         ))}
       </StyledOverview>
-      <StyledOverview>
-        <h3>Rücknahme Pfand</h3>
-        <p>Boxen groß: {boxDailyTotal}</p>
-        <p>Boxen klein: {boxSmallDailyTotal}</p>
-      </StyledOverview>
     </StyledArea>
   );
 }
