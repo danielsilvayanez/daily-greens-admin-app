@@ -121,6 +121,7 @@ export default function App() {
                   setDeliveries={setLocalDeliveries}
                   dbData={meals}
                   drivers={drivers}
+                  date={date}
                 />
               </Route>
             </Switch>

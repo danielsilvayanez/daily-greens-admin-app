@@ -8,6 +8,7 @@ export default function AddDeliveryForm({
   setDeliveries,
   dbData,
   drivers,
+  date,
 }) {
   const defaultDelivery = {
     name: "",
@@ -19,7 +20,7 @@ export default function AddDeliveryForm({
     dessert1: 0,
     dessert2: 0,
     extra: {},
-    date: "",
+    date: date,
     driverId: "3fXdKUI2eAbz5z4W1Quw4Xrz0M83",
     message: "",
     drivermessage: "",
