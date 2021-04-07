@@ -57,7 +57,11 @@ export default function Delivery({
   return (
     <>
       {details ? (
-        <Container height="150" primary={delivery.start}>
+        <Container
+          height="150"
+          primary={delivery.start && !delivery.done}
+          incomplete={delivery.stop === 0}
+        >
           <StyledArrowUpIcon onClick={() => setDetails(!details)} />
           <div>
             <h3 onClick={() => toggleEdit("name")}>Name: {delivery.name}</h3>
@@ -139,7 +143,8 @@ export default function Delivery({
       ) : (
         <Container
           onClick={() => setDetails(!details)}
-          primary={delivery.start}
+          primary={delivery.start && !delivery.done}
+          incomplete={delivery.stop === 0}
         >
           <h3>
             {delivery.name} ({delivery.date})
@@ -170,7 +175,10 @@ const Container = styled.div`
   width: 30rem;
   justify-content: space-around;
   align-items: left;
-  border: solid 1px #000;
+  border: ${(props) =>
+    props.incomplete
+      ? "1px solid hotpink"
+      : "1px solid var(--primaryFontGrey)"};
   margin: 10px;
   padding: 10px;
   background-color: ${(props) =>

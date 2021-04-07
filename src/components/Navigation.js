@@ -19,14 +19,18 @@ const Nav = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3px;
 `;
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-  padding: 20px;
+  padding: 10px;
 
   :visited {
     color: var(--primaryFontGrey);
+  }
+
+  &.active {
+    background-color: var(--secondaryBGPurple);
+    color: var(--primaryBgWhite);
   }
 `;
