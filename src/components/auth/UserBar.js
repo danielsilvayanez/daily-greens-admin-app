@@ -14,7 +14,7 @@ export default function UserBar() {
 
   return (
     <>
-      {user ? <Button onClick={logoutFromFirebase}>Logout</Button> : undefined}
+      {/* {user ? <Button onClick={logoutFromFirebase}>Logout</Button> : undefined} */}
     </>
   );
 }

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { deleteDelivery, patchDelivery } from "../Firebase/services";
 import ArrowUpIcon from "../icons/ArrowUpIcon";
 import Edit from "./Edit";
-import drivers from "../defaultDriver.json";
 
 export default function Delivery({
   delivery,
@@ -12,6 +11,7 @@ export default function Delivery({
   setDeliveries,
   documentId,
   meals,
+  drivers,
 }) {
   const [details, setDetails] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -21,7 +21,7 @@ export default function Delivery({
   const extraKeys = Object.keys(delivery.extra);
   const extraValues = Object.values(delivery.extra);
   const [selectDriver, setSelectDriver] = useState(delivery.driverId);
-  console.log("fahrer", delivery);
+
   function handleCheckbox(event) {
     let newDelivery = { ...delivery };
     newDelivery.newcustomer = event.target.checked;
@@ -125,8 +125,8 @@ export default function Delivery({
                 onChange={handleSelect}
               >
                 {drivers.map((driver) => (
-                  <option key={driver.driverId} value={driver.driverId}>
-                    {driver.driverName}
+                  <option key={driver.driverid} value={driver.driverid}>
+                    {driver.drivername}
                   </option>
                 ))}
               </select>
@@ -150,8 +150,13 @@ export default function Delivery({
             {delivery.name} ({delivery.date})
           </h3>
           <p>
-            Stop: {delivery.stop} - Große Boxen: {delivery.box} - Kleine Boxen:{" "}
-            {delivery.smallbox}
+            Fahrer:{" "}
+            {
+              drivers.find((driver) => driver.driverid === delivery.driverId)
+                ?.drivername
+            }{" "}
+            - Stop: {delivery.stop} - Große Boxen: {delivery.box} - Kleine
+            Boxen: {delivery.smallbox}
           </p>
         </Container>
       )}

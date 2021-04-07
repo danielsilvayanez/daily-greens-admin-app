@@ -1,4 +1,4 @@
-import { deliveryRef, mealRef } from './index';
+import { deliveryRef, mealRef, driverRef } from "./index";
 
 export async function fetchDeliveries() {
   const dbResult = await deliveryRef.get().then((data) => {
@@ -7,6 +7,17 @@ export async function fetchDeliveries() {
       deliveryData.push({ document: doc.data(), documentId: doc.id });
     });
     return deliveryData;
+  });
+  return dbResult;
+}
+
+export async function fetchDrivers() {
+  const dbResult = await driverRef.get().then((data) => {
+    const driverData = [];
+    data.forEach((doc) => {
+      driverData.push(doc.data());
+    });
+    return driverData;
   });
   return dbResult;
 }

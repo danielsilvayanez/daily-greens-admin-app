@@ -66,7 +66,6 @@ export default function Meals({ dbData }) {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(meals);
     patchMeals(dbData.documentId, meals);
     setDisable(true);
   }
