@@ -7,6 +7,7 @@ export default function Deliverylist({
   setDeliveries,
   meals,
   date,
+  drivers,
 }) {
   const [details, setDetails] = useState(true);
   const tomorrow = new Date(86400000 + +new Date());
@@ -33,6 +34,7 @@ export default function Deliverylist({
                 deliveries={deliveries}
                 documentId={delivery.documentId}
                 key={delivery.documentId}
+                drivers={drivers}
               />
             )
         )}
@@ -51,6 +53,7 @@ export default function Deliverylist({
                 deliveries={deliveries}
                 documentId={delivery.documentId}
                 key={delivery.documentId}
+                drivers={drivers}
               />
             )
         )}
@@ -73,6 +76,7 @@ export default function Deliverylist({
                   deliveries={deliveries}
                   documentId={delivery.documentId}
                   key={delivery.documentId}
+                  drivers={drivers}
                 />
               )
           )}

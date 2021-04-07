@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { postDelivery } from "../Firebase/services";
 import ExtraInput from "../components/ExtraInput";
-import drivers from "../defaultDriver.json";
 
-export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
+export default function AddDeliveryForm({
+  deliveries,
+  setDeliveries,
+  dbData,
+  drivers,
+}) {
   const defaultDelivery = {
     name: "",
     street: "",
@@ -16,7 +20,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
     dessert2: 0,
     extra: {},
     date: "",
-    driverId: drivers[0].driverId,
+    driverId: "3fXdKUI2eAbz5z4W1Quw4Xrz0M83",
     message: "",
     drivermessage: "",
     stop: 0,
@@ -32,6 +36,7 @@ export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
     dessert1: "",
     dessert2: "",
   };
+
   const [meals, setMeals] = useState(defaultMeals);
   const [newDelivery, setNewDelivery] = useState(defaultDelivery);
   const extraInputs = [];
@@ -57,18 +62,20 @@ export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
           required
         />
         <label htmlFor="drivers">Fahrer:</label>
-        <select
-          id="drivers"
-          value={newDelivery.driverId}
-          name="driverId"
-          onChange={handleChange}
-        >
-          {drivers.map((driver) => (
-            <option key={driver.driverId} value={driver.driverId}>
-              {driver.driverName}
-            </option>
-          ))}
-        </select>
+        {drivers && (
+          <select
+            id="drivers"
+            value={newDelivery.driverId}
+            name="driverId"
+            onChange={handleChange}
+          >
+            {drivers.map((driver) => (
+              <option key={driver.driverid} value={driver.driverid}>
+                {driver.drivername}
+              </option>
+            ))}
+          </select>
+        )}
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -135,8 +142,12 @@ export default function AddDeliveryForm({ deliveries, setDeliveries, dbData }) {
         />
         <label htmlFor="extra">Weitere Items:</label>
 
-        {extraInputs.map(() => (
-          <ExtraInput setDelivery={setNewDelivery} delivery={newDelivery} />
+        {extraInputs.map((index) => (
+          <ExtraInput
+            key={index + "extraInput"}
+            setDelivery={setNewDelivery}
+            delivery={newDelivery}
+          />
         ))}
 
         <label htmlFor="newcustomer">

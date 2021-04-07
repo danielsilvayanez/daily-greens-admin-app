@@ -6,7 +6,7 @@ import AddDeliveryForm from "./pages/AddDeliveryForm";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Register from "./components/auth/Register";
-import { fetchDeliveries, fetchMeals } from "./Firebase/services";
+import { fetchDeliveries, fetchMeals, fetchDrivers } from "./Firebase/services";
 import Login from "./components/auth/Login";
 import useAuth from "./components/auth/useAuth";
 import LoginContext from "./components/auth/LoginContext";
@@ -20,6 +20,7 @@ export default function App() {
   const [deliveries, setDeliveries] = useState([]);
   const [localDeliveries, setLocalDeliveries] = useState([]);
   const [meals, setMeals] = useState({});
+  const [drivers, setDrivers] = useState([]);
   const [date, setDate] = useState("");
   const user = useAuth();
 
@@ -31,6 +32,11 @@ export default function App() {
     fetchMeals().then((dbResult) => {
       setMeals(dbResult[0]);
     });
+
+    fetchDrivers().then((dbResult) => {
+      setDrivers(dbResult);
+    });
+
     setDate(
       today.getFullYear() +
         "-" +
@@ -94,6 +100,7 @@ export default function App() {
                   meals={meals}
                   deliveries={deliveries}
                   setDeliveries={setLocalDeliveries}
+                  drivers={drivers}
                 />
               </Route>
               <Route exact path="/register">
@@ -105,6 +112,7 @@ export default function App() {
                   setDeliveries={setLocalDeliveries}
                   meals={meals}
                   date={date}
+                  drivers={drivers}
                 />
               </Route>
               <Route path="/form">
@@ -112,6 +120,7 @@ export default function App() {
                   deliveries={deliveries}
                   setDeliveries={setLocalDeliveries}
                   dbData={meals}
+                  drivers={drivers}
                 />
               </Route>
             </Switch>

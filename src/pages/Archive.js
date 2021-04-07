@@ -1,7 +1,13 @@
 import React from "react";
 import Delivery from "../components/Delivery";
 import styled from "styled-components";
-export default function Archive({ deliveries, setDeliveries, meals, date }) {
+export default function Archive({
+  deliveries,
+  setDeliveries,
+  meals,
+  date,
+  drivers,
+}) {
   function compare(a, b) {
     const dateA = a.document.date;
     const dateB = b.document.date;
@@ -32,6 +38,7 @@ export default function Archive({ deliveries, setDeliveries, meals, date }) {
                   setDeliveries={setDeliveries}
                   documentId={delivery.documentId}
                   key={delivery.documentId}
+                  drivers={drivers}
                 />
               )
           )}
@@ -51,6 +58,7 @@ export default function Archive({ deliveries, setDeliveries, meals, date }) {
                   setDeliveries={setDeliveries}
                   documentId={delivery.documentId}
                   key={delivery.documentId}
+                  drivers={drivers}
                 />
               )
           )}
