@@ -10,6 +10,8 @@ export default function AddDeliveryForm({
   drivers,
   date,
 }) {
+  const [cacheDate, setCacheDate] = useState("");
+  console.log("fucking cacheDate", cacheDate);
   const defaultDelivery = {
     name: "",
     street: "",
@@ -20,7 +22,7 @@ export default function AddDeliveryForm({
     dessert1: 0,
     dessert2: 0,
     extra: {},
-    date: date,
+    // date: "",
     driverId: "3fXdKUI2eAbz5z4W1Quw4Xrz0M83",
     message: "",
     drivermessage: "",
@@ -38,12 +40,13 @@ export default function AddDeliveryForm({
     dessert2: "",
   };
 
-  const [meals, setMeals] = useState(defaultMeals);
   const [newDelivery, setNewDelivery] = useState(defaultDelivery);
+  const [meals, setMeals] = useState(defaultMeals);
   const extraInputs = [];
 
   useEffect(() => {
     Object.keys(dbData).length > 0 && setMeals(dbData.document);
+    setCacheDate(newDelivery.date);
   }, [dbData]);
 
   for (let i = 0; i <= Object.keys(newDelivery.extra).length; i++) {
@@ -186,6 +189,7 @@ export default function AddDeliveryForm({
     setDeliveries(newDeliveries);
     postDelivery(newDelivery);
     setNewDelivery(defaultDelivery);
+    setCacheDate(newDelivery.date);
   }
 }
 
