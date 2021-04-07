@@ -25,7 +25,7 @@ export default function App() {
 
   useEffect(() => {
     fetchDeliveries().then((dbResult) => {
-      setDeliveries(dbResult.sort(compare));
+      setDeliveries(dbResult.sort(compareDate).sort(compareStop));
     });
 
     fetchMeals().then((dbResult) => {
@@ -40,14 +40,25 @@ export default function App() {
     );
   }, [localDeliveries]);
 
-  function compare(a, b) {
+  function compareDate(a, b) {
     const dateA = a.document.date;
     const dateB = b.document.date;
+
+    let comparison = 0;
+    if (dateA > dateB) {
+      comparison = 1;
+    } else {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
+  function compareStop(a, b) {
     const stopA = a.document.stop;
     const stopB = b.document.stop;
 
     let comparison = 0;
-    if (dateA && stopA > dateB && stopB) {
+    if (stopA > stopB) {
       comparison = 1;
     } else {
       comparison = -1;
@@ -125,5 +136,6 @@ export default function App() {
 const AppGrid = styled.div`
   height: 100vh;
   display: grid;
+  gap: 20px;
   grid-template-rows: 60px 48px auto;
 `;
