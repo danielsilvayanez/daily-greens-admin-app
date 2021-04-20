@@ -43,20 +43,34 @@ export default function Dashboard({ deliveries, meals }) {
 
   return (
     <StyledArea>
-      <h2>{createDateString(0)}</h2>
-      <DayTotals deliveries={totalDays.day1} meals={meals} />
-      <h2>{createDateString(1)}</h2>
-      <DayTotals deliveries={totalDays.day2} meals={meals} />
-      <h2>{createDateString(2)}</h2>
-      <DayTotals deliveries={totalDays.day3} meals={meals} />
-      <h2>{createDateString(3)}</h2>
-      <DayTotals deliveries={totalDays.day4} meals={meals} />
-      <h2>{createDateString(4)}</h2>
-      <DayTotals deliveries={totalDays.day5} meals={meals} />
-      <h2>{createDateString(5)}</h2>
-      <DayTotals deliveries={totalDays.day6} meals={meals} />
-      <h2>{createDateString(6)}</h2>
-      <DayTotals deliveries={totalDays.day7} meals={meals} />
+      <TotalContainer>
+        <h1>{createDateString(0)}</h1>
+        <DayTotals deliveries={totalDays.day1} meals={meals} />
+      </TotalContainer>
+      <TotalContainer>
+        <h1>{createDateString(1)}</h1>
+        <DayTotals deliveries={totalDays.day2} meals={meals} />
+      </TotalContainer>
+      <TotalContainer>
+        <h1>{createDateString(2)}</h1>
+        <DayTotals deliveries={totalDays.day3} meals={meals} />
+      </TotalContainer>
+      <TotalContainer>
+        <h1>{createDateString(3)}</h1>
+        <DayTotals deliveries={totalDays.day4} meals={meals} />
+      </TotalContainer>
+      <TotalContainer>
+        <h1>{createDateString(4)}</h1>
+        <DayTotals deliveries={totalDays.day5} meals={meals} />
+      </TotalContainer>
+      <TotalContainer>
+        <h1>{createDateString(5)}</h1>
+        <DayTotals deliveries={totalDays.day6} meals={meals} />
+      </TotalContainer>
+      <TotalContainer>
+        <h1>{createDateString(6)}</h1>
+        <DayTotals deliveries={totalDays.day7} meals={meals} />
+      </TotalContainer>
     </StyledArea>
   );
 }
@@ -67,4 +81,18 @@ const StyledArea = styled.div`
   align-items: center;
   margin: 0 5px;
   flex-direction: column;
+
+  h1 {
+    text-align: center;
+    color: var(--primaryBgWhite);
+  }
+`;
+
+const TotalContainer = styled.div`
+  border: 1px solid black;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  margin-top: 15px;
+  background-color: var(--primaryBGBtnGreen);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
