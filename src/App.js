@@ -72,11 +72,6 @@ export default function App() {
     return comparison;
   }
 
-  let todaysDeliveries = [];
-  deliveries.map((delivery) => {
-    delivery.document.date === date && todaysDeliveries.push(delivery.document);
-  });
-
   return (
     <LoginContext.Provider value={{ user, firebaseApp }}>
       {user ? (
@@ -88,9 +83,8 @@ export default function App() {
             <Switch>
               <Route exact path="/">
                 <Dashboard
-                  date={date}
                   meals={meals}
-                  deliveries={todaysDeliveries}
+                  deliveries={deliveries}
                   setDeliveries={setLocalDeliveries}
                 />
               </Route>

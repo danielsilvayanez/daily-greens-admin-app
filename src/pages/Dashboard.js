@@ -1,122 +1,70 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import DayTotals from "../components/DayTotals";
 import styled from "styled-components";
 
 export default function Dashboard({ deliveries, meals }) {
-  const reducer = (a, b) => a + b;
-  const [dayMealDailyTotal, setDayMealDailyTotal] = useState(0);
-  const [dailyWeekMeal1Total, setdailyWeekMeal1Total] = useState(0);
-  const [dailyWeekMeal2Total, setdailyWeekMeal2Total] = useState(0);
-  const [dailyDessert1Total, setdailyDessert1Total] = useState(0);
-  const [dailyDessert2Total, setdailyDessert2Total] = useState(0);
-  const [boxSmallDailyTotal, setBoxSmallDailyTotal] = useState(0);
-  const [extras, setExtras] = useState([]);
-  const [boxDailyTotal, setBoxDailyTotal] = useState(0);
-
-  useEffect(() => {
-    if (deliveries.length > 0) {
-      setDayMealDailyTotal(
-        deliveries.map((delivery) => Number(delivery.daymeal)).reduce(reducer)
-      );
-
-      setdailyWeekMeal1Total(
-        deliveries.map((delivery) => Number(delivery.weekmeal1)).reduce(reducer)
-      );
-
-      setdailyWeekMeal2Total(
-        deliveries.map((delivery) => Number(delivery.weekmeal2)).reduce(reducer)
-      );
-
-      setdailyDessert1Total(
-        deliveries.map((delivery) => Number(delivery.dessert1)).reduce(reducer)
-      );
-
-      setdailyDessert2Total(
-        deliveries.map((delivery) => Number(delivery.dessert2)).reduce(reducer)
-      );
-
-      setBoxDailyTotal(
-        deliveries.map((delivery) => Number(delivery.box)).reduce(reducer)
-      );
-
-      setBoxSmallDailyTotal(
-        deliveries.map((delivery) => Number(delivery.smallbox)).reduce(reducer)
-      );
-      setExtras(Object.entries(getExtras()));
-    }
-  }, [deliveries]);
-
-  function getExtras() {
-    const keys = [];
-    const values = [];
-    let cache = {};
-
-    deliveries.map((delivery) => {
-      keys.push(...Object.keys(delivery.extra));
-      values.push(...Object.values(delivery.extra));
-    });
-
-    keys.map((key, index) => {
-      key in cache
-        ? (cache = {
-            ...cache,
-            [key]: Number(cache[key]) + Number(values[index]),
-          })
-        : (cache = { ...cache, [key]: Number(values[index]) });
-    });
-    return cache;
+  function createDateString(dayCount) {
+    const dateObj = new Date(dayCount * 86400000 + +new Date());
+    const dateString =
+      dateObj.getFullYear() +
+      "-" +
+      ("0" + (dateObj.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + dateObj.getDate()).slice(-2);
+    return dateString;
   }
+
+  const totalDays = {
+    day1: [],
+    day2: [],
+    day3: [],
+    day4: [],
+    day5: [],
+    day6: [],
+    day7: [],
+  };
+
+  deliveries.map((delivery) => {
+    delivery.document.date === createDateString(0) &&
+      totalDays.day1.push(delivery.document);
+    delivery.document.date === createDateString(1) &&
+      totalDays.day2.push(delivery.document);
+    delivery.document.date === createDateString(2) &&
+      totalDays.day3.push(delivery.document);
+    delivery.document.date === createDateString(3) &&
+      totalDays.day4.push(delivery.document);
+    delivery.document.date === createDateString(4) &&
+      totalDays.day5.push(delivery.document);
+    delivery.document.date === createDateString(5) &&
+      totalDays.day6.push(delivery.document);
+    delivery.document.date === createDateString(6) &&
+      totalDays.day7.push(delivery.document);
+  });
 
   return (
     <StyledArea>
-      <StyledOverview>
-        <p>Tagesgerichte: {dayMealDailyTotal}</p>
-        {meals?.document && (
-          <p>
-            {meals?.document?.weekmeal1}: {dailyWeekMeal1Total}
-          </p>
-        )}
-        {meals?.document && (
-          <p>
-            {meals?.document?.weekmeal2}: {dailyWeekMeal2Total}
-          </p>
-        )}
-        {meals?.document && (
-          <p>
-            {meals?.document?.dessert1}: {dailyDessert1Total}
-          </p>
-        )}
-        {meals?.document && (
-          <p>
-            {meals?.document?.dessert2}: {dailyDessert2Total}
-          </p>
-        )}
-        <br />
-        {extras.map((extra) => (
-          <p>
-            {extra[0]}: {extra[1]}
-          </p>
-        ))}
-      </StyledOverview>
+      <h2>{createDateString(0)}</h2>
+      <DayTotals deliveries={totalDays.day1} meals={meals} />
+      <h2>{createDateString(1)}</h2>
+      <DayTotals deliveries={totalDays.day2} meals={meals} />
+      <h2>{createDateString(2)}</h2>
+      <DayTotals deliveries={totalDays.day3} meals={meals} />
+      <h2>{createDateString(3)}</h2>
+      <DayTotals deliveries={totalDays.day4} meals={meals} />
+      <h2>{createDateString(4)}</h2>
+      <DayTotals deliveries={totalDays.day5} meals={meals} />
+      <h2>{createDateString(5)}</h2>
+      <DayTotals deliveries={totalDays.day6} meals={meals} />
+      <h2>{createDateString(6)}</h2>
+      <DayTotals deliveries={totalDays.day7} meals={meals} />
     </StyledArea>
   );
 }
 
-const StyledArea = styled.section`
+const StyledArea = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 5px;
   flex-direction: column;
-`;
-
-const StyledOverview = styled.section`
-  margin-top: 10px;
-  padding: 20px;
-  font-size: 1.6em;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  border-radius: 25px;
-  background-color: var(--primaryBgWhite);
-  width: 500px;
 `;
