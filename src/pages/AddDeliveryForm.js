@@ -11,7 +11,7 @@ export default function AddDeliveryForm({
   date,
 }) {
   const [cacheDate, setCacheDate] = useState("");
-  console.log("fucking cacheDate", cacheDate);
+
   const defaultDelivery = {
     name: "",
     street: "",
@@ -40,6 +40,7 @@ export default function AddDeliveryForm({
     dessert2: "",
   };
 
+  const [cacheDelivery, setCacheDelivery] = useState(defaultDelivery);
   const [newDelivery, setNewDelivery] = useState(defaultDelivery);
   const [meals, setMeals] = useState(defaultMeals);
   const extraInputs = [];
@@ -164,9 +165,18 @@ export default function AddDeliveryForm({
           />
         </label>
 
-        <Button onClick={handleSubmit} disabled={!newDelivery.date}>
-          Erstellen
-        </Button>
+        <ButtonContainer>
+          <Button onClick={handleSubmit} disabled={!newDelivery.date}>
+            Erstellen
+          </Button>
+
+          <Button
+            onClick={handleSubmitSameCustomer}
+            disabled={!newDelivery.date}
+          >
+            weiteren Auftrag
+          </Button>
+        </ButtonContainer>
       </Form>
     </FormContainer>
   );
@@ -181,9 +191,21 @@ export default function AddDeliveryForm({
           ...newDelivery,
           [event.target.name]: event.target.value,
         });
+    if (
+      event.target.name === "name" ||
+      event.target.name === "phone" ||
+      event.target.name === "street" ||
+      event.target.name === "driverId"
+    ) {
+      setCacheDelivery({
+        ...newDelivery,
+        [event.target.name]: event.target.value,
+      });
+    }
   }
 
   function handleSubmit(event) {
+    alert("Auftrag angelegt");
     event.preventDefault();
     let newDeliveries = [...deliveries, newDelivery];
     setDeliveries(newDeliveries);
@@ -191,7 +213,22 @@ export default function AddDeliveryForm({
     setNewDelivery(defaultDelivery);
     setCacheDate(newDelivery.date);
   }
+
+  function handleSubmitSameCustomer(event) {
+    alert("Auftrag angelegt");
+    event.preventDefault();
+    let newDeliveries = [...deliveries, newDelivery];
+    setDeliveries(newDeliveries);
+    postDelivery(newDelivery);
+    setNewDelivery(cacheDelivery);
+    setCacheDate(newDelivery.date);
+  }
 }
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 5px;
+`;
 
 const FormContainer = styled.div`
   display: flex;
@@ -231,12 +268,12 @@ const Form = styled.form`
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
   font-family: "Lato", sans-serif;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: var(--primaryFontGrey);
   border: none;
   border-radius: 5px;
-  padding: 4px;
-  width: 5rem;
+  padding: 10px;
+  width: 150px;
   margin: 15px auto 0;
 
   :disabled {
