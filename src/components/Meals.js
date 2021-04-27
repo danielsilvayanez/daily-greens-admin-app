@@ -9,6 +9,41 @@ export default function Meals({ dbData }) {
   }, [dbData]);
   return (
     <form>
+      <label htmlFor="daymeal1">Tagesgericht 1:</label>
+      <input
+        name="daymeal1"
+        onChange={handleChange}
+        value={meals?.daymeal1}
+        disabled={disable}
+      />
+      <label htmlFor="daymeal2">Tagesgericht 2:</label>
+      <input
+        name="daymeal2"
+        onChange={handleChange}
+        value={meals?.daymeal2}
+        disabled={disable}
+      />
+      <label htmlFor="daymeal3">Tagesgericht 3:</label>
+      <input
+        name="daymeal3"
+        onChange={handleChange}
+        value={meals?.daymeal3}
+        disabled={disable}
+      />
+      <label htmlFor="daymeal4">Tagesgericht 4:</label>
+      <input
+        name="daymeal4"
+        onChange={handleChange}
+        value={meals?.daymeal4}
+        disabled={disable}
+      />
+      <label htmlFor="daymeal5">Tagesgericht 5:</label>
+      <input
+        name="daymeal5"
+        onChange={handleChange}
+        value={meals?.daymeal5}
+        disabled={disable}
+      />
       <label htmlFor="weekmeal1">Wochengericht 1:</label>
       <input
         name="weekmeal1"

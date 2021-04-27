@@ -72,8 +72,20 @@ export default function Delivery({
               Lieferdatum: {delivery.date}
             </p>
             <p onClick={() => toggleEdit("stop")}>Stopp: {delivery.stop}</p>
-            <p onClick={() => toggleEdit("daymeal")}>
-              Tagesgericht: {delivery.daymeal}
+            <p onClick={() => toggleEdit("daymeal1")}>
+              {meals.document.daymeal1}: {delivery.daymeal1}
+            </p>
+            <p onClick={() => toggleEdit("daymeal2")}>
+              {meals.document.daymeal2}: {delivery.daymeal2}
+            </p>
+            <p onClick={() => toggleEdit("daymeal3")}>
+              {meals.document.daymeal3}: {delivery.daymeal3}
+            </p>
+            <p onClick={() => toggleEdit("daymeal4")}>
+              {meals.document.daymeal4}: {delivery.daymeal4}
+            </p>
+            <p onClick={() => toggleEdit("daymeal5")}>
+              {meals.document.daymeal5}: {delivery.daymeal5}
             </p>
             <p onClick={() => toggleEdit("weekmeal1")}>
               {meals.document.weekmeal1}: {delivery.weekmeal1}

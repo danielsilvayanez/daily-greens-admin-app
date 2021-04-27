@@ -16,7 +16,11 @@ export default function AddDeliveryForm({
     name: "",
     street: "",
     phone: "",
-    daymeal: 0,
+    daymeal1: 0,
+    daymeal2: 0,
+    daymeal3: 0,
+    daymeal4: 0,
+    daymeal5: 0,
     weekmeal1: 0,
     weekmeal2: 0,
     dessert1: 0,
@@ -110,12 +114,40 @@ export default function AddDeliveryForm({
           onChange={handleChange}
           value={newDelivery.message}
         />
-        <label htmlFor="daymeal">Tagesgericht Anzahl:</label>
+        <label htmlFor="daymeal1">{meals.daymeal1}:</label>
         <input
           type="number"
-          name="daymeal"
+          name="daymeal1"
           onChange={handleChange}
-          value={newDelivery.daymeal}
+          value={newDelivery.daymeal1}
+        />
+        <label htmlFor="daymeal2">{meals.daymeal2}:</label>
+        <input
+          type="number"
+          name="daymeal2"
+          onChange={handleChange}
+          value={newDelivery.daymeal2}
+        />
+        <label htmlFor="daymeal3">{meals.daymeal3}:</label>
+        <input
+          type="number"
+          name="daymeal3"
+          onChange={handleChange}
+          value={newDelivery.daymeal3}
+        />
+        <label htmlFor="daymeal4">{meals.daymeal4}:</label>
+        <input
+          type="number"
+          name="daymeal4"
+          onChange={handleChange}
+          value={newDelivery.daymeal4}
+        />
+        <label htmlFor="daymeal5">{meals.daymeal5}:</label>
+        <input
+          type="number"
+          name="daymeal5"
+          onChange={handleChange}
+          value={newDelivery.daymeal5}
         />
         <label htmlFor="weekmeal1">{meals.weekmeal1}:</label>
         <input

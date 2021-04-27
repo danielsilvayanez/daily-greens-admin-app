@@ -18,6 +18,19 @@ export default function Deliverylist({
     "-" +
     ("0" + tomorrow.getDate()).slice(-2);
 
+  function compare(a, b) {
+    const dateA = a.document.date;
+    const dateB = b.document.date;
+
+    let comparison = 0;
+    if (dateA < dateB) {
+      comparison = -1;
+    } else {
+      comparison = 1;
+    }
+    return comparison;
+  }
+
   return (
     <StyledListContainer>
       <H2>Heute</H2>
@@ -64,22 +77,23 @@ export default function Deliverylist({
       </H2Click>
       {details && (
         <List>
-          {deliveries.map(
-            (delivery, index) =>
-              !delivery.document.done &&
-              delivery.document.date > nextDay && (
-                <Delivery
-                  meals={meals}
-                  delivery={delivery.document}
-                  index={index}
-                  setDeliveries={setDeliveries}
-                  deliveries={deliveries}
-                  documentId={delivery.documentId}
-                  key={delivery.documentId}
-                  drivers={drivers}
-                />
-              )
-          )}
+          {deliveries.sort(compare) &&
+            deliveries.map(
+              (delivery, index) =>
+                !delivery.document.done &&
+                delivery.document.date > nextDay && (
+                  <Delivery
+                    meals={meals}
+                    delivery={delivery.document}
+                    index={index}
+                    setDeliveries={setDeliveries}
+                    deliveries={deliveries}
+                    documentId={delivery.documentId}
+                    key={delivery.documentId}
+                    drivers={drivers}
+                  />
+                )
+            )}
         </List>
       )}
     </StyledListContainer>
