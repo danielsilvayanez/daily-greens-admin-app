@@ -21,8 +21,6 @@ export default function AddDeliveryForm({
     daymeal3: 0,
     daymeal4: 0,
     daymeal5: 0,
-    weekmeal1: 0,
-    weekmeal2: 0,
     dessert1: 0,
     dessert2: 0,
     extra: {},
@@ -38,8 +36,6 @@ export default function AddDeliveryForm({
     newcustomer: false,
   };
   const defaultMeals = {
-    weekmeal1: "",
-    weekmeal2: "",
     dessert1: "",
     dessert2: "",
   };
@@ -149,20 +145,7 @@ export default function AddDeliveryForm({
           onChange={handleChange}
           value={newDelivery.daymeal5}
         />
-        <label htmlFor="weekmeal1">{meals.weekmeal1}:</label>
-        <input
-          type="number"
-          name="weekmeal1"
-          onChange={handleChange}
-          value={newDelivery.weekmeal1}
-        />
-        <label htmlFor="weekmeal2">{meals.weekmeal2}:</label>
-        <input
-          type="number"
-          name="weekmeal2"
-          onChange={handleChange}
-          value={newDelivery.weekmeal2}
-        />
+
         <label htmlFor="dessert1">{meals.dessert1}:</label>
         <input
           type="number"

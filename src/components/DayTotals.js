@@ -8,8 +8,6 @@ export default function DayTotals({ deliveries, meals }) {
   const [dayMeal3DailyTotal, setDayMeal3DailyTotal] = useState(0);
   const [dayMeal4DailyTotal, setDayMeal4DailyTotal] = useState(0);
   const [dayMeal5DailyTotal, setDayMeal5DailyTotal] = useState(0);
-  const [dailyWeekMeal1Total, setdailyWeekMeal1Total] = useState(0);
-  const [dailyWeekMeal2Total, setdailyWeekMeal2Total] = useState(0);
   const [dailyDessert1Total, setdailyDessert1Total] = useState(0);
   const [dailyDessert2Total, setdailyDessert2Total] = useState(0);
   // const [boxSmallDailyTotal, setBoxSmallDailyTotal] = useState(0);
@@ -36,14 +34,6 @@ export default function DayTotals({ deliveries, meals }) {
 
       setDayMeal5DailyTotal(
         deliveries.map((delivery) => Number(delivery.daymeal5)).reduce(reducer)
-      );
-
-      setdailyWeekMeal1Total(
-        deliveries.map((delivery) => Number(delivery.weekmeal1)).reduce(reducer)
-      );
-
-      setdailyWeekMeal2Total(
-        deliveries.map((delivery) => Number(delivery.weekmeal2)).reduce(reducer)
       );
 
       setdailyDessert1Total(
@@ -112,16 +102,6 @@ export default function DayTotals({ deliveries, meals }) {
         {meals?.document && dayMeal5DailyTotal > 0 && (
           <p>
             {meals?.document?.daymeal5}: {dayMeal5DailyTotal}
-          </p>
-        )}
-        {meals?.document && dailyWeekMeal1Total > 0 && (
-          <p>
-            {meals?.document?.weekmeal1}: {dailyWeekMeal1Total}
-          </p>
-        )}
-        {meals?.document && dailyWeekMeal2Total > 0 && (
-          <p>
-            {meals?.document?.weekmeal2}: {dailyWeekMeal2Total}
           </p>
         )}
         {meals?.document && dailyDessert1Total > 0 && (

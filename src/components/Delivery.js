@@ -87,12 +87,6 @@ export default function Delivery({
             <p onClick={() => toggleEdit("daymeal5")}>
               {meals.document.daymeal5}: {delivery.daymeal5}
             </p>
-            <p onClick={() => toggleEdit("weekmeal1")}>
-              {meals.document.weekmeal1}: {delivery.weekmeal1}
-            </p>
-            <p onClick={() => toggleEdit("weekmeal2")}>
-              {meals.document.weekmeal2}: {delivery.weekmeal2}
-            </p>
             <p onClick={() => toggleEdit("dessert1")}>
               {meals.document.dessert1}: {delivery.dessert1}
             </p>

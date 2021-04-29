@@ -78,20 +78,6 @@ export default function Meals({ dbData }) {
           />
         </div>
         <div>
-          <label htmlFor="weekmeal1">Wochengericht 1:</label>
-          <input
-            name="weekmeal1"
-            onChange={handleChange}
-            value={meals?.weekmeal1}
-            disabled={disable}
-          />
-          <label htmlFor="weekmeal2">Wochengericht 2:</label>
-          <input
-            name="weekmeal2"
-            onChange={handleChange}
-            value={meals?.weekmeal2}
-            disabled={disable}
-          />
           <label htmlFor="dessert1">Nachtisch 1:</label>
           <input
             name="dessert1"
