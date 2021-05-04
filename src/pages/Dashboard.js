@@ -1,19 +1,9 @@
 import React from "react";
 import DayTotals from "../components/DayTotals";
 import styled from "styled-components";
+import { createDateString, formatDate } from "../libs/Hooks";
 
 export default function Dashboard({ deliveries, meals }) {
-  function createDateString(dayCount) {
-    const dateObj = new Date(dayCount * 86400000 + +new Date());
-    const dateString =
-      dateObj.getFullYear() +
-      "-" +
-      ("0" + (dateObj.getMonth() + 1)).slice(-2) +
-      "-" +
-      ("0" + dateObj.getDate()).slice(-2);
-    return dateString;
-  }
-
   const totalDays = {
     day1: [],
     day2: [],
@@ -44,31 +34,31 @@ export default function Dashboard({ deliveries, meals }) {
   return (
     <StyledArea>
       <TotalContainer>
-        <h1>{createDateString(0)}</h1>
+        <h1>{formatDate(createDateString(0))}</h1>
         <DayTotals deliveries={totalDays.day1} meals={meals} />
       </TotalContainer>
       <TotalContainer>
-        <h1>{createDateString(1)}</h1>
+        <h1>{formatDate(createDateString(1))}</h1>
         <DayTotals deliveries={totalDays.day2} meals={meals} />
       </TotalContainer>
       <TotalContainer>
-        <h1>{createDateString(2)}</h1>
+        <h1>{formatDate(createDateString(2))}</h1>
         <DayTotals deliveries={totalDays.day3} meals={meals} />
       </TotalContainer>
       <TotalContainer>
-        <h1>{createDateString(3)}</h1>
+        <h1>{formatDate(createDateString(3))}</h1>
         <DayTotals deliveries={totalDays.day4} meals={meals} />
       </TotalContainer>
       <TotalContainer>
-        <h1>{createDateString(4)}</h1>
+        <h1>{formatDate(createDateString(4))}</h1>
         <DayTotals deliveries={totalDays.day5} meals={meals} />
       </TotalContainer>
       <TotalContainer>
-        <h1>{createDateString(5)}</h1>
+        <h1>{formatDate(createDateString(5))}</h1>
         <DayTotals deliveries={totalDays.day6} meals={meals} />
       </TotalContainer>
       <TotalContainer>
-        <h1>{createDateString(6)}</h1>
+        <h1>{formatDate(createDateString(6))}</h1>
         <DayTotals deliveries={totalDays.day7} meals={meals} />
       </TotalContainer>
     </StyledArea>
