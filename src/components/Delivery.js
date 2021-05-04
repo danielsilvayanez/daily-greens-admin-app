@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { deleteDelivery, patchDelivery } from "../Firebase/services";
 import ArrowUpIcon from "../icons/ArrowUpIcon";
 import Edit from "./Edit";
+import { formatDate } from "../libs/Hooks";
 
 export default function Delivery({
   delivery,
@@ -69,7 +70,7 @@ export default function Delivery({
               Straße: {delivery.street}
             </p>
             <p onClick={() => toggleEdit("date")}>
-              Lieferdatum: {delivery.date}
+              Lieferdatum: {formatDate(delivery.date)}
             </p>
             <p onClick={() => toggleEdit("stop")}>Stopp: {delivery.stop}</p>
             <p onClick={() => toggleEdit("daymeal1")}>
@@ -153,7 +154,7 @@ export default function Delivery({
           incomplete={delivery.stop === 0}
         >
           <h3>
-            {delivery.name} ({delivery.date})
+            {delivery.name} ({formatDate(delivery.date)})
           </h3>
           <p>
             Fahrer:{" "}
