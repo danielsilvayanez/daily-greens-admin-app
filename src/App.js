@@ -35,6 +35,7 @@ export default function App() {
 
     fetchDrivers().then((dbResult) => {
       setDrivers(dbResult);
+      console.log("Drivers ->", dbResult);
     });
 
     setDate(

@@ -9,34 +9,6 @@ export default function Meals({ dbData }) {
     setMeals(dbData.document);
   }, [dbData]);
 
-  const StyledForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    div {
-      padding: 20px;
-    }
-    label {
-      margin-left: 20px;
-      font-size: 1.2rem;
-    }
-    input {
-      margin-left: 20px;
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-    }
-    button {
-      width: 150px;
-      height: 50px;
-      :hover {
-        background-color: var(--primaryBGBtnGreen);
-        color: var(--primaryBgWhite);
-      }
-    }
-  `;
-
   return (
     <div>
       <StyledForm>
@@ -121,7 +93,9 @@ export default function Meals({ dbData }) {
       <hr />
     </div>
   );
+
   function handleChange(event) {
+    console.log("meeeeeals kram", meals);
     setMeals({ ...meals, [event.target.name]: event.target.value });
   }
   function handleSubmit(event) {
@@ -130,3 +104,31 @@ export default function Meals({ dbData }) {
     setDisable(true);
   }
 }
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    padding: 20px;
+  }
+  label {
+    margin-left: 20px;
+    font-size: 1.2rem;
+  }
+  input {
+    margin-left: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  button {
+    width: 150px;
+    height: 50px;
+    :hover {
+      background-color: var(--primaryBGBtnGreen);
+      color: var(--primaryBgWhite);
+    }
+  }
+`;
