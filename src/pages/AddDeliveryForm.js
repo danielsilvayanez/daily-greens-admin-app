@@ -55,145 +55,148 @@ export default function AddDeliveryForm({
   }
 
   return (
-    <FormContainer>
-      <h1>Neuer Auftrag</h1>
+    <>
       <Form onSubmit={handleSubmit}>
-        <label htmlFor="date">Lieferdatum:</label>
-        <input
-          type="date"
-          name="date"
-          onChange={handleChange}
-          value={newDelivery.date}
-          required
-        />
-        <label htmlFor="drivers">Fahrer:</label>
-        {drivers && (
-          <select
-            id="drivers"
-            value={newDelivery.driverId}
-            name="driverId"
-            onChange={handleChange}
-          >
-            {drivers.map((driver) => (
-              <option key={driver.driverid} value={driver.driverid}>
-                {driver.drivername}
-              </option>
-            ))}
-          </select>
-        )}
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          name="name"
-          onChange={handleChange}
-          value={newDelivery.name}
-        />
-        <label htmlFor="street">Straße, Hausnummer, Stock:</label>
-        <input
-          type="text"
-          name="street"
-          onChange={handleChange}
-          value={newDelivery.street}
-        />
-
-        <label htmlFor="phone">Telefon:</label>
-        <input
-          type="text"
-          name="phone"
-          onChange={handleChange}
-          value={newDelivery.phone}
-        />
-        <label htmlFor="message">Kommentar:</label>
-        <textarea
-          type="text"
-          name="message"
-          onChange={handleChange}
-          value={newDelivery.message}
-        />
-        <label htmlFor="daymeal1">{meals.daymeal1}:</label>
-        <input
-          type="number"
-          name="daymeal1"
-          onChange={handleChange}
-          value={newDelivery.daymeal1}
-        />
-        <label htmlFor="daymeal2">{meals.daymeal2}:</label>
-        <input
-          type="number"
-          name="daymeal2"
-          onChange={handleChange}
-          value={newDelivery.daymeal2}
-        />
-        <label htmlFor="daymeal3">{meals.daymeal3}:</label>
-        <input
-          type="number"
-          name="daymeal3"
-          onChange={handleChange}
-          value={newDelivery.daymeal3}
-        />
-        <label htmlFor="daymeal4">{meals.daymeal4}:</label>
-        <input
-          type="number"
-          name="daymeal4"
-          onChange={handleChange}
-          value={newDelivery.daymeal4}
-        />
-        <label htmlFor="daymeal5">{meals.daymeal5}:</label>
-        <input
-          type="number"
-          name="daymeal5"
-          onChange={handleChange}
-          value={newDelivery.daymeal5}
-        />
-
-        <label htmlFor="dessert1">{meals.dessert1}:</label>
-        <input
-          type="number"
-          name="dessert1"
-          onChange={handleChange}
-          value={newDelivery.dessert1}
-        />
-        <label htmlFor="dessert2">{meals.dessert2}:</label>
-        <input
-          type="number"
-          name="dessert2"
-          onChange={handleChange}
-          value={newDelivery.dessert2}
-        />
-        <label htmlFor="extra">Weitere Items:</label>
-
-        {extraInputs.map((index) => (
-          <ExtraInput
-            key={index + "extraInput"}
-            setDelivery={setNewDelivery}
-            delivery={newDelivery}
-          />
-        ))}
-
-        <label htmlFor="newcustomer">
-          Neukunde:
+        <StyledDiv>
+          <label htmlFor="date">Lieferdatum:</label>
           <input
-            style={{ margin: "0" }}
-            type="checkbox"
-            name="newcustomer"
+            type="date"
+            name="date"
             onChange={handleChange}
+            value={newDelivery.date}
+            required
           />
-        </label>
+          <label htmlFor="drivers">Fahrer:</label>
+          {drivers && (
+            <select
+              id="drivers"
+              value={newDelivery.driverId}
+              name="driverId"
+              onChange={handleChange}
+            >
+              {drivers.map((driver) => (
+                <option key={driver.driverid} value={driver.driverid}>
+                  {driver.drivername}
+                </option>
+              ))}
+            </select>
+          )}
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            onChange={handleChange}
+            value={newDelivery.name}
+          />
+          <label htmlFor="street">Straße, Hausnummer, Stock:</label>
+          <input
+            type="text"
+            name="street"
+            onChange={handleChange}
+            value={newDelivery.street}
+          />
+          <label htmlFor="daymeal1">{meals.daymeal1}:</label>
+          <input
+            type="number"
+            name="daymeal1"
+            onChange={handleChange}
+            value={newDelivery.daymeal1}
+          />
+          <label htmlFor="daymeal2">{meals.daymeal2}:</label>
+          <input
+            type="number"
+            name="daymeal2"
+            onChange={handleChange}
+            value={newDelivery.daymeal2}
+          />
+          <label htmlFor="daymeal3">{meals.daymeal3}:</label>
+          <input
+            type="number"
+            name="daymeal3"
+            onChange={handleChange}
+            value={newDelivery.daymeal3}
+          />
+          <label htmlFor="daymeal4">{meals.daymeal4}:</label>
+          <input
+            type="number"
+            name="daymeal4"
+            onChange={handleChange}
+            value={newDelivery.daymeal4}
+          />
+          <label htmlFor="daymeal5">{meals.daymeal5}:</label>
+          <input
+            type="number"
+            name="daymeal5"
+            onChange={handleChange}
+            value={newDelivery.daymeal5}
+          />
+        </StyledDiv>
 
-        <ButtonContainer>
-          <Button onClick={handleSubmit} disabled={!newDelivery.date}>
-            Erstellen
-          </Button>
+        <StyledDiv>
+          <label htmlFor="dessert1">{meals.dessert1}:</label>
+          <input
+            type="number"
+            name="dessert1"
+            onChange={handleChange}
+            value={newDelivery.dessert1}
+          />
+          <label htmlFor="dessert2">{meals.dessert2}:</label>
+          <input
+            type="number"
+            name="dessert2"
+            onChange={handleChange}
+            value={newDelivery.dessert2}
+          />
+          <label htmlFor="phone">Telefon:</label>
+          <input
+            type="text"
+            name="phone"
+            onChange={handleChange}
+            value={newDelivery.phone}
+          />
+          <label htmlFor="message">Kommentar:</label>
+          <textarea
+            type="text"
+            name="message"
+            onChange={handleChange}
+            value={newDelivery.message}
+          />
+          <label htmlFor="extra">Weitere Items:</label>
+          {extraInputs.map((index) => (
+            <ExtraInput
+              key={index + "extraInput"}
+              setDelivery={setNewDelivery}
+              delivery={newDelivery}
+            />
+          ))}
+          <label htmlFor="newcustomer">
+            Neukunde:
+            <input
+              style={{ margin: "0" }}
+              type="checkbox"
+              name="newcustomer"
+              onChange={handleChange}
+            />
+          </label>
+          <ButtonContainer>
+            <span>
+              <Button onClick={handleSubmit} disabled={!newDelivery.date}>
+                Erstellen
+              </Button>
+            </span>
 
-          <Button
-            onClick={handleSubmitSameCustomer}
-            disabled={!newDelivery.date}
-          >
-            weiteren Auftrag
-          </Button>
-        </ButtonContainer>
+            <StyledSpan>
+              <Button
+                onClick={handleSubmitSameCustomer}
+                disabled={!newDelivery.date}
+              >
+                weiteren Auftrag
+              </Button>
+            </StyledSpan>
+          </ButtonContainer>
+        </StyledDiv>
       </Form>
-    </FormContainer>
+    </>
   );
 
   function handleChange(event) {
@@ -240,22 +243,36 @@ export default function AddDeliveryForm({
   }
 }
 
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: 5px;
-`;
-
-const FormContainer = styled.div`
+const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 15px 0;
+  padding: 25px;
 `;
+
+const StyledSpan = styled.span`
+  margin-left: 25px;
+`;
+
+const ButtonContainer = styled.div`
+  display: block;
+  justify-content: center;
+  align-self: left;
+  gap: 25px;
+  margin-top: 25px;
+`;
+
+// const FormContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 15px 0;
+// `;
 
 const Form = styled.form`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  padding: 25px;
 
   label {
     margin-top: 15px;

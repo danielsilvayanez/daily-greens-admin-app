@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import styled from "styled-components";
 
 export default function ExtraInput({ setDelivery, delivery, quantity }) {
-  const [extraKey, setExtraKey] = useState('')
-  const [extraValue, setExtraValue] = useState(0)
-  const [disable, setDisable] = useState(false)
+  const [extraKey, setExtraKey] = useState("");
+  const [extraValue, setExtraValue] = useState(0);
+  const [disable, setDisable] = useState(false);
 
   return (
     <Extras>
@@ -24,33 +24,33 @@ export default function ExtraInput({ setDelivery, delivery, quantity }) {
         OK
       </Button>
     </Extras>
-  )
+  );
 
   function handleKeyChange(event) {
-    setExtraKey(event.target.value)
+    setExtraKey(event.target.value);
   }
 
   function handleValueChange(event) {
-    setExtraValue(event.target.value)
+    setExtraValue(event.target.value);
   }
 
   function handleSubmit() {
     setDelivery({
       ...delivery,
       extra: { ...delivery.extra, [extraKey]: extraValue },
-    })
-    setDisable(!disable)
+    });
+    setDisable(!disable);
   }
 }
 
 const Extras = styled.div`
   display: flex;
   justify-content: space-around;
-`
+`;
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 1rem;
   color: var(--primaryFontGrey);
   border: none;
@@ -58,4 +58,4 @@ const Button = styled.button`
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
-`
+`;
