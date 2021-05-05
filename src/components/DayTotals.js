@@ -10,9 +10,7 @@ export default function DayTotals({ deliveries, meals }) {
   const [dayMeal5DailyTotal, setDayMeal5DailyTotal] = useState(0);
   const [dailyDessert1Total, setdailyDessert1Total] = useState(0);
   const [dailyDessert2Total, setdailyDessert2Total] = useState(0);
-  // const [boxSmallDailyTotal, setBoxSmallDailyTotal] = useState(0);
   const [extras, setExtras] = useState([]);
-  // const [boxDailyTotal, setBoxDailyTotal] = useState(0);
 
   useEffect(() => {
     if (deliveries.length > 0) {

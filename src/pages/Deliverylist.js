@@ -18,6 +18,23 @@ export default function Deliverylist({
     "-" +
     ("0" + tomorrow.getDate()).slice(-2);
 
+  let totalDeliveriesToday = 0;
+  let totalDeliveriesTomorrow = 0;
+  let totalDeliveriesFuture = 0;
+
+  deliveries.map((del) => {
+    if (del.document.date === date) {
+      console.log("deeeeeel", del.document.date);
+      totalDeliveriesToday++;
+    } else if (del.document.date === nextDay) {
+      console.log("deeeeeel", del.document.date);
+      totalDeliveriesTomorrow++;
+    } else if (del.document.date > nextDay) {
+      console.log("deeeeeel", del.document.date);
+      totalDeliveriesFuture++;
+    }
+  });
+
   function compare(a, b) {
     const dateA = a.document.date;
     const dateB = b.document.date;
@@ -33,7 +50,7 @@ export default function Deliverylist({
 
   return (
     <StyledListContainer>
-      <H2>Heute</H2>
+      <H2>Heute ({totalDeliveriesToday})</H2>
       <List>
         {deliveries.map(
           (delivery, index) =>
@@ -48,11 +65,12 @@ export default function Deliverylist({
                 documentId={delivery.documentId}
                 key={delivery.documentId}
                 drivers={drivers}
+                date={date}
               />
             )
         )}
       </List>
-      <H2>Morgen</H2>
+      <H2>Morgen ({totalDeliveriesTomorrow})</H2>
       <List>
         {deliveries.map(
           (delivery, index) =>
@@ -73,7 +91,7 @@ export default function Deliverylist({
       </List>
 
       <H2Click onClick={() => setDetails(!details)}>
-        Zukünftige Aufträge
+        Zukünftige Aufträge ({totalDeliveriesFuture})
       </H2Click>
       {details && (
         <List>
@@ -91,6 +109,7 @@ export default function Deliverylist({
                     documentId={delivery.documentId}
                     key={delivery.documentId}
                     drivers={drivers}
+                    date={date}
                   />
                 )
             )}
