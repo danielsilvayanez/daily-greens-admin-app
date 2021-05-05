@@ -13,12 +13,12 @@ export default function Delivery({
   documentId,
   meals,
   drivers,
+  date,
 }) {
   const [details, setDetails] = useState(false);
   const [edit, setEdit] = useState(false);
   const [editkey, setEditkey] = useState("");
   const [check, setCheck] = useState(delivery.newcustomer);
-
   const extraKeys = Object.keys(delivery.extra);
   const extraValues = Object.values(delivery.extra);
   const [selectDriver, setSelectDriver] = useState(delivery.driverId);
