@@ -165,6 +165,41 @@ export default function Delivery({
             - Stop: {delivery.stop} - Große Boxen: {delivery.box} - Kleine
             Boxen: {delivery.smallbox}
           </p>
+          <p>
+            {delivery.daymeal1 && meals?.document?.daymeal1
+              ? `${delivery.daymeal1} x ${meals?.document?.daymeal1}`
+              : undefined}
+          </p>
+          <p>
+            {delivery.daymeal2 && meals?.document?.daymeal2
+              ? `${delivery.daymeal2} x ${meals?.document?.daymeal2}`
+              : undefined}
+          </p>
+          <p>
+            {delivery.daymeal3 && meals?.document?.daymeal3
+              ? `${delivery.daymeal3} x ${meals?.document?.daymeal3}`
+              : undefined}
+          </p>
+          <p>
+            {delivery.daymeal4 && meals?.document?.daymeal4
+              ? `${delivery.daymeal4} x ${meals?.document?.daymeal4}`
+              : undefined}
+          </p>
+          <p>
+            {delivery.daymeal5 && meals?.document?.daymeal5
+              ? `${delivery.daymeal5} x ${meals?.document?.daymeal5}`
+              : undefined}
+          </p>
+          <p>
+            {delivery.dessert1 && meals?.document?.dessert1
+              ? `${delivery.dessert1} x ${meals?.document?.dessert1}`
+              : undefined}
+          </p>
+          <p>
+            {delivery.dessert2 && meals?.document?.dessert2
+              ? `${delivery.dessert2} x ${meals?.document?.dessert2}`
+              : undefined}
+          </p>
         </Container>
       )}
       {edit && (
@@ -230,3 +265,21 @@ const Button = styled.button`
   width: 5rem;
   margin: 15px auto 0;
 `;
+
+// {meals?.document?.daymeal1}: {delivery.daymeal1}
+//             {", "}
+//             {meals?.document?.daymeal2}: {delivery.daymeal2}
+//             {", "}
+//             {meals?.document?.daymeal3}: {delivery.daymeal3}
+//             {", "}
+//             {meals?.document?.daymeal4}: {delivery.daymeal4}
+//             {", "}
+//             {meals?.document?.daymeal5}: {delivery.daymeal5}
+//             {", "}
+//             {meals?.document?.dessert1}: {delivery.dessert1}
+//             {", "}
+//             {meals?.document?.dessert2}: {delivery.dessert2}
+
+// {
+// <p>{delivery.daymeal1 ? meals?.document?.daymeal1 : undefined}</p>
+// }
