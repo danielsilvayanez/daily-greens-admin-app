@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Meals from "../components/Meals";
+// import Settings from "../pages/Settings";
 
 import Deliverylist from "../pages/Deliverylist";
 
@@ -13,7 +13,7 @@ export default function Home({
 }) {
   return (
     <DashboardContainer>
-      <Meals dbData={meals} />
+      {/* <Settings dbData={meals} /> */}
       <Deliverylist
         deliveries={deliveries}
         setDeliveries={setDeliveries}

@@ -5,6 +5,7 @@ import { Header } from "./components/Header";
 import AddDeliveryForm from "./pages/AddDeliveryForm";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
+import Settings from "./pages/Settings";
 import Register from "./components/auth/Register";
 import { fetchDeliveries, fetchMeals, fetchDrivers } from "./Firebase/services";
 import Login from "./components/auth/Login";
@@ -97,6 +98,9 @@ export default function App() {
                   setDeliveries={setLocalDeliveries}
                   drivers={drivers}
                 />
+              </Route>
+              <Route exact path="/settings">
+                <Settings dbData={meals} />
               </Route>
               <Route exact path="/register">
                 <Register />
