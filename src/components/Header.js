@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import logo from '../images/dailyGreensLogo.png'
+import React from "react";
+import styled from "styled-components";
+import logo from "../images/dailyGreensLogo.png";
 
 export function Header({ date }) {
   return (
@@ -12,7 +12,7 @@ export function Header({ date }) {
         </StyledDiv2>
       </StyledHeader>
     </>
-  )
+  );
 }
 
 const StyledHeader = styled.header`
@@ -21,11 +21,11 @@ const StyledHeader = styled.header`
   border: 1px solid --primaryBGBtnGreen;
   padding: 5px;
   align-items: flex-end;
-  background-color: var(--primaryBGBtnGreen);
+  background-color: var(--secondaryBGPurple);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-`
+`;
 
 const StyledDiv2 = styled.div`
   display: flex;
   align-items: flex-end;
-`
+`;

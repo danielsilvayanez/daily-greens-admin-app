@@ -265,21 +265,3 @@ const Button = styled.button`
   width: 5rem;
   margin: 15px auto 0;
 `;
-
-// {meals?.document?.daymeal1}: {delivery.daymeal1}
-//             {", "}
-//             {meals?.document?.daymeal2}: {delivery.daymeal2}
-//             {", "}
-//             {meals?.document?.daymeal3}: {delivery.daymeal3}
-//             {", "}
-//             {meals?.document?.daymeal4}: {delivery.daymeal4}
-//             {", "}
-//             {meals?.document?.daymeal5}: {delivery.daymeal5}
-//             {", "}
-//             {meals?.document?.dessert1}: {delivery.dessert1}
-//             {", "}
-//             {meals?.document?.dessert2}: {delivery.dessert2}
-
-// {
-// <p>{delivery.daymeal1 ? meals?.document?.daymeal1 : undefined}</p>
-// }

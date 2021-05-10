@@ -30,8 +30,13 @@ const StyledNavLink = styled(NavLink)`
     color: var(--primaryFontGrey);
   }
 
-  &.active {
+  :hover {
     background-color: var(--secondaryBGPurple);
+    color: var(--primaryBgWhite);
+  }
+
+  &.active {
+    background-color: var(--primaryBGPurpleDarker);
     color: var(--primaryBgWhite);
   }
 `;

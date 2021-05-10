@@ -136,9 +136,14 @@ const StyledForm = styled.form`
   button {
     width: 150px;
     height: 50px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.5rem;
+    font-family: "Lato", sans-serif;
     :hover {
       background-color: var(--primaryBGBtnGreen);
       color: var(--primaryBgWhite);
+      border: 1px solid var(var(--primaryBGPurpleDarker));
     }
   }
 `;

@@ -261,14 +261,6 @@ const ButtonContainer = styled.div`
   margin-top: 25px;
 `;
 
-// const FormContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 15px 0;
-// `;
-
 const Form = styled.form`
   display: flex;
   justify-content: center;
@@ -298,7 +290,6 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
-  background-color: var(--primaryBGBtnGreen);
   font-family: "Lato", sans-serif;
   font-size: 1.5rem;
   color: var(--primaryFontGrey);
@@ -308,8 +299,14 @@ const Button = styled.button`
   width: 150px;
   margin: 15px auto 0;
 
+  :hover {
+    background-color: var(--primaryBGBtnGreen);
+    color: var(--primaryBgWhite);
+  }
+
   :disabled {
-    color: darkgray;
-    background-color: grey;
+    color: lightgrey;
+    background-color: var(--primaryBgWhite);
+    border: 1px solid var(--primaryBGPurpleDarker);
   }
 `;

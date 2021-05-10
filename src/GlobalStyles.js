@@ -5,8 +5,9 @@ export default createGlobalStyle`
     :root{
         --primaryBgWhite: #FFFFFF;
         --primaryFontGrey: #474F44;
-        --primaryBGBtnGreen: #1FB760;
-        --secondaryBGPurple: #7F0067;
+        --primaryBGBtnGreen: #91ce7e;
+        --primaryBGPurpleDarker: #7c2c7a;
+        --secondaryBGPurple: #b780b7;
     }
     
     * {
