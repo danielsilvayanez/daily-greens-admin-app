@@ -143,7 +143,7 @@ export default function Delivery({
                 handleDelete(documentId, delivery, index, setDeliveries);
               }}
             >
-              DELETE
+              LÖSCHEN
             </Button>
           </div>
         </Container>
@@ -264,4 +264,8 @@ const Button = styled.button`
   padding: 4px;
   width: 5rem;
   margin: 15px auto 0;
+  :hover {
+    background-color: var(--secondaryBGPurple);
+    color: var(--primaryBgWhite);
+  }
 `;
