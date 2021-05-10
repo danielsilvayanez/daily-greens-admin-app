@@ -140,7 +140,12 @@ export default function Delivery({
             </DriverContainer>
             <Button
               onClick={() => {
-                handleDelete(documentId, delivery, index, setDeliveries);
+                // eslint-disable-next-line no-restricted-globals
+                const deletionConfirmation = confirm(
+                  "Bist du sicher, dass du löschen willst?"
+                );
+                deletionConfirmation &&
+                  handleDelete(documentId, delivery, index, setDeliveries);
               }}
             >
               LÖSCHEN
