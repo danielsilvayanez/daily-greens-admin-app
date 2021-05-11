@@ -30,6 +30,12 @@ export default function Delivery({
     patchDelivery(documentId, newDelivery);
   }
 
+  function handleAbholung() {
+    let newDelivery = { ...delivery };
+    newDelivery.done = !newDelivery.done;
+    patchDelivery(documentId, newDelivery);
+  }
+
   function toggleEdit(name) {
     edit && setEdit(false);
 
@@ -205,6 +211,21 @@ export default function Delivery({
               ? `${delivery.dessert2} x ${meals?.document?.dessert2}`
               : undefined}
           </p>
+
+          {delivery.driverId === "Abholung" ? (
+            <div>
+              <BtnAbholung
+                onClick={() => {
+                  handleAbholung();
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 500);
+                }}
+              >
+                abgeholt
+              </BtnAbholung>
+            </div>
+          ) : undefined}
         </Container>
       )}
       {edit && (
@@ -220,6 +241,19 @@ export default function Delivery({
     </>
   );
 }
+
+const BtnAbholung = styled.button`
+  background-color: var(--primaryBGBtnGreen);
+  font-family: "Lato", sans-serif;
+  color: var(--primaryBgWhite);
+  font-size: 1.5rem;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 15px auto 0;
+  :hover {
+    background-color: var(--secondaryBGPurple);
+    color: var(--primaryBgWhite);
+`;
 
 const Container = styled.div`
   display: flex;
