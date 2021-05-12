@@ -13,7 +13,6 @@ export default function Delivery({
   documentId,
   meals,
   drivers,
-  date,
 }) {
   const [details, setDetails] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -117,7 +116,9 @@ export default function Delivery({
             </p>
             <p>
               Notiz Fahrer:
-              <ImportantMessage>"{delivery.drivermessage}"</ImportantMessage>
+              {delivery.drivermessage && (
+                <ImportantMessage>"{delivery.drivermessage}"</ImportantMessage>
+              )}
             </p>
             <p onClick={() => toggleEdit("phone")}>Tel.: {delivery.phone}</p>
             <NewCustomerContainer>
@@ -212,6 +213,16 @@ export default function Delivery({
               : undefined}
           </p>
 
+          {delivery.drivermessage && (
+            <ImportantMessage>
+              {
+                drivers.find((driver) => driver.driverid === delivery.driverId)
+                  ?.drivername
+              }{" "}
+              sagt "{delivery.drivermessage}"
+            </ImportantMessage>
+          )}
+
           {delivery.driverId === "Abholung" ? (
             <div>
               <BtnAbholung
@@ -236,6 +247,7 @@ export default function Delivery({
           setDeliveries={setDeliveries}
           documentId={documentId}
           toggleEdit={setEdit}
+          delivery={delivery}
         />
       )}
     </>
@@ -277,7 +289,7 @@ const StyledArrowUpIcon = styled(ArrowUpIcon)`
 `;
 
 const ImportantMessage = styled.span`
-  color: var(--secondaryBGPurple);
+  color: var(--primaryBGPurpleDarker);
   font-weight: bold;
   font-style: italic;
 `;

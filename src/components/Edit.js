@@ -1,23 +1,22 @@
-import React, { useState } from 'react'
-import { patchDelivery } from '../Firebase/services'
+import React, { useState } from "react";
+import { patchDelivery } from "../Firebase/services";
 
 export default function Edit({
   editkey,
-  delivery,
   deliveries,
-  setDeliveries,
   index,
   documentId,
   toggleEdit,
+  delivery,
 }) {
   const [edit, setEdit] = useState({
-    [editkey]: deliveries[index].document[editkey],
-  })
+    [editkey]: delivery[editkey],
+  });
 
   return (
     <>
       <form>
-        {typeof deliveries[index].document[editkey] === 'number' && (
+        {typeof delivery[editkey] === "number" && (
           <input
             type="number"
             name={editkey}
@@ -25,7 +24,7 @@ export default function Edit({
             onChange={handleChange}
           ></input>
         )}
-        {typeof deliveries[index].document[editkey] === 'string' && (
+        {typeof delivery[editkey] === "string" && (
           <input
             name={editkey}
             value={edit[editkey]}
@@ -37,25 +36,22 @@ export default function Edit({
         <button onClick={cancel}>Abbrechen</button>
       </form>
     </>
-  )
+  );
 
   function handleChange(event) {
-    setEdit({ ...edit, [event.target.name]: event.target.value })
+    setEdit({ ...edit, [event.target.name]: event.target.value });
   }
 
   function handleSubmit(event) {
-    event.preventDefault()
-    let newDeliveries = [...deliveries]
-    newDeliveries[index].document[editkey] = edit[editkey]
-    console.log(newDeliveries[index])
-    setDeliveries(newDeliveries)
-    console.log(newDeliveries[index].document)
-    patchDelivery(documentId, newDeliveries[index].document)
-    toggleEdit(false)
+    event.preventDefault();
+    let newDeliveries = [...deliveries];
+    newDeliveries[index].document[editkey] = edit[editkey];
+    patchDelivery(documentId, newDeliveries[index].document);
+    toggleEdit(false);
   }
 
   function cancel(event) {
-    event.preventDefault()
-    toggleEdit(false)
+    event.preventDefault();
+    toggleEdit(false);
   }
 }

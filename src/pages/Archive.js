@@ -25,43 +25,41 @@ export default function Archive({
     <div>
       <StyledUl>
         <H2>Heute</H2>
-        {deliveries.sort(compare) &&
-          deliveries.map(
-            (delivery, index) =>
-              delivery.document.done &&
-              delivery.document.date === date && (
-                <Delivery
-                  delivery={delivery.document}
-                  meals={meals}
-                  index={index}
-                  deliveries={deliveries}
-                  setDeliveries={setDeliveries}
-                  documentId={delivery.documentId}
-                  key={delivery.documentId}
-                  drivers={drivers}
-                />
-              )
-          )}
+        {deliveries.map(
+          (delivery, index) =>
+            delivery.document.done &&
+            delivery.document.date === date && (
+              <Delivery
+                delivery={delivery.document}
+                meals={meals}
+                index={index}
+                deliveries={deliveries}
+                setDeliveries={setDeliveries}
+                documentId={delivery.documentId}
+                key={delivery.documentId}
+                drivers={drivers}
+              />
+            )
+        )}
       </StyledUl>
       <StyledUl>
         <H2>Ältere Aufträge</H2>
-        {deliveries.sort(compare) &&
-          deliveries.map(
-            (delivery, index) =>
-              delivery.document.done &&
-              delivery.document.date !== date && (
-                <Delivery
-                  delivery={delivery.document}
-                  meals={meals}
-                  index={index}
-                  deliveries={deliveries}
-                  setDeliveries={setDeliveries}
-                  documentId={delivery.documentId}
-                  key={delivery.documentId}
-                  drivers={drivers}
-                />
-              )
-          )}
+        {deliveries.map(
+          (delivery, index) =>
+            delivery.document.done &&
+            delivery.document.date !== date && (
+              <Delivery
+                delivery={delivery.document}
+                meals={meals}
+                index={index}
+                deliveries={deliveries}
+                setDeliveries={setDeliveries}
+                documentId={delivery.documentId}
+                key={delivery.documentId}
+                drivers={drivers}
+              />
+            )
+        )}
       </StyledUl>
     </div>
   );

@@ -62,7 +62,6 @@ export default function Deliverylist({
                 documentId={delivery.documentId}
                 key={delivery.documentId}
                 drivers={drivers}
-                date={date}
               />
             )
         )}

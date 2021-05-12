@@ -108,7 +108,6 @@ export default function App() {
               <Route exact path="/archive">
                 <Archive
                   deliveries={deliveries}
-                  setDeliveries={setLocalDeliveries}
                   meals={meals}
                   date={date}
                   drivers={drivers}
