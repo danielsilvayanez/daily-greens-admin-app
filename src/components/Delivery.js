@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { deleteDelivery, patchDelivery } from "../Firebase/services";
-import ArrowUpIcon from "../icons/ArrowUpIcon";
-import Edit from "./Edit";
-import { formatDate } from "../libs/Hooks";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { deleteDelivery, patchDelivery } from '../Firebase/services';
+import ArrowUpIcon from '../icons/ArrowUpIcon';
+import Edit from './Edit';
+import { formatDate } from '../libs/Hooks';
 
 export default function Delivery({
   delivery,
@@ -16,7 +16,7 @@ export default function Delivery({
 }) {
   const [details, setDetails] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [editkey, setEditkey] = useState("");
+  const [editkey, setEditkey] = useState('');
   const [check, setCheck] = useState(delivery.newcustomer);
   const extraKeys = Object.keys(delivery.extra);
   const extraValues = Object.values(delivery.extra);
@@ -44,12 +44,13 @@ export default function Delivery({
     }, 200);
   }
 
-  function handleDelete(documentId, delivery, index, setDeliveries) {
+  async function handleDelete(documentId, delivery, index, setDeliveries) {
     setDeliveries([
       ...deliveries.slice(0, index),
       ...deliveries.slice(index + 1),
     ]);
-    deleteDelivery(documentId, delivery, index);
+    await deleteDelivery(documentId, delivery, index);
+    window.location.reload();
   }
 
   function handleSelect(event) {
@@ -70,33 +71,33 @@ export default function Delivery({
         >
           <StyledArrowUpIcon onClick={() => setDetails(!details)} />
           <div>
-            <h3 onClick={() => toggleEdit("name")}>Name: {delivery.name}</h3>
-            <p onClick={() => toggleEdit("street")}>
+            <h3 onClick={() => toggleEdit('name')}>Name: {delivery.name}</h3>
+            <p onClick={() => toggleEdit('street')}>
               Straße: {delivery.street}
             </p>
-            <p onClick={() => toggleEdit("date")}>
+            <p onClick={() => toggleEdit('date')}>
               Lieferdatum: {formatDate(delivery.date)}
             </p>
-            <p onClick={() => toggleEdit("stop")}>Stopp: {delivery.stop}</p>
-            <p onClick={() => toggleEdit("daymeal1")}>
+            <p onClick={() => toggleEdit('stop')}>Stopp: {delivery.stop}</p>
+            <p onClick={() => toggleEdit('daymeal1')}>
               {meals.document.daymeal1}: {delivery.daymeal1}
             </p>
-            <p onClick={() => toggleEdit("daymeal2")}>
+            <p onClick={() => toggleEdit('daymeal2')}>
               {meals.document.daymeal2}: {delivery.daymeal2}
             </p>
-            <p onClick={() => toggleEdit("daymeal3")}>
+            <p onClick={() => toggleEdit('daymeal3')}>
               {meals.document.daymeal3}: {delivery.daymeal3}
             </p>
-            <p onClick={() => toggleEdit("daymeal4")}>
+            <p onClick={() => toggleEdit('daymeal4')}>
               {meals.document.daymeal4}: {delivery.daymeal4}
             </p>
-            <p onClick={() => toggleEdit("daymeal5")}>
+            <p onClick={() => toggleEdit('daymeal5')}>
               {meals.document.daymeal5}: {delivery.daymeal5}
             </p>
-            <p onClick={() => toggleEdit("dessert1")}>
+            <p onClick={() => toggleEdit('dessert1')}>
               {meals.document.dessert1}: {delivery.dessert1}
             </p>
-            <p onClick={() => toggleEdit("dessert2")}>
+            <p onClick={() => toggleEdit('dessert2')}>
               {meals.document.dessert2}: {delivery.dessert2}
             </p>
             <div>
@@ -106,12 +107,12 @@ export default function Delivery({
                 </p>
               ))}
             </div>
-            <p onClick={() => toggleEdit("message")}>
+            <p onClick={() => toggleEdit('message')}>
               Kommentar:
               <ImportantMessage>"{delivery.message}"</ImportantMessage>
             </p>
-            <p onClick={() => toggleEdit("box")}>Boxen groß: {delivery.box} </p>
-            <p onClick={() => toggleEdit("smallbox")}>
+            <p onClick={() => toggleEdit('box')}>Boxen groß: {delivery.box} </p>
+            <p onClick={() => toggleEdit('smallbox')}>
               Boxen klein: {delivery.smallbox}
             </p>
             <p>
@@ -120,7 +121,7 @@ export default function Delivery({
                 <ImportantMessage>"{delivery.drivermessage}"</ImportantMessage>
               )}
             </p>
-            <p onClick={() => toggleEdit("phone")}>Tel.: {delivery.phone}</p>
+            <p onClick={() => toggleEdit('phone')}>Tel.: {delivery.phone}</p>
             <NewCustomerContainer>
               <label htmlFor="newcustomer">Neukunde</label>
               <input
@@ -149,7 +150,7 @@ export default function Delivery({
               onClick={() => {
                 // eslint-disable-next-line no-restricted-globals
                 const deletionConfirmation = confirm(
-                  "Bist du sicher, dass du löschen willst?"
+                  'Bist du sicher, dass du löschen willst?'
                 );
                 deletionConfirmation &&
                   handleDelete(documentId, delivery, index, setDeliveries);
@@ -169,11 +170,11 @@ export default function Delivery({
             {delivery.name} ({formatDate(delivery.date)})
           </h3>
           <p>
-            Fahrer:{" "}
+            Fahrer:{' '}
             {
               drivers.find((driver) => driver.driverid === delivery.driverId)
                 ?.drivername
-            }{" "}
+            }{' '}
             - Stop: {delivery.stop} - Große Boxen: {delivery.box} - Kleine
             Boxen: {delivery.smallbox}
           </p>
@@ -218,12 +219,12 @@ export default function Delivery({
               {
                 drivers.find((driver) => driver.driverid === delivery.driverId)
                   ?.drivername
-              }{" "}
+              }{' '}
               sagt "{delivery.drivermessage}"
             </ImportantMessage>
           )}
 
-          {delivery.driverId === "Abholung" ? (
+          {delivery.driverId === 'Abholung' ? (
             <div>
               <BtnAbholung
                 onClick={() => {
@@ -242,9 +243,6 @@ export default function Delivery({
       {edit && (
         <Edit
           editkey={editkey}
-          index={index}
-          deliveries={deliveries}
-          setDeliveries={setDeliveries}
           documentId={documentId}
           toggleEdit={setEdit}
           delivery={delivery}
@@ -275,12 +273,12 @@ const Container = styled.div`
   align-items: left;
   border: ${(props) =>
     props.incomplete
-      ? "1px solid hotpink"
-      : "1px solid var(--primaryFontGrey)"};
+      ? '1px solid hotpink'
+      : '1px solid var(--primaryFontGrey)'};
   margin: 10px;
   padding: 10px;
   background-color: ${(props) =>
-    props.primary ? "#90EE90" : "var(--primaryBgWhite)"};
+    props.primary ? '#90EE90' : 'var(--primaryBgWhite)'};
 `;
 
 const StyledArrowUpIcon = styled(ArrowUpIcon)`
@@ -308,7 +306,7 @@ const DriverContainer = styled.div`
 
 const Button = styled.button`
   background-color: var(--primaryBGBtnGreen);
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   color: var(--primaryFontGrey);
   border: none;
   border-radius: 5px;

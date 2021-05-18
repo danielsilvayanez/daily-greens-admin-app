@@ -1,14 +1,7 @@
-import React, { useState } from "react";
-import { patchDelivery } from "../Firebase/services";
+import React, { useState } from 'react';
+import { patchDelivery } from '../Firebase/services';
 
-export default function Edit({
-  editkey,
-  deliveries,
-  index,
-  documentId,
-  toggleEdit,
-  delivery,
-}) {
+export default function Edit({ editkey, documentId, toggleEdit, delivery }) {
   const [edit, setEdit] = useState({
     [editkey]: delivery[editkey],
   });
@@ -16,7 +9,7 @@ export default function Edit({
   return (
     <>
       <form>
-        {typeof delivery[editkey] === "number" && (
+        {typeof delivery[editkey] === 'number' && (
           <input
             type="number"
             name={editkey}
@@ -24,7 +17,7 @@ export default function Edit({
             onChange={handleChange}
           ></input>
         )}
-        {typeof delivery[editkey] === "string" && (
+        {typeof delivery[editkey] === 'string' && (
           <input
             name={editkey}
             value={edit[editkey]}
@@ -42,12 +35,11 @@ export default function Edit({
     setEdit({ ...edit, [event.target.name]: event.target.value });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    let newDeliveries = [...deliveries];
-    newDeliveries[index].document[editkey] = edit[editkey];
-    patchDelivery(documentId, newDeliveries[index].document);
+    await patchDelivery(documentId, edit);
     toggleEdit(false);
+    window.location.reload();
   }
 
   function cancel(event) {

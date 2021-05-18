@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { postDelivery } from "../Firebase/services";
-import ExtraInput from "../components/ExtraInput";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { postDelivery } from '../Firebase/services';
+import ExtraInput from '../components/ExtraInput';
 
 export default function AddDeliveryForm({
   deliveries,
   setDeliveries,
   dbData,
   drivers,
-  date,
 }) {
-  const [cacheDate, setCacheDate] = useState("");
+  const [cacheDate, setCacheDate] = useState('');
+  const [error, setError] = useState('');
 
   const defaultDelivery = {
-    name: "",
-    street: "",
-    phone: "",
+    name: '',
+    street: '',
+    phone: '',
     daymeal1: 0,
     daymeal2: 0,
     daymeal3: 0,
@@ -25,9 +25,9 @@ export default function AddDeliveryForm({
     dessert2: 0,
     extra: {},
     // date: "",
-    driverId: "3fXdKUI2eAbz5z4W1Quw4Xrz0M83",
-    message: "",
-    drivermessage: "",
+    driverId: '3fXdKUI2eAbz5z4W1Quw4Xrz0M83',
+    message: '',
+    drivermessage: '',
     stop: 0,
     box: 0,
     smallbox: 0,
@@ -36,8 +36,8 @@ export default function AddDeliveryForm({
     newcustomer: false,
   };
   const defaultMeals = {
-    dessert1: "",
-    dessert2: "",
+    dessert1: '',
+    dessert2: '',
   };
 
   const [cacheDelivery, setCacheDelivery] = useState(defaultDelivery);
@@ -51,7 +51,7 @@ export default function AddDeliveryForm({
   }, [dbData]);
 
   for (let i = 0; i <= Object.keys(newDelivery.extra).length; i++) {
-    extraInputs.push("+");
+    extraInputs.push('+');
   }
 
   return (
@@ -164,7 +164,7 @@ export default function AddDeliveryForm({
           <label htmlFor="extra">Weitere Items:</label>
           {extraInputs.map((index) => (
             <ExtraInput
-              key={index + "extraInput"}
+              key={index + 'extraInput'}
               setDelivery={setNewDelivery}
               delivery={newDelivery}
             />
@@ -172,7 +172,7 @@ export default function AddDeliveryForm({
           <label htmlFor="newcustomer">
             Neukunde:
             <input
-              style={{ margin: "0" }}
+              style={{ margin: '0' }}
               type="checkbox"
               name="newcustomer"
               onChange={handleChange}
@@ -200,7 +200,7 @@ export default function AddDeliveryForm({
   );
 
   function handleChange(event) {
-    event.target.name === "newcustomer"
+    event.target.name === 'newcustomer'
       ? setNewDelivery({
           ...newDelivery,
           [event.target.name]: event.target.checked,
@@ -210,10 +210,10 @@ export default function AddDeliveryForm({
           [event.target.name]: event.target.value,
         });
     if (
-      event.target.name === "name" ||
-      event.target.name === "phone" ||
-      event.target.name === "street" ||
-      event.target.name === "driverId"
+      event.target.name === 'name' ||
+      event.target.name === 'phone' ||
+      event.target.name === 'street' ||
+      event.target.name === 'driverId'
     ) {
       setCacheDelivery({
         ...newDelivery,
@@ -222,24 +222,42 @@ export default function AddDeliveryForm({
     }
   }
 
-  function handleSubmit(event) {
-    alert("Auftrag angelegt");
+  async function handleSubmit(event) {
     event.preventDefault();
-    let newDeliveries = [...deliveries, newDelivery];
-    setDeliveries(newDeliveries);
-    postDelivery(newDelivery);
-    setNewDelivery(defaultDelivery);
-    setCacheDate(newDelivery.date);
+
+    try {
+      setError('');
+      await postDelivery(newDelivery);
+    } catch {
+      setError('Ups, etwas ist schief gelaufen');
+      alert(error);
+    }
+    if (!error) {
+      let newDeliveries = [...deliveries, newDelivery];
+      setDeliveries(newDeliveries);
+      alert('Auftrag angelegt');
+      setNewDelivery(defaultDelivery);
+      setCacheDate(newDelivery.date);
+    }
   }
 
-  function handleSubmitSameCustomer(event) {
-    alert("Auftrag angelegt");
+  async function handleSubmitSameCustomer(event) {
     event.preventDefault();
-    let newDeliveries = [...deliveries, newDelivery];
-    setDeliveries(newDeliveries);
-    postDelivery(newDelivery);
-    setNewDelivery(cacheDelivery);
-    setCacheDate(newDelivery.date);
+
+    try {
+      setError('');
+      await postDelivery(newDelivery);
+    } catch {
+      setError('Ups, etwas ist schief gelaufen');
+      alert(error);
+    }
+    if (!error) {
+      let newDeliveries = [...deliveries, newDelivery];
+      setDeliveries(newDeliveries);
+      alert('Auftrag angelegt');
+      setNewDelivery(cacheDelivery);
+      setCacheDate(newDelivery.date);
+    }
   }
 }
 
@@ -290,7 +308,7 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 1.5rem;
   color: var(--primaryFontGrey);
   border: none;
