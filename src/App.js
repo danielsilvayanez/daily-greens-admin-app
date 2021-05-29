@@ -5,6 +5,7 @@ import { Header } from "./components/Header";
 import AddDeliveryForm from "./pages/AddDeliveryForm";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
+import DriverOverview from "./pages/DriverOverview";
 import Settings from "./pages/Settings";
 import Register from "./components/auth/Register";
 import { fetchDeliveries, fetchMeals, fetchDrivers } from "./Firebase/services";
@@ -88,6 +89,15 @@ export default function App() {
                   meals={meals}
                   deliveries={deliveries}
                   setDeliveries={setLocalDeliveries}
+                />
+              </Route>
+              <Route exact path="/driver-overview">
+                <DriverOverview
+                  date={date}
+                  meals={meals}
+                  deliveries={deliveries}
+                  setDeliveries={setLocalDeliveries}
+                  drivers={drivers}
                 />
               </Route>
               <Route exact path="/home">
