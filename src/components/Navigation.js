@@ -8,6 +8,7 @@ export default function Navigation() {
       <StyledNavLink exact to="/">
         Aufträge Übersicht
       </StyledNavLink>
+      <StyledNavLink to="/driver-overview"> Aufträge (Fahrer) </StyledNavLink>
       <StyledNavLink to="/home"> Aufträge (offen) </StyledNavLink>
       <StyledNavLink to="/archive">Aufträge erledigt </StyledNavLink>
       <StyledNavLink to="/form">Auftrag erstellen</StyledNavLink>
