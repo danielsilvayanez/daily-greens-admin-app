@@ -89,9 +89,27 @@ export function postDelivery(data) {
     });
 }
 
-export function deleteDelivery(documentId, data, index) {
+export function deleteDelivery(documentId) {
   return deliveryRef
     .doc(documentId)
-    .delete(data[index])
-    .then(() => {});
+    .delete()
+    .then(() => {
+      console.log("Killer Deletion!");
+    });
+}
+
+export async function deleteOldDeliveries(oldMonth) {
+  const dbResult = await deliveryRef
+    .where("date", "<=", oldMonth)
+    .get()
+    .then((data) => {
+      const deliveryData = [];
+      data.forEach((doc) => {
+        deliveryData.push(doc.id);
+      });
+      return deliveryData;
+    });
+  dbResult.forEach((docId) => {
+    deleteDelivery(docId);
+  });
 }

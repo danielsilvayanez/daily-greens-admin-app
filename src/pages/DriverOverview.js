@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Delivery from "../components/Delivery";
+import DriverDeliveryIndividual from "../components/DriverDeliveryIndividual";
 
 export default function Deliverylist({
   deliveries,
@@ -28,96 +29,25 @@ export default function Deliverylist({
     }
   });
 
-  const [driverContentVisible, setDriverContentVisible] = useState(false);
+  // const [driverContentVisible, setdriverContentVisible] = useState('');
 
   return (
     <React.Fragment>
       <StyledContainer>
-        <H2
-          onClick={(event) => {
-            setDriverContentVisible(!driverContentVisible);
-            console.log("event", event);
-          }}
-        >
+        <H2>
           Heute ({totalDeliveriesToday})
         </H2>
-        {drivers.map((driver) => {
-          return (
-            <div>
-              <H3
-                onClick={(event) => {
-                  setDriverContentVisible(!driverContentVisible);
-                }}
-              >
-                {driver.drivername}
-              </H3>
-              <List>
-                {deliveries.map(
-                  (delivery, index) =>
-                    !delivery.document.done &&
-                    delivery.document.date === date &&
-                    delivery.document.driverId === driver.driverid &&
-                    driverContentVisible && (
-                      <Delivery
-                        meals={meals}
-                        delivery={delivery.document}
-                        index={index}
-                        setDeliveries={setDeliveries}
-                        deliveries={deliveries}
-                        documentId={delivery.documentId}
-                        key={delivery.documentId}
-                        drivers={drivers}
-                      />
-                    )
-                )}
-              </List>
-            </div>
-          );
-        })}
-      </StyledContainer>
+        {drivers.map((driver) =>
+          <DriverDeliveryIndividual deliveries={deliveries} setDeliveries={setDeliveries} meals={meals} date={date} drivers={drivers} driver={driver} />
+        )}
 
-      <StyledContainer>
-        <H2
-          onClick={(event) => {
-            setDriverContentVisible(!driverContentVisible);
-          }}
-        >
+        <H2>
           Morgen ({totalDeliveriesTomorrow})
         </H2>
-        {drivers.map((driver) => {
-          return (
-            <div>
-              <H3
-                key={driver.driverid}
-                onClick={(event) => {
-                  setDriverContentVisible(!driverContentVisible);
-                }}
-              >
-                {driver.drivername}
-              </H3>
-              <List>
-                {deliveries.map(
-                  (delivery, index) =>
-                    !delivery.document.done &&
-                    delivery.document.date === nextDay &&
-                    delivery.document.driverId === driver.driverid &&
-                    driverContentVisible && (
-                      <Delivery
-                        meals={meals}
-                        delivery={delivery.document}
-                        index={index}
-                        setDeliveries={setDeliveries}
-                        deliveries={deliveries}
-                        documentId={delivery.documentId}
-                        key={delivery.documentId}
-                        drivers={drivers}
-                      />
-                    )
-                )}
-              </List>
-            </div>
-          );
-        })}
+        {drivers.map((driver) =>
+          <DriverDeliveryIndividual deliveries={deliveries} setDeliveries={setDeliveries} meals={meals} date={nextDay} drivers={drivers} driver={driver} />
+        )}
+
       </StyledContainer>
     </React.Fragment>
   );
