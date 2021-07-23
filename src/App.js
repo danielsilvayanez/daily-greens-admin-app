@@ -8,7 +8,12 @@ import Home from "./pages/Home";
 import DriverOverview from "./pages/DriverOverview";
 import Settings from "./pages/Settings";
 import Register from "./components/auth/Register";
-import { fetchDeliveries, fetchMeals, fetchDrivers } from "./Firebase/services";
+import {
+  fetchDeliveries,
+  fetchMeals,
+  fetchDrivers,
+  deleteOldDeliveries,
+} from "./Firebase/services";
 import Login from "./components/auth/Login";
 import useAuth from "./components/auth/useAuth";
 import LoginContext from "./components/auth/LoginContext";
@@ -16,6 +21,7 @@ import firebaseApp from "./Firebase/index";
 import UserBar from "./components/auth/UserBar";
 import Archive from "./pages/Archive";
 import Dashboard from "./pages/Dashboard";
+import { createDateString } from "./libs/Hooks";
 
 export default function App() {
   const today = new Date();
@@ -30,6 +36,8 @@ export default function App() {
     fetchDeliveries().then((dbResult) => {
       setDeliveries(dbResult.sort(compareDate).sort(compareStop));
     });
+
+    deleteOldDeliveries(createDateString(-29));
 
     fetchMeals().then((dbResult) => {
       setMeals(dbResult[0]);
